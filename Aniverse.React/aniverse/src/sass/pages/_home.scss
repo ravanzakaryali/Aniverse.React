@@ -1,0 +1,30 @@
+.main {
+    margin: 0;
+    margin-top: 95px;
+    .fixed-sidebar {
+        position: fixed;
+        top: 83px;
+        padding-bottom: 83px;
+        overflow-y: scroll;
+        height: 100%;
+        &::-webkit-scrollbar {
+            width: 10px;
+            height: 100px;
+        }
+    }
+    .static-page {
+        margin: auto;
+    }
+    .fixed-sidebar-right {
+        position: fixed;
+        top: 83px;
+        padding-bottom: 83px;
+        overflow-y: scroll;
+        height: 100%;
+        right: 0;
+        &::-webkit-scrollbar {
+            width: 10px;
+            height: 100px;
+        }
+    }
+}

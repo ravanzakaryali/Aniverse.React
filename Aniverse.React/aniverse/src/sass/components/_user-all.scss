@@ -1,0 +1,24 @@
+.user-all {
+    .user-card {
+        padding: $padding-normal;
+        margin: $margin-normal 0;
+        border-radius: $border-radius-min;
+        @extend %box-shadow-main;
+        text-align: center;
+    }
+    .user-profile-img {
+        object-fit: cover;
+        @include boxSize($box-size-img * 3, $box-size-img * 3, 50%);
+    }
+    .user-name {
+        margin: $margin-normal 0;
+        font-size: $fs-min;
+        color: $gray-80;
+    }
+    .btn {
+        margin-top: $margin-normal;
+        width: 100%;
+        padding: $padding-min $padding-normal;
+        display: block;
+    }
+}

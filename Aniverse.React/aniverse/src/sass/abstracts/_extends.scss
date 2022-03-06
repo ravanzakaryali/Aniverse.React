@@ -1,0 +1,68 @@
+%display-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+%display-flex-between-x-center-y {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+%display-flex-center-x {
+    display: flex;
+    justify-content: center;
+}
+%display-flex-center-y {
+    display: flex;
+    align-items: center;
+}
+%display-flex-end-x {
+    display: flex;
+    justify-content: end;
+}
+%navbar-link-active {
+    background-color: $gray-10;
+    position: relative;
+}
+%navbar-link-active::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    bottom: -11px;
+    border-top-left-radius:$border-radius-min;
+    border-top-right-radius:$border-radius-min;
+    height: 3px;
+    background-color: $color-brand-primary;
+}
+%active-right-menu {
+    transition: $transition-min;
+    &.active {
+        display: block;
+    }
+    position: absolute;
+    z-index: 9;
+    left: 0;
+    right: 0;
+    top: 50px;
+    background-color: $white;
+    border-radius: $border-radius-min;
+}
+
+%border-radius-bottom-left {
+    border-radius: 0;
+    border-bottom-right-radius: $border-radius-max;
+    border-top-left-radius: $border-radius-max;
+}
+%border-radius-input{
+    border-radius: 0;
+    border-bottom-left-radius: $border-radius-max;
+    border-start-end-radius: $border-radius-max;
+    border-end-end-radius: $border-radius-max;
+}
+%box-shadow-main{
+    box-shadow: 0px 2px 20px $gray-30;
+}
+%box-shadow-main-bottom{
+    box-shadow: 0px 2px 20px $gray-30;
+}

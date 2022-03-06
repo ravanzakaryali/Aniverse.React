@@ -1,0 +1,27 @@
+.user-friend {
+    padding: $padding-normal;
+    margin: $margin-normal 0;
+    border-radius: $border-radius-min;
+    @extend %box-shadow-main;
+    .friend-card {
+        margin: $margin-normal 0;
+        padding: $padding-normal;
+        display: flex;
+        border: 1px solid $gray-10;
+        border-radius: $border-radius-min;
+        .friends-profile {
+            @include boxSize($box-size-img * 3, $box-size-img * 3, 50%);
+        }
+        .friend-name{
+            margin: auto $margin-normal;
+            font-size: $fs-normal;
+            color: $gray-80;
+        }
+        .btn{
+            display: inline-block;
+            height: fit-content;
+            margin: auto 0;
+            margin-left: auto;
+        }
+    }
+}

@@ -1,0 +1,101 @@
+.post-add {
+    padding: $padding-normal;
+    margin: $margin-normal 0;
+    justify-content: space-between;
+    @extend %box-shadow-main;
+    border-radius: $border-radius-min;
+    .content {
+        padding: $padding-normal;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .content .btn {
+        width: fit-content;
+        padding: $padding-min $padding-normal;
+        border-radius: $border-radius-min;
+        display: inline-block;
+        margin-left: auto;
+        margin-top: auto;
+    }
+    .content textarea {
+        border-radius: $border-radius-min;
+        min-height: 70px;
+        padding: $padding-normal;
+        background-color: $gray-05;
+        width: 100%;
+        border: 1px solid $gray-30;
+        resize: none;
+        &:focus-visible {
+            outline: none;
+        }
+        ::placeholder {
+            color: $gray-30;
+        }
+    }
+    .added-image {
+        @include boxSize(100%, 100%, $border-radius-min);
+        object-fit: cover;
+    }
+    .image-content {
+        position: relative;
+    }
+    .plus-button i {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: $white;
+        font-size: $fs-max;
+    }
+    .image {
+        font-size: $fs-normal + 10;
+        padding: $padding-normal;
+        color: $color-brand-primary;
+        @extend %display-flex-center;
+        margin-top: $margin-normal;
+        border-radius: $border-radius-min;
+        &:hover {
+            background-color: $gray-10;
+        }
+    }
+    .image-select {
+        position: relative;
+        background-color: $color-brand-primary-5;
+        padding: $padding-normal;
+        margin-top: $margin-normal;
+        margin-left: $margin-normal + 10;
+        border-radius: $border-radius-min;
+        font-size: $fs-normal;
+        color: $color-brand-primary;
+    }
+    .image-select-text {
+        padding-left: $padding-min;
+        font-size: $fs-min;
+    }
+    .clear-select-files{
+        cursor: pointer;
+        background-color: transparent;
+        padding: 0;
+        border: none;
+        color: $color-brand-primary;
+        display: inline-block;
+        margin-left: $margin-min;
+    }
+    .animals{
+        padding: 0 $padding-normal;
+        margin-top: $margin-normal;
+        select{
+            border-radius: $border-radius-min;
+            border: 1px solid $gray-20;
+            color: $gray-90;
+            padding: $padding-normal;
+            color: $color-brand-primary;
+            font-weight: $fs-weight-normal;
+            font-size: $fs-min;
+            &:focus-visible{
+                outline: 0;
+                border: 1px solid $gray-30;
+            }
+        }
+    }
+}

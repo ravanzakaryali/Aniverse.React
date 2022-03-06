@@ -1,0 +1,49 @@
+.animal-modal {
+    background-color: rgba(0, 0, 0, 0.4);
+    .modal-title {
+        font-size: $fs-min;
+        color: $gray-90;
+        width: 100%;
+        text-align: center;
+    }
+    .add-modal-form {
+        .form-title{
+            display: flex;
+            width: 100%;
+        }
+        .animal-form-controller input {
+            width: auto;
+            border: 1px solid $gray-20;
+            padding: $padding-normal;
+            margin: 0 $margin-min;
+            color: $gray-80;
+            &:focus-visible,
+            :focus {
+                outline: 0;
+                border: 1px solid $gray-30;
+            }
+        }
+        .label-input {
+            padding: $padding-min;
+        }
+        .animal-category {
+            width: 100%;
+            padding: $padding-normal;
+            border: 1px solid $gray-30;
+            &:focus-visible,
+            :focus {
+                outline: 0;
+                border: 1px solid $gray-30;
+            }
+        }
+        .animal-form-controller {
+            margin: $margin-normal $margin-min;
+        }
+    }
+    .modal-body {
+        padding: $padding-min;
+    }
+    .modal-footer {
+        padding: $padding-min;
+    }
+}

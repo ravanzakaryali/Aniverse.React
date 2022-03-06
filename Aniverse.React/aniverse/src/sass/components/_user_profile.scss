@@ -1,0 +1,122 @@
+.user-profile-parent {
+   @import './user_cover_picture';
+    .container-min {
+        margin: 0 $margin-normal * 10;
+    }
+    .profile-row {
+        @extend %box-shadow-main;
+        border-radius: $border-radius-min;
+        padding: $padding-normal + 5;
+        margin: $margin-normal 0;
+        .profil-img {
+            object-fit: cover;
+            @extend %box-shadow-main;
+            @include boxSize($box-size-img * 4, $box-size-img * 4, 50%);
+            border: 2px solid $white;
+        }
+        .profile-picture-parent{
+            position: relative;
+            .profile-img-btn{
+                right: 0;
+                top: 15px;
+                background-color: $gray-20;
+                padding: $padding-min $padding-normal;
+                border-radius: 50%;
+                position: absolute;
+            }
+        }
+        .profile-img-modal{
+            background-color: rgba(0, 0, 0, 0.700);
+        }
+        .profile-img-modal .modal-content{
+            background-color: transparent;
+        }
+        .profile-img-modal .modal-body{
+            text-align: center;
+            padding: 0;
+        }
+        .profile-img-modal .modal-body img{
+            object-fit: cover;
+            @include boxSize($box-size-img * 10, $box-size-img * 10, 50%);
+        }
+        .profile-picture-row{
+            margin-bottom: $margin-normal;
+            padding-bottom: $padding-normal;
+        }
+        .profil-content {
+            padding: $padding-normal;
+            margin-top: auto;
+        }
+        .profile-name-surname {
+            font-size: $fs-max;
+            font-weight: $fs-weight-normal;
+        }
+        .friend-count {
+            color: $gray-80;
+        }
+        .friend-count a {
+            color: $gray-80;
+            margin: 0 $margin-min;
+            display: inline-block;
+        }
+        .friends-pp {
+            display: flex;
+        }
+        .friend-img {
+            margin-left: -$margin-min;
+            border: 1px solid $white;
+            @include boxSize($box-size-img, $box-size-img, 50%);
+            object-fit: cover;
+        }
+    }
+    .buttons-parent {
+        margin-right: auto;
+        margin-top: auto;
+        margin-bottom: $margin-normal;
+        padding-bottom: $padding-normal;
+        .profile-buttons {
+            text-align: end;
+        }
+        .btn {
+            margin: $margin-min;
+        }
+    }
+    .menu-row {
+        display: flex;
+        flex-wrap: wrap;
+        border-top: 1px solid $gray-30;
+        margin-top: $margin-normal;
+        padding-top: $padding-normal;
+        .profile-menu {
+            display: flex;
+        }
+        .profile-menu a{
+            padding: $padding-normal;
+            margin: 0 $margin-min;
+            border-radius: $border-radius-min;
+            display: inline-block;
+        }
+        .profile-menu a{
+            &:hover {
+                @extend %navbar-link-active;
+            }
+            &::before {
+                bottom: -15px !important;
+            }
+        }
+        .profile-menu a.active {
+            @extend %navbar-link-active;
+            &::before {
+                bottom: -15px !important;
+            }
+        }
+        .profile-menu a{
+            display: inline-block;
+            color: $gray-80;
+            font-weight: $fs-weight-normal;
+        }
+    }
+    .new-friend-text{
+        text-align: center;
+    }
+}

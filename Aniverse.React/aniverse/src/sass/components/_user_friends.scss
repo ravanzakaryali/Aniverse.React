@@ -1,0 +1,40 @@
+.friends-intro {
+    padding: $padding-normal;
+    margin: $margin-normal 0;
+    display: inline-block;
+    @extend %box-shadow-main;
+    .row {
+        align-items: center;
+    }
+    .friends-title {
+        font-size: $fs-normal;
+        font-weight: $fs-weight-normal + 100;
+    }
+    .count {
+        font-size: $fs-min -2;
+        color: $gray-70;
+    }
+    .all-friends-btn {
+        a {
+            color: $color-brand-primary;
+            font-weight: $fs-weight-normal;
+        }
+    }
+    .friends-profile {
+        @include boxSize($box-size-img * 2, $box-size-img * 2, 50%);
+        border: 1px solid $white;
+    }
+    .all-friends-btn {
+        display: flex;
+        justify-content: end;
+    }
+    .friend-card{
+        margin-bottom: $margin-min;
+        text-align: center;
+    }
+    .friend-name{
+        color: $gray-80;
+        font-weight: $fs-weight-normal;
+        text-align: center;
+    }
+}

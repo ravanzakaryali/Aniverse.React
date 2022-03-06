@@ -1,0 +1,39 @@
+.modal {
+    .modal-content{
+        border: none;
+    }
+    .modal-header{
+        border: none;
+    }
+    .modal-header h5{
+        font-size: $fs-normal
+    }
+    .modal-body {
+        position: relative;
+    }
+    .story-add-image {
+        @include boxSize(100%, 500px, $border-radius-max);
+        object-fit: cover;
+    }
+    .add-story-plus {
+        @include boxSize(200px, 200px, 50%);
+        line-height: 200px;
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        color: $white;
+        font-size: $fs-max * 2;
+        transform: translate(-50%, -50%);
+        position: absolute;
+    }
+    .modal-footer{
+        border: none;
+        @extend %display-flex-center;
+    }
+    .btn-primary{
+        background-color: $color-brand-primary;
+    }
+    .btn-secondary{
+        background-color: $gray-70;
+    }
+}

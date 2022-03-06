@@ -1,0 +1,19 @@
+.people-row {
+    margin: 0;
+    margin-top: 80px;
+    .people-page-menu {
+        padding: 0;
+        @extend %box-shadow-main;
+        position: fixed;
+        left: 0;
+        height: 100%;
+        @import "./people_menu";
+    }
+    .people-center {
+        margin: auto;
+    }
+    .people-right {
+        position: fixed;
+        right: 0;
+    }
+}

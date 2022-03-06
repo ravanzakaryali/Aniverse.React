@@ -1,0 +1,56 @@
+.users-section {
+    margin: $margin-normal 0;
+    border-radius: $border-radius-min;
+    padding: $padding-normal 0;
+    background-color: white;
+    @extend %box-shadow-main;
+    .section-title {
+        padding: $padding-normal;
+        color: $black;
+        font-size: $fs-normal;
+    }
+    .sidebar-user {
+        a {
+            color: $black;
+            font-size: $fs-min + 1;
+            margin: $margin-normal 0;
+            padding: $padding-normal;
+            &:hover {
+                background-color: $gray-10;
+            }
+        }
+        .users-profile {
+            @include boxSize($box-size-img, $box-size-img, 50%);
+        }
+    }
+    .btn-loadmore {
+        width: 100%;
+        text-align: start;
+        padding: $padding-normal $padding-normal + 5;
+        &:hover {
+            background-color: $gray-10;
+        }
+    }
+    .content {
+        width: 100%;
+        .users-name {
+            padding: $padding-normal;
+            font-size: $fs-min;
+        }
+        .request-btns {
+            width: 100%;
+            padding: 0 $padding-normal;
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn {
+            width: 100%;
+            padding: $padding-min;
+            margin: 0 $margin-normal;
+            font-size: $fs-min - 2;
+        }
+    }
+    .btn-loadmore {
+        margin-top: $margin-min;
+    }
+}

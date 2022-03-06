@@ -1,0 +1,38 @@
+.photos-intro {
+    padding: $padding-normal;
+    padding-bottom: 0;
+    margin: $margin-normal 0;
+    border-radius: $border-radius-min;
+    @extend %box-shadow-main;
+    .card-photos .card-imgs{
+        border: 2px solid $white;
+        border-radius: $border-radius-min;
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+    }
+    .col-4{
+        padding: 0;
+    }
+    .photos-intro-title{
+        padding-bottom: $padding-min;
+    }
+    .row {
+        align-items: center;
+    }
+    .photos-title {
+        font-size: $fs-normal;
+        font-weight: $fs-weight-normal + 100;
+    }
+    .count {
+        font-size: $fs-min -2;
+        color: $gray-70;
+    }
+    .all-photos-btn {
+        text-align: end;
+        a {
+            color: $color-brand-primary;
+            font-weight: $fs-weight-normal;
+        }
+    }
+}

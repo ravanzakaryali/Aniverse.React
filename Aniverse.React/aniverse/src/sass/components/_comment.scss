@@ -1,0 +1,39 @@
+.comments {
+    padding: $padding-normal;
+    .user-comment {
+        padding: $padding-min 0;
+    }
+    .user-comment-profile-img {
+        object-fit: cover;
+        @include boxSize($box-size-img, $box-size-img, 50%);
+    }
+    .user-profile {
+        padding: $padding-min;
+    }
+    .user-comment {
+        display: flex;
+    }
+    .user-comment-content {
+        padding: $padding-min $padding-normal + 5;
+        background-color: $gray-10;
+       @extend %border-radius-input;
+    }
+    .profile-name {
+        font-weight: $fs-weight-normal;
+        color: $black;
+    }
+    .date {
+        font-weight: $fs-weight-normal;
+        font-size: $fs-min - 2;
+    }
+    .reply-comment-btn {
+        background-color: transparent;
+        border: none;
+        font-size: $fs-min - 2;
+        color: $black;
+        font-weight: $fs-weight-normal;
+    }
+    .comment-footer{
+        @extend %display-flex-between-x-center-y;
+    }
+}

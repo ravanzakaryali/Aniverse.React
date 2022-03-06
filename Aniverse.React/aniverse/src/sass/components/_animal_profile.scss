@@ -1,0 +1,229 @@
+.background-img {
+    width: 100%;
+    height: 250px;
+    .animal-cover-picture {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+.animal-container {
+    position: relative;
+    padding: 0 $padding-normal * 20;
+    .profile {
+        padding: 0;
+        .profile-img {
+            @include boxSize(250px, 250px);
+            object-fit: cover;
+            border: 2px solid $white;
+            border-radius: $border-radius-max;
+        }
+    }
+    .animal-edit-modal {
+        background-color: rgba(0, 0, 0, 0.4);
+        .modal-title {
+            text-align: center;
+            width: 100%;
+            color: $gray-90;
+            font-size: $fs-normal;
+        }
+        .modal-body {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        .edit-form {
+            padding: $padding-normal;
+        }
+        .edit-form input,
+        textarea {
+            padding: $padding-min $padding-normal;
+            border-radius: $border-radius-min;
+            border: 1px solid $gray-30;
+            width: 100%;
+            &:focus-visible {
+                border: 1px solid $gray-45;
+                outline: none;
+            }
+        }
+        .edit-form textarea {
+            height: 80px;
+            resize: none;
+        }
+        .edit-form .label {
+            font-weight: $fs-weight-normal;
+            padding-bottom: $padding-min;
+            width: 100%;
+        }
+        .btn {
+            width: 100%;
+            padding: $padding-min;
+        }
+    }
+    .profile-title {
+        margin-bottom: $margin-normal;
+        box-shadow: 0px 10px 10px 0px $black-shadow;
+        margin-top: -45px;
+        border-radius: $border-radius-max;
+    }
+    .profile-owner {
+        text-align: end;
+    }
+    .profile-right-title {
+        display: flex;
+    }
+    .profile-content {
+        margin-top: 50px;
+        flex-wrap: wrap;
+        display: flex;
+        .title {
+            align-items: center;
+            margin: $margin-normal 0;
+            width: 100%;
+            display: flex;
+            .profile-name {
+                font-size: $fs-normal * 1.5;
+            }
+            a {
+                display: inline-block;
+                margin-left: $margin-normal;
+                font-size: $fs-min;
+            }
+        }
+        .profile-right-title {
+            justify-content: end;
+        }
+        .profile-counter {
+            display: flex;
+            align-items: center;
+            .counter {
+                padding-right: $padding-normal;
+                font-size: $fs-normal;
+                color: $color-brand-primary;
+                font-weight: $fs-weight-normal;
+            }
+            .counter-name {
+                font-size: $fs-normal;
+            }
+        }
+        .bio-content {
+            margin: $margin-normal 0;
+            color: $gray-80;
+            font-size: $fs-min;
+        }
+        .follow-button {
+            text-align: end;
+        }
+        .bio-strong {
+            font-weight: $fs-weight-normal;
+        }
+        .strong {
+            color: $color-brand-primary;
+            padding: 0 $padding-min;
+        }
+    }
+    .posts-title {
+        text-align: center;
+        padding: $padding-normal 0;
+        margin-top: $margin-normal * 2;
+        border-radius: $border-radius-max;
+        margin-bottom: $margin-normal;
+        @extend %box-shadow-main;
+        .btn:focus {
+            box-shadow: none;
+        }
+        .btn:hover {
+            font-size: $fs-min;
+            background-color: $gray-10;
+        }
+    }
+    .animal-posts {
+        .post {
+            margin: $margin-normal 0;
+            border-radius: $border-radius-max;
+            @extend %box-shadow-main;
+        }
+        .post-title {
+            display: flex;
+            .post-profile-pircture {
+                @include boxSize($box-size-img * 2, $box-size-img * 2, 50%);
+            }
+            .post-profile {
+                margin: auto 0;
+            }
+            .post-profile-name {
+            }
+            .profile-name {
+                padding: $padding-min;
+                font-size: $fs-normal;
+                color: $color-brand-primary;
+                font-family: $fs-weight-normal;
+            }
+            .date {
+                color: $gray-80;
+                font-size: $fs-min - 1;
+            }
+        }
+        .post-content {
+            font-size: $fs-min;
+            color: $gray-90;
+            padding: $padding-normal;
+        }
+        .post-comment {
+            background-color: $gray-05;
+            padding: 0;
+            overflow: hidden;
+            overflow-y: scroll;
+        }
+        .post-comment-contetn {
+            font-size: $fs-min - 1;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .post-comment-profile {
+            border-radius: $border-radius-min;
+            margin: $margin-min 0;
+            padding: $padding-min;
+            display: flex;
+        }
+        .comment-profile {
+            margin: auto 0;
+        }
+        .comment-profile-name {
+            font-size: $fs-min - 2;
+            font-weight: $fs-weight-normal;
+        }
+        .post-comment-picture {
+            margin-right: $margin-normal;
+            @include boxSize($box-size-img, $box-size-img, 50%);
+        }
+        .sender-date {
+            margin-right: auto;
+        }
+        .sender-date {
+            font-size: $fs-min - 3;
+        }
+        .post-comment-add {
+            margin: auto 0;
+        }
+        .post-comment-add input {
+            width: 100%;
+            border: none;
+            background-color: $gray-20;
+            padding: $padding-min - 2 $padding-min;
+            color: $gray-90;
+            font-size: $fs-min - 1;
+            border-radius: $border-radius-min;
+            &:focus,
+            :focus-visible {
+                outline: none;
+                border: none;
+            }
+        }
+        .btn-add button {
+            width: 100%;
+            margin-left: $margin-min;
+            font-size: $fs-min - 2;
+        }
+    }
+}

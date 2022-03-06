@@ -1,0 +1,32 @@
+.menu-list {
+    li a {
+        font-size: $fs-normal - 2;
+        color: $black;
+        padding: $padding-normal $padding-normal * 2;
+        display: inline-block;
+        width: 100%;
+        $transition-min: 0.3s;
+        i {
+            @include boxSize(40px, 40px, 50%);
+            line-height: 40px;
+            text-align: center;
+            font-size: $fs-normal;
+            background-color: $gray-20;
+            margin-right: $margin-normal;
+        }
+        &:hover {
+            background-color: $gray-10;
+            transform: scale(1.02);
+        }
+        &.active {
+            background-color: $gray-10;
+            i {
+                color: $color-brand-primary;
+                font-size: $fs-normal + 2;
+            }
+        }
+    }
+}
+.title {
+    padding: $padding-normal $padding-normal * 2;
+}

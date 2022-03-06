@@ -1,0 +1,27 @@
+.sponsored {
+    padding: $padding-normal $padding-min;
+    .sponsored-title {
+        font-size: $fs-normal;
+    }
+    .sponsored-img img {
+        width: 100%;
+        object-fit: cover;
+        border-radius: $border-radius-min;
+    }
+    .sponsored-contetn {
+        padding: $padding-normal 0;
+        display: flex;
+        align-items: center;
+    }
+    .sponsored-text {
+        padding-left: $padding-normal;
+    }
+    .sponsored-content-main {
+        width: 100%;
+        font-size: $fs-min;
+        font-weight: $fs-weight-normal;
+    }
+    .compony-name {
+        font-size: $fs-min - 2;
+    }
+}

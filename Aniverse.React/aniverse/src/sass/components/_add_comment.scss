@@ -1,0 +1,23 @@
+.add-comment {
+    form {
+        display: flex;
+    }
+    .add-comment-input{
+        padding: 0 $padding-min;
+        width: 100%;
+    }
+    .add-comment-input input{
+        width: 100%;
+        border: none;
+        padding: $padding-normal;
+        @extend %border-radius-input;
+        background-color: $gray-10;
+        &:hover, &:active, &:focus{
+            border: none;
+            outline: none;
+        }
+    }
+    .btn{
+       @extend %border-radius-bottom-left;
+    }
+}

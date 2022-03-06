@@ -1,0 +1,14 @@
+.btn-primary {
+    background: $color-brand-secondary;
+    background: linear-gradient(45deg, $color-brand-secondary, $color-brand-primary);
+}
+.btn-primary:hover {
+    background: $color-brand-secondary;
+    background: linear-gradient(45deg, $color-brand-secondary, $color-brand-primary-hover);
+}
+.btn-light{
+    background-color: $gray-20;
+}
+.btn-light:hover{
+    background-color: $gray-10;
+}
