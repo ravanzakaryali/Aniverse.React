@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 function UserItem(props) {
  return (
   <>
+   {console.log(props)}
    <div className="container user-all">
     <div className="row users-row">
      {props.users.map((user) => (

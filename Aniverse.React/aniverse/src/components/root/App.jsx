@@ -16,6 +16,7 @@ import Chat from '../ChatHub/Chat';
 import People from '../page/people/People';
 import AllUser from '../user/AllUser';
 import FriendsIntro from '../friend/FriendsIntro';
+import AllFriend from '../page/people/AllFriend';
 
 function App() {
  const dispatch = useDispatch();
@@ -29,7 +30,7 @@ function App() {
    <Routes>
     <Route path="/" element={<Home />} />
     <Route path="people" element={<People />}>
-     <Route path="friends" element={<FriendsIntro />} />
+     <Route path="friends" element={<AllFriend />} />
      <Route path="friends_request" element={<AllUser />} />
      <Route path="birthday" element={<AllUser />} />
      <Route index element={<AllUser />} />

@@ -9,8 +9,6 @@ function AllUser(props) {
  const { getUsers } = props;
  const [usersState, setUsersState] = useState({});
 
- const userJwt = jwtDecode(localStorage.getItem('token'));
-
  useEffect(() => {
   setUsersState();
   getUsers();

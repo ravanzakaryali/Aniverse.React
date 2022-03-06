@@ -22,8 +22,8 @@ export function postFriendConfirmSuccess() {
 export function changeProfileSuccess() {
     return { type: actionTypes.PROFILE_CREATE_SUCCESS }
 }
-export function getUserPhotosSuccess(photos){
-    return {type: actionTypes.GET_PHOTOS_SUCCESS, payload: photos}
+export function getUserPhotosSuccess(photos) {
+    return { type: actionTypes.GET_PHOTOS_SUCCESS, payload: photos }
 }
 
 export function getUsers() {
@@ -74,9 +74,9 @@ export function getUserNavbar(id) {
         });
     }
 }
-export function getUserFriend(id) {
+export function getUserFriend() {
     return async function (dispatch) {
-        let url = `${actionTypes.baseUrl}/user/${id}/friend`;
+        let url = `${actionTypes.baseUrl}/user/friend`;
         axios.get(url, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("token")}`,
@@ -163,10 +163,10 @@ export function getUserPhotos(username, page, size) {
                 'Content-Type': 'application/json;charset=UTF-8'
             },
         })
-        .then((res)=>{
-            dispatch(getUserPhotosSuccess(res.data));
-        }).catch((error)=>{
-            console.log(error);
-        })
+            .then((res) => {
+                dispatch(getUserPhotosSuccess(res.data));
+            }).catch((error) => {
+                console.log(error);
+            })
     }
 }
