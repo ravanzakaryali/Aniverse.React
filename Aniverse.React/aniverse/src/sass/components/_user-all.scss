@@ -21,4 +21,12 @@
         padding: $padding-min $padding-normal;
         display: block;
     }
+    .nothing {
+        height: 80vh;
+        font-size: $fs-min;
+        color: $gray-80;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

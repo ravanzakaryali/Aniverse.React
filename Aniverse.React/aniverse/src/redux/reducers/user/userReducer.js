@@ -5,7 +5,9 @@ export function userReducer(state = initialState.user, action) {
     switch (action.type) {
         case actionTypes.GET_USER_SUCCESS:
             return action.payload
-        case action.GET_FRIEND_USER_SUCCESS:
+        case actionTypes.GET_USER_FRIEND_SUCCESS:
+            return action.payload
+        case actionTypes.GET_BLOCK_USERS_SUCCESS:
             return action.payload
         default:
             return state;

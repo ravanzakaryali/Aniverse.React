@@ -18,6 +18,7 @@ import AllUser from '../page/people/AllUser';
 import FriendsIntro from '../friend/FriendsIntro';
 import AllFriend from '../page/people/AllFriend';
 import AllFriendRequest from '../page/people/AllFriendRequest';
+import BlockUsers from '../page/people/BlockUsers';
 
 function App() {
  const dispatch = useDispatch();
@@ -33,7 +34,7 @@ function App() {
     <Route path="people" element={<People />}>
      <Route path="friends" element={<AllFriend />} />
      <Route path="friends_request" element={<AllFriendRequest />} />
-     <Route path="birthday" element={<AllUser />} />
+     <Route path="block" element={<BlockUsers />} />
      <Route index element={<AllUser />} />
     </Route>
     <Route path="user/:username" element={<User />}>

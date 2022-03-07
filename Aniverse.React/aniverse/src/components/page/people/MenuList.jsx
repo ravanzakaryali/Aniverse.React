@@ -38,10 +38,10 @@ function MenuList() {
     </li>
     <li>
      <Link
-      to="birthday"
-      className={location.pathname === '/people/birthday' ? 'active' : ''}>
+      to="block"
+      className={location.pathname === '/people/block' ? 'active' : ''}>
       <i class="fa-solid fa-user-clock"></i>
-      Birthday
+      Block users
      </Link>
     </li>
    </ul>

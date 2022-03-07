@@ -25,6 +25,9 @@ export function changeProfileSuccess() {
 export function getUserPhotosSuccess(photos) {
     return { type: actionTypes.GET_PHOTOS_SUCCESS, payload: photos }
 }
+export function getBlockUsersSuccess(users) {
+    return { type: actionTypes.GET_BLOCK_USERS_SUCCESS, payload: users }
+}
 
 export function getUsers() {
     return async function (dispatch) {
@@ -168,5 +171,21 @@ export function getUserPhotos(username, page, size) {
             }).catch((error) => {
                 console.log(error);
             })
+    }
+}
+export function getBlcokUsers() {
+    return async function (dispatch) {
+        let url = `${actionTypes.baseUrl}/user/block`
+        axios.get(url, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                'Accept': 'application/json, text/plain',
+                'Content-Type': 'application/json;charset=UTF-8'
+            },
+        }).then((res) => {
+            dispatch(getBlockUsersSuccess(res.data));
+        }).catch((error) => {
+            console.log(error.response.data);
+        })
     }
 }
