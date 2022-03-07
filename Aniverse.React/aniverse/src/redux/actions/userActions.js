@@ -90,9 +90,9 @@ export function getUserFriend() {
         });
     }
 }
-export function getFrinedRequest(id) {
+export function getFriendRequest() {
     return async function (dispatch) {
-        let url = `${actionTypes.baseUrl}/user/${id}/friendRequest`;
+        let url = `${actionTypes.baseUrl}/user/friendRequest`;
         axios.get(url, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("token")}`,

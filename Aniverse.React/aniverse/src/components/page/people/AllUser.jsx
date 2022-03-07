@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getUsers } from '../../redux/actions/userActions';
+import { getUsers } from '../../../redux/actions/userActions';
 import jwtDecode from 'jwt-decode';
-import UserItem from '../page/people/UserItem';
+import UserItem from './UserItem';
 
 function AllUser(props) {
  const { getUsers } = props;
- const [usersState, setUsersState] = useState({});
 
  useEffect(() => {
-  setUsersState();
   getUsers();
- }, [getUsers, usersState]);
+ }, [getUsers]);
  return (
   <>
    <UserItem users={props.users} />

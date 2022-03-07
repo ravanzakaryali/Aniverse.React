@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Sponsored from '../../Sponsored/Sponsored';
-import AllUser from '../../user/AllUser';
+import AllUser from './AllUser';
 import { Outlet } from 'react-router';
 import MenuList from './MenuList';
 function People() {

@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import UserRequest from '../user/UserRequest';
 import { connect } from 'react-redux';
-import { getFriendRequest } from '../../redux/actions/userActions';
-import Sponsored from '../Sponsored/Sponsored';
+import { getFriendRequest } from '../../../redux/actions/userActions';
+import UserItem from './UserItem';
 
-import jwtDecode from 'jwt-decode';
-
-function SidebarRight(props) {
+function AllFriendRequest(props) {
  const { getFriendRequest } = props;
 
  useEffect(() => {
@@ -14,12 +11,10 @@ function SidebarRight(props) {
  }, [getFriendRequest]);
  return (
   <>
-   <UserRequest request={props.usersRequest} />
-   <Sponsored />
+   <UserItem users={props.usersRequest} />
   </>
  );
 }
-
 function mapStateToProps(state) {
  return {
   usersRequest: state.friendRequestReducer,
@@ -33,4 +28,4 @@ const mapDispatchToProps = (dispatch) => {
   },
  };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(SidebarRight);
+export default connect(mapStateToProps, mapDispatchToProps)(AllFriendRequest);

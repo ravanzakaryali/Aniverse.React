@@ -15,20 +15,20 @@ function FriendsIntro(props) {
    </div>
    <p className="count">{userFriend.length} friends</p>
    <div className="row friends-parent">
-    {userFriend.map((friend) => (
-     <div className="col-3" key={friend.id}>
-      <a href={`/user/${friend.friend.username}`}>
+    {userFriend.map((user) => (
+     <div className="col-3" key={user.id}>
+      <a href={`/user/${user.username}`}>
        <div className="friend-card">
         <img
          alt="Profile"
          className="friends-profile"
          src={
-          friend.friend.profilPicture == null
+          user.profilPicture == null
            ? `../../img/user.png`
-           : `${friend.profilPicture}`
+           : `${user.profilPicture}`
          }
         />
-        <p className="friend-name">{friend.friend.firstname}</p>
+        <p className="friend-name">{user.firstname}</p>
        </div>
       </a>
      </div>

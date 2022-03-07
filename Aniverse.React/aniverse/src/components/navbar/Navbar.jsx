@@ -60,7 +60,7 @@ function Navbar(props) {
         <li>
          <Link
           to="/people"
-          className={location.pathname === '/people' ? 'active' : ''}>
+          className={location.pathname.includes('/people') ? 'active' : ''}>
           <i className="bi bi-people-fill"></i>
          </Link>
         </li>
