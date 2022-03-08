@@ -5,22 +5,18 @@ import { connect } from 'react-redux';
 import { getUserFriend } from '../../redux/actions/userActions';
 import { getFriendAnimals } from '../../redux/actions/animalAction';
 
-import jwtDecode from 'jwt-decode';
-
 function Sidebar(props) {
  const { getFriend } = props;
  const { getFriendAnimal } = props;
- const [userState, setUserState] = useState({});
- const user = jwtDecode(localStorage.getItem('token')).username;
+
  useEffect(() => {
-  setUserState(user);
-  getFriend();
-  getFriendAnimal(user);
- }, [userState]);
+  getFriend(props.userAuth.username);
+  getFriendAnimal(props.userAuth.username);
+ }, [getFriend, getFriendAnimal, props.userAuth.username]);
  return (
   <>
-   <Users users={props.users} />
-   <Animals animals={props.animals} />
+   {/* <Users users={props.users} /> */}
+   {/* <Animals animals={props.animals} /> */}
   </>
  );
 }
@@ -29,13 +25,14 @@ function mapStateToProps(state) {
  return {
   users: state.friendReducer,
   animals: state.animalReducer,
+  userAuth: state.userNavbarReducer,
  };
 }
 
 const mapDispatchToProps = (dispatch) => {
  return {
-  getFriend: () => {
-   dispatch(getUserFriend());
+  getFriend: (username) => {
+   dispatch(getUserFriend(username));
   },
   getFriendAnimal: (userState) => {
    dispatch(getFriendAnimals(userState));

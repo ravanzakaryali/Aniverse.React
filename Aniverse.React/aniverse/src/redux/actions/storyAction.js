@@ -1,8 +1,8 @@
 import axios from "axios"
 import * as actionTypes from "./actionTypes"
 
-export function getFriendStorySuccess(storyFriend) {
-    return { type: actionTypes.GET_FRIEND_STORY_SUCCESS, payload: storyFriend }
+export function getFriendStorySuccess(stories) {
+    return { type: actionTypes.GET_FRIEND_STORY_SUCCESS, payload: stories }
 }
 export function getStorySuccess(story) {
     return { type: actionTypes.GET_STORY_SUCCESS, payload: story }
@@ -27,9 +27,9 @@ export function getStory(username) {
     }
 }
 
-export function getFriendStory(username) {
+export function getFriendStory() {
     return async function (dispatch) {
-        let url = `${actionTypes.baseUrl}/user/${username}/friend/story`;
+        let url = `${actionTypes.baseUrl}/story/friend`;
         axios.get(url, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("token")}`,
@@ -53,7 +53,7 @@ export function postStory(formData) {
             },
         }).then((res) => {
             dispatch(postStorySuccess());
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log(error);
         });
     }

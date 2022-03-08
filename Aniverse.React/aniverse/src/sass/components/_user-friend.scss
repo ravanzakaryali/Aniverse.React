@@ -12,12 +12,12 @@
         .friends-profile {
             @include boxSize($box-size-img * 3, $box-size-img * 3, 50%);
         }
-        .friend-name{
+        .friend-name {
             margin: auto $margin-normal;
             font-size: $fs-normal;
             color: $gray-80;
         }
-        .btn{
+        .btn {
             display: inline-block;
             height: fit-content;
             margin: auto 0;

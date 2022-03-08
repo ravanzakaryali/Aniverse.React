@@ -1,6 +1,5 @@
 .user-all {
     .user-card {
-        padding: $padding-normal;
         margin: $margin-normal 0;
         border-radius: $border-radius-min;
         @extend %box-shadow-main;
@@ -8,12 +7,13 @@
     }
     .user-profile-img {
         object-fit: cover;
-        @include boxSize($box-size-img * 3, $box-size-img * 3, 50%);
+        @include boxSize(100%, $box-size-img * 4.6, $border-radius-min);
     }
     .user-name {
         margin: $margin-normal 0;
         font-size: $fs-min;
-        color: $gray-80;
+        color: $gray-90;
+        font-weight: $fs-weight-normal;
     }
     .btn {
         margin-top: $margin-normal;
@@ -28,5 +28,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    .user-card-footer {
+        padding: $padding-normal;
+        padding-top: 0;
     }
 }

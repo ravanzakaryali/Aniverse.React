@@ -1,18 +1,30 @@
 .modal {
-    .modal-content{
+    background-color: $modal-active;
+    .modal-content {
+        background-color: transparent;
         border: none;
     }
-    .modal-header{
+    .modal-header {
+        background-color: #0009;
+        color: $white;
         border: none;
     }
-    .modal-header h5{
-        font-size: $fs-normal
+    .btn-close {
+        color: $white;
+        background-image: url("");
+        font-size: $fs-max;
+        line-height: $fs-max;
+    }
+    .modal-header h5 {
+        text-align: center;
+        font-size: $fs-normal;
     }
     .modal-body {
+        padding: 0;
         position: relative;
     }
     .story-add-image {
-        @include boxSize(100%, 500px, $border-radius-max);
+        @include boxSize(100%, 500px);
         object-fit: cover;
     }
     .add-story-plus {
@@ -26,14 +38,46 @@
         transform: translate(-50%, -50%);
         position: absolute;
     }
-    .modal-footer{
+    .modal-footer {
+        padding: 0;
         border: none;
         @extend %display-flex-center;
+        .btn {
+            padding: $padding-normal;
+            padding: auto;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border: none;
+            margin: 0;
+            width: 100%;
+        }
     }
-    .btn-primary{
+    .btn-primary {
         background-color: $color-brand-primary;
     }
-    .btn-secondary{
+    .btn-secondary {
         background-color: $gray-70;
+    }
+    .modal-img {
+        cursor: pointer;
+        position: relative;
+        textarea {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            resize: none;
+            background-color: #0008;
+            color: $white;
+            border-radius: none;
+            border: none;
+            border-top: 1px solid #fff8;
+            padding: $padding-normal;
+            &:focus-visible {
+                box-shadow: none;
+                outline: 0;
+            }
+        }
     }
 }

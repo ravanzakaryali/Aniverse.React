@@ -11,7 +11,7 @@ import Posts from '../../post/Posts';
 function Home(props) {
  const { allPosts } = props;
  useEffect(() => {
-  allPosts(1, 10);
+  //   allPosts(1, 10);
  }, [allPosts]);
 
  const token = localStorage.getItem('token');
@@ -21,17 +21,13 @@ function Home(props) {
   <>
    <div className="main row">
     <React.Fragment>
-     <div className="fixed-sidebar col-3">
-      <Sidebar />
-     </div>
-     <div className="static-page col-6">
+     <div className="fixed-sidebar col-3">{/* <Sidebar /> */}</div>
+     <div className="static-page col-12 col-md-6">
       <Story />
-      <PostAdd />
-      <Posts posts={props.posts} />
+      {/* <PostAdd /> */}
+      {/* <Posts posts={props.posts} /> */}
      </div>
-     <div className="fixed-sidebar-right col-3">
-      <SiderbarRight />
-     </div>
+     <div className="fixed-sidebar-right col-3">{/* <SiderbarRight /> */}</div>
     </React.Fragment>
    </div>
   </>

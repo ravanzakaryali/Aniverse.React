@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { getAnimal, animalFollow } from '../../redux/actions/animalAction';
 import { getAnimalPosts } from '../../redux/actions/postAction';
 import Moment from 'react-moment';
-import AnimalPost from './AnimalPost';
 import Posts from '../post/Posts';
 import AnimalProfileEdit from './AnimalProfileEdit';
 

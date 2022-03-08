@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
 import StoryAdd from './StoryAdd';
-import StoryFriend from './StoryFriend';
+import Stories from './Stories';
 
 function Story() {
-    return (
-        <div className='story-row d-flex'>
-            <StoryAdd />
-            <StoryFriend />
-        </div>
-    )
+ return (
+  <div className="story-row d-flex">
+   <StoryAdd />
+   <Stories />
+  </div>
+ );
 }
 export default Story;

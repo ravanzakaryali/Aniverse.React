@@ -1,4 +1,5 @@
 import axios from "axios"
+import initialState from "../reducers/initialState"
 import * as actionTypes from "./actionTypes"
 
 export function getUsersSuccess(users) {
@@ -27,6 +28,25 @@ export function getUserPhotosSuccess(photos) {
 }
 export function getBlockUsersSuccess(users) {
     return { type: actionTypes.GET_BLOCK_USERS_SUCCESS, payload: users }
+}
+export function getLoginUserSuccess(loginUser) {
+    return { type: actionTypes.GET_USER_LOGIN_SUCCESS, payload: loginUser }
+}
+export function getLoginUser() {
+    return async function (dispatch) {
+        let url = `${actionTypes.baseUrl}/user/login`
+        axios.get(url, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                'Accept': 'application/json, text/plain',
+                'Content-Type': 'application/json;charset=UTF-8'
+            },
+        }).then((res) => {
+            dispatch(getLoginUserSuccess());
+        }).catch((error) => {
+            console.log(error.response.data);
+        })
+    }
 }
 
 export function getUsers() {
@@ -77,9 +97,9 @@ export function getUserNavbar(id) {
         });
     }
 }
-export function getUserFriend() {
+export function getUserFriend(username) {
     return async function (dispatch) {
-        let url = `${actionTypes.baseUrl}/user/friend`;
+        let url = `${actionTypes.baseUrl}/user/friend/${username}`;
         axios.get(url, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("token")}`,
@@ -89,7 +109,7 @@ export function getUserFriend() {
         }).then((res) => {
             dispatch(getUserFriendSuccess(res.data));
         }).catch((error) => {
-            console.log(error);
+            console.log(error.response.data);
         });
     }
 }

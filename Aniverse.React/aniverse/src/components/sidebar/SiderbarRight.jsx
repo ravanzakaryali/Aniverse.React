@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { getFriendRequest } from '../../redux/actions/userActions';
 import Sponsored from '../Sponsored/Sponsored';
 
-import jwtDecode from 'jwt-decode';
-
 function SidebarRight(props) {
  const { getFriendRequest } = props;
 
@@ -14,8 +12,8 @@ function SidebarRight(props) {
  }, [getFriendRequest]);
  return (
   <>
-   <UserRequest request={props.usersRequest} />
-   <Sponsored />
+   {/* <UserRequest request={props.usersRequest} /> */}
+   {/* <Sponsored /> */}
   </>
  );
 }

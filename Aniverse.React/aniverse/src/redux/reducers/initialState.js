@@ -1,13 +1,3 @@
-
-import jwtDecode from 'jwt-decode'
-let user;
-let id = null;
-let username = null;
-if (localStorage.getItem("token") != null) {
-    user = jwtDecode(localStorage.getItem("token"));
-    id = user.id;
-    username = user.username;   
-}
 export default {
     users: [],
     user: [],
@@ -18,15 +8,11 @@ export default {
     posts: [],
     animalPost: [],
     animals: [],
-    selectAnimal:[],
+    selectAnimal: [],
     animal: [],
     storyFriend: [],
     userPhotos: [],
-    animalCategory:[],
+    animalCategory: [],
     story: [],
-    authUser: [{
-        token: localStorage.getItem("token"),
-        id: id,
-        username: username,
-    }]
+    authUser: []
 }

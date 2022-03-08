@@ -1,7 +1,5 @@
 import axios from 'axios'
 import * as actionTypes from './actionTypes'
-import jwtDecode from 'jwt-decode'
-
 
 export function registerSuccess(authUser) {
     return { type: actionTypes.POST_REGISTER_SUCCESS, payload: authUser }
@@ -42,7 +40,13 @@ export function authLogin(loginState) {
                 'Content-Type': 'application/json;charset=UTF-8'
             },
         }).then((res) => {
-            localStorage.setItem("token", res.data);
+            console.log(res);
+            localStorage.setItem("token", res.data.token);
+            localStorage.setItem("loginUser", JSON.stringify({
+                id: res.data.user.id,
+                username: res.data.user.username,
+                email: res.data.user.email
+            }))
             dispatch(loginSuccess(res.data))
         }).catch((error) => {
             console.log(error);

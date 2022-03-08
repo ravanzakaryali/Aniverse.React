@@ -15,10 +15,10 @@ import Animal from '../Animal/Animal';
 import Chat from '../ChatHub/Chat';
 import People from '../page/people/People';
 import AllUser from '../page/people/AllUser';
-import FriendsIntro from '../friend/FriendsIntro';
 import AllFriend from '../page/people/AllFriend';
 import AllFriendRequest from '../page/people/AllFriendRequest';
 import BlockUsers from '../page/people/BlockUsers';
+import { Navigate } from 'react-router';
 
 function App() {
  const dispatch = useDispatch();
@@ -31,18 +31,18 @@ function App() {
    <Navbar />
    <Routes>
     <Route path="/" element={<Home />} />
-    <Route path="people" element={<People />}>
+    {/* <Route path="people" element={<People />}>
      <Route path="friends" element={<AllFriend />} />
-     <Route path="friends_request" element={<AllFriendRequest />} />
+     <Route path="request" element={<AllFriendRequest />} />
      <Route path="block" element={<BlockUsers />} />
      <Route index element={<AllUser />} />
-    </Route>
-    <Route path="user/:username" element={<User />}>
+    </Route> */}
+    {/* <Route path="user/:username" element={<User />}>
      <Route path="friends" element={<UserFriend />} />
      <Route index element={<Profile />} />
      <Route path="chat" element={<Chat />} />
-    </Route>
-    <Route path="animal/:animalname" element={<Animal />} />
+    </Route> */}
+    {/* <Route path="animal/:animalname" element={<Animal />} /> */}
     <Route path="auth/" element={<Auth />}>
      <Route path="login" element={<Login />} />
      <Route path="register" element={<Register />} />

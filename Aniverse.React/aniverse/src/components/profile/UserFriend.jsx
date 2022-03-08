@@ -11,18 +11,19 @@ function UserFriend(props) {
      <>
       {userFriend.map((friend) => (
        <div className="col-4" key={friend.id}>
-        <a href={`/user/${friend.friend.username}`}>
+        <a href={`/user/${friend.username}`}>
          <div className="friend-card">
           <img
+           alt="friend"
            className="friends-profile"
            src={
-            friend.friend.profilPicture == null
+            friend.profilPicture == null
              ? `../../img/user.png`
              : `${friend.profilPicture}`
            }
           />
           <p className="friend-name">
-           {friend.friend.firstname} {friend.friend.lastname}
+           {friend.firstname} {friend.lastname}
           </p>
           <button className="btn btn-light">
            <i className="fa-solid fa-ellipsis"></i>

@@ -1,6 +1,9 @@
 .main {
     margin: 0;
-    margin-top: 95px;
+    margin-top: 90px;
+    @media screen and (max-width: 768px) {
+        margin-top: 70px;
+    }
     .fixed-sidebar {
         position: fixed;
         top: 83px;

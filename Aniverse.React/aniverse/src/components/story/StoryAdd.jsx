@@ -1,26 +1,57 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-
+import { getUserNavbar } from '../../redux/actions/userActions';
+import StoryModal from './StoryModal';
 
 function StoryAdd(props) {
-    return (
-        <div className='col-2'>
-            <div className='story' data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <img className='story-img' src={props.user.profilPicture == null ? `../../img/user.png` : `${props.user.profilPicture}`} />
-                <div className='story-add-plus'>
-                    <p className='story-text'>
-                        The story of the day
-                    </p>
-                </div>
-            </div>
-        </div>
-    )
+ const { getUser } = props;
+ const [modalActive, setModalActive] = useState(false);
+
+ const userLogin = JSON.parse(localStorage.getItem('loginUser'));
+ useEffect(() => {
+  if (props.user) {
+   getUser(userLogin.username);
+  }
+ }, [modalActive]);
+ return (
+  <div className="col-4 col-sm-3 col-lg-2">
+   <div
+    className="story"
+    onClick={() => {
+     setModalActive(!modalActive);
+    }}>
+    <img
+     alt="Story Add"
+     className="story-img"
+     src={
+      props.user.profilPicture == null
+       ? `../../img/user.png`
+       : `${props.user.profilPicture}`
+     }
+    />
+    <i className="fa-solid fa-plus story-add-icon"></i>
+    <div className="story-add-plus">
+     <p className="story-text">The story of the day</p>
+    </div>
+   </div>
+   {modalActive ? <StoryModal setModal={setModalActive} /> : ''}
+  </div>
+ );
 }
 
 const mapStateToProps = (state) => {
-    return {
-        user: state.userReducer,
-    }
-}
+ return {
+  user: state.userNavbarReducer,
+  stories: state.storyFriendReducer,
+ };
+};
 
-export default connect(mapStateToProps)(StoryAdd);
+const mapDispatchToProps = (dispatch) => {
+ return {
+  getUser: (username) => {
+   dispatch(getUserNavbar(username));
+  },
+ };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(StoryAdd);

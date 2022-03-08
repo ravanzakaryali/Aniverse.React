@@ -41,6 +41,7 @@ function FriendsIntro(props) {
 function mapStateToProps(state) {
  return {
   userFriend: state.friendReducer,
+  userAuth: state.userNavbarReducer,
  };
 }
 

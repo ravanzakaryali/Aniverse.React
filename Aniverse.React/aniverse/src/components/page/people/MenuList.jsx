@@ -28,10 +28,8 @@ function MenuList() {
     </li>
     <li>
      <Link
-      to="friends_request"
-      className={
-       location.pathname === '/people/friends_request' ? 'active' : ''
-      }>
+      to="request"
+      className={location.pathname === '/people/request' ? 'active' : ''}>
       <i class="fa-solid fa-user-check"></i>
       Friends request
      </Link>
@@ -40,7 +38,7 @@ function MenuList() {
      <Link
       to="block"
       className={location.pathname === '/people/block' ? 'active' : ''}>
-      <i class="fa-solid fa-user-clock"></i>
+      <i class="fa-solid fa-user-lock"></i>
       Block users
      </Link>
     </li>

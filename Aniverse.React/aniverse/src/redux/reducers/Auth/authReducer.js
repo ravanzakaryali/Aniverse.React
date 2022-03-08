@@ -1,6 +1,5 @@
 import initialState from '../initialState'
 import * as actionTypes from '../../actions/actionTypes'
-import jwtDecode from 'jwt-decode'
 
 export function authReducer(state = initialState.authUser, action) {
     switch (action.type) {
@@ -10,15 +9,7 @@ export function authReducer(state = initialState.authUser, action) {
         case actionTypes.POST_REGISTER_FAIL:
             return state;
         case actionTypes.POST_LOGIN_SUCCESS:
-            const user = jwtDecode(action.payload);
-            return {
-                ...initialState.authUser,
-                token: action.token,
-                username: user.username,
-                fullname: user.fullname,
-                id: user.id,
-                email: user.email
-            }
+            return state;
         case actionTypes.POST_LOGIN_FAIL:
             return state.payload;
         default:
