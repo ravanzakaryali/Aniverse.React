@@ -1,0 +1,21 @@
+.follow-user {
+    width: 100%;
+    .follow-row {
+        padding: $padding-normal 0;
+        .animal-img {
+            text-align: center;
+        }
+        .animal-img img {
+            border-radius: $border-radius-min;
+            width: 80%;
+            height: 125px;
+            object-fit: cover;
+        }
+        .animal-content h4 {
+            font-size: $fs-normal - 2;
+            color: $gray-90;
+            text-align: center;
+            padding: $padding-min - 2 0;
+        }
+    }
+}

@@ -9,14 +9,15 @@ function PostMenu(props) {
   <div className="post-menu col-1">
    {props.userId !== props.userAuth.id ? (
     <>
-     <button className="btn">
+     <button className="btn save-post">
       <i className="fa-regular fa-bookmark"></i>
+      <i className="fa-solid fa-bookmark d-none"></i>
      </button>
     </>
    ) : (
     <>
      <button
-      className="btn"
+      className="btn menu-controller-btn"
       onClick={() => {
        setActiveMenu(!activeMenu);
       }}>
@@ -26,12 +27,12 @@ function PostMenu(props) {
       <div className="post-menu-active">
        <div className="post-menu-item">
         <button className="btn">
-         <i class="fa-solid fa-pen"></i>Modified
+         Modified<i className="fa-solid fa-pen"></i>
         </button>
        </div>
        <div className="post-menu-item">
         <button className="btn">
-         <i class="fa-solid fa-trash"></i>Remove
+         Remove<i className="fa-solid fa-trash"></i>
         </button>
        </div>
       </div>

@@ -30,7 +30,6 @@ function UserRequest(props) {
        className="col-12 request-btns"
        onSubmit={(e) => {
         e.preventDefault();
-        console.log(confirmState);
         confirm(confirmState);
         e.currentTarget.children[0].disabled = true;
        }}>
@@ -39,7 +38,7 @@ function UserRequest(props) {
         className="btn btn-primary"
         onClick={(e) => {
          const isConfirm = true,
-          friendId = user.friend.id;
+          friendId = user.id;
          setConfirmState({
           ...confirmState,
           ...{ isConfirm, friendId },

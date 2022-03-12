@@ -7,6 +7,10 @@ export function storyReducer(state = initialState.story, action) {
             return state
         case actionTypes.GET_STORY_SUCCESS:
             return action.payload
+        case actionTypes.DELETE_STORY_SUCCESS:
+            return state
+        case actionTypes.ARCHIVE_STORY_SUCCESS:
+            return state
         default:
             return state;
     }

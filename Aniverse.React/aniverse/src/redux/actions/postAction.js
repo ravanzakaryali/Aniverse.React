@@ -1,8 +1,8 @@
 import * as actionTypes from "./actionTypes"
 import axios from "axios"
 
-export function getAllPostSuccess(animals) {
-    return { type: actionTypes.GET_ALL_POSTS_SUCCESS, payload: animals }
+export function getFriendAllPostSuccess(animals) {
+    return { type: actionTypes.GET_FRIEND_ALL_POSTS_SUCCESS, payload: animals }
 }
 export function getPostSuccess(post) {
     return { type: actionTypes.GET_USER_POST_SUCCESS, payload: post }
@@ -19,10 +19,13 @@ export function unLikePostSuccess() {
 export function getAnimalPostSuccess(animalPost) {
     return { type: actionTypes.GET_ANIMAL_POST_SUCCESS, payload: animalPost }
 }
+export function getAllPostSuccess(allPosts) {
+    return { type: actionTypes.GET_FRIEND_ALL_POSTS_SUCCESS, payload: allPosts }
+}
 
-export function getPosts(page, size) {
+export function getAllPosts() {
     return async function (dispatch) {
-        let url = `${actionTypes.baseUrl}/user/friend/post?page=${page}&size=${size}`;
+        let url = `${actionTypes.baseUrl}/post`;
         axios.get(url, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("token")}`,
@@ -30,7 +33,24 @@ export function getPosts(page, size) {
                 'Content-Type': 'application/json;charset=UTF-8'
             },
         }).then((res) => {
-            dispatch(getAllPostSuccess(res.data));
+            dispatch(getAllPostSuccess(res.data))
+        }).catch((error) => {
+            console.log(error);
+        })
+    }
+}
+
+export function getFriendAllPost(page, size) {
+    return async function (dispatch) {
+        let url = `${actionTypes.baseUrl}/post/friend?page=${page}&size=${size}`;
+        axios.get(url, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                'Accept': 'application/json, text/plain',
+                'Content-Type': 'application/json;charset=UTF-8'
+            },
+        }).then((res) => {
+            dispatch(getFriendAllPostSuccess(res.data));
         }).catch((error) => {
             console.log(error);
         })

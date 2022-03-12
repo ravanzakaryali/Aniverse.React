@@ -1,6 +1,7 @@
 import axios from "axios"
 import initialState from "../reducers/initialState"
 import * as actionTypes from "./actionTypes"
+import { getAnimalFollowSuccess } from "./animalAction"
 
 export function getUsersSuccess(users) {
     return { type: actionTypes.GET_USERS_SUCCESS, payload: users }
@@ -32,6 +33,9 @@ export function getBlockUsersSuccess(users) {
 export function getLoginUserSuccess(loginUser) {
     return { type: actionTypes.GET_USER_LOGIN_SUCCESS, payload: loginUser }
 }
+export function getUserFollowsAnimalSuccess(animals) {
+    return { type: actionTypes.GET_USER_FOLLOWS_ANIMAL, payload: animals }
+}
 export function getLoginUser() {
     return async function (dispatch) {
         let url = `${actionTypes.baseUrl}/user/login`
@@ -42,7 +46,7 @@ export function getLoginUser() {
                 'Content-Type': 'application/json;charset=UTF-8'
             },
         }).then((res) => {
-            dispatch(getLoginUserSuccess());
+            dispatch(getLoginUserSuccess(res.data));
         }).catch((error) => {
             console.log(error.response.data);
         })
@@ -99,7 +103,7 @@ export function getUserNavbar(id) {
 }
 export function getUserFriend(username) {
     return async function (dispatch) {
-        let url = `${actionTypes.baseUrl}/user/friend/${username}`;
+        let url = `${actionTypes.baseUrl}/friend/${username}`;
         axios.get(url, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("token")}`,
@@ -115,7 +119,7 @@ export function getUserFriend(username) {
 }
 export function getFriendRequest() {
     return async function (dispatch) {
-        let url = `${actionTypes.baseUrl}/user/friendRequest`;
+        let url = `${actionTypes.baseUrl}/friend/request`;
         axios.get(url, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("token")}`,
@@ -132,7 +136,7 @@ export function getFriendRequest() {
 
 export function postFriendConfirm(friendConfirm) {
     return async function (dispatch) {
-        let url = `${actionTypes.baseUrl}/user/friend/request`;
+        let url = `${actionTypes.baseUrl}/friend/requestconfirm`;
         axios.put(url, friendConfirm, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("token")}`,
@@ -204,6 +208,23 @@ export function getBlcokUsers() {
             },
         }).then((res) => {
             dispatch(getBlockUsersSuccess(res.data));
+        }).catch((error) => {
+            console.log(error.response.data);
+        })
+    }
+}
+
+export function getUserFollowsAnimal(username) {
+    return async function (dispatch) {
+        let url = `${actionTypes.baseUrl}/user/${username}/follows/animal`
+        axios.get(url, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                'Accept': 'application/json, text/plain',
+                'Content-Type': 'application/json;charset=UTF-8'
+            },
+        }).then((res) => {
+            dispatch(getUserFollowsAnimalSuccess(res.data))
         }).catch((error) => {
             console.log(error.response.data);
         })

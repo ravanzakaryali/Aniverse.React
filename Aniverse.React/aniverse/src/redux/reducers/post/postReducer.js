@@ -13,6 +13,8 @@ export function postReducer(state = initialState.posts, action) {
             return action.payload
         case actionTypes.GET_ANIMAL_POST_SUCCESS:
             return action.payload
+        case actionTypes.GET_FRIEND_ALL_POSTS_SUCCESS:
+            return action.payload
         default:
             return state;
     }

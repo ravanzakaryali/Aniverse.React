@@ -40,7 +40,6 @@ export function authLogin(loginState) {
                 'Content-Type': 'application/json;charset=UTF-8'
             },
         }).then((res) => {
-            console.log(res);
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("loginUser", JSON.stringify({
                 id: res.data.user.id,

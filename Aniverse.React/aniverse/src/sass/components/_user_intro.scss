@@ -1,34 +1,35 @@
-.intro{
+.intro {
+    width: 100%;
     @extend %box-shadow-main;
     padding: $padding-normal;
     margin: $margin-normal 0;
     border-radius: $border-radius-min;
     display: inline-block;
-    .intro-title{
+    .intro-title {
         font-size: $fs-normal;
         font-weight: $fs-weight-normal + 100;
     }
-    .bio-content{
+    .bio-content {
         text-align: center;
         font-size: $fs-min;
         color: $gray-80;
         padding: $padding-normal;
     }
-    .edit-form{
+    .edit-form {
         width: 100%;
         display: inline-block;
         padding: $padding-normal $padding-normal;
     }
-    .buttons{
+    .buttons {
         display: flex;
         justify-content: end;
-        .btn{
+        .btn {
             margin: $margin-min $margin-normal;
             padding: $padding-min 0;
             font-size: $fs-min - 1;
         }
     }
-    .textarea-bio{
+    .textarea-bio {
         text-align: center;
         border-radius: $border-radius-max;
         padding: $padding-normal;
@@ -39,32 +40,33 @@
         background-color: $gray-10;
         border: 1px solid $gray-30;
         color: $gray-90;
-        &:focus-visible{
+        &:focus-visible {
             outline: 0;
             background-color: $gray-05;
             border: 1px solid $gray-30;
         }
     }
-    .btn{
+    .btn {
         display: inline-block;
         width: 100%;
         font-weight: $fs-weight-normal;
     }
-    .from-address li{
+    .from-address li {
         padding: $padding-normal;
         font-size: $fs-min;
-        i{
+        i {
             font-size: $fs-normal;
             color: $color-brand-primary;
             padding-right: $padding-normal;
         }
-        a, time, p{
+        a,
+        time,
+        p {
             font-size: $fs-min;
             font-weight: $fs-weight-normal;
             color: $gray-80;
             padding-left: $padding-min;
             display: inline-block;
         }
-        
     }
 }

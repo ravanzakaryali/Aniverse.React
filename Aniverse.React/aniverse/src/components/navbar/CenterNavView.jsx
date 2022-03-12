@@ -13,8 +13,8 @@ function CenterNavView() {
    </li>
    <li>
     <Link
-     to="/discover"
-     className={location.pathname === '/discover' ? 'active' : ''}>
+     to="/explore"
+     className={location.pathname === '/explore' ? 'active' : ''}>
      <i className="bi bi-compass-fill"></i>
     </Link>
    </li>

@@ -7,7 +7,7 @@
         display: contents;
     }
     .post-profile-img {
-        @include boxSize($box-size-img * 2, $box-size-img * 2);
+        @include boxSize($box-size-img * 2, $box-size-img * 2, 50%);
         object-fit: cover;
         padding: 0;
     }
@@ -20,7 +20,7 @@
         padding: $padding-normal;
         margin: 0;
         .user-name {
-            font-size: $fs-normal;
+            font-size: $fs-min + 2;
             a {
                 color: $color-brand-primary;
             }
@@ -35,7 +35,7 @@
         .hasTag {
             color: $color-brand-primary;
             font-weight: $fs-weight-normal;
-            font-size: $fs-min + 1;
+            font-size: $fs-min;
             font-style: italic;
         }
         .post-content {
@@ -55,12 +55,14 @@
                 cursor: pointer;
             }
         }
+        .save-post {
+        }
     }
     .post-footer {
         padding: $padding-normal;
         .post-result {
             .index a {
-                font-size: $fs-normal + 2;
+                font-size: $fs-normal;
                 color: $color-brand-primary;
             }
             .comment {
@@ -89,7 +91,7 @@
         .event button {
             width: 100%;
             color: $color-brand-primary;
-            font-size: $fs-normal + 2;
+            font-size: $fs-normal;
             text-align: center;
             &:focus {
                 outline: none;
@@ -120,10 +122,18 @@
         }
         .btn {
             display: flex;
+            align-items: center;
+            justify-content: space-between;
             font-size: $fs-min + 1 !important;
             i {
                 margin-right: $margin-min;
             }
+        }
+    }
+    .menu-controller-btn {
+        background-color: $gray-05;
+        &:focus {
+            background-color: $gray-10;
         }
     }
 }

@@ -11,7 +11,7 @@ function StoryModal(props) {
 
  useEffect(() => {
   setStateImage(imageState);
- }, [imageState, props.stories]);
+ }, [imageState]);
 
  return (
   <div className="modal" style={{ display: 'block' }}>
@@ -35,6 +35,7 @@ function StoryModal(props) {
         e.preventDefault();
         formData.append('storyFile', storyState.storyFile);
         formData.append('content', storyState.name);
+        props.setStory(props.addStory + 1);
         story(formData);
         props.setModal(false);
        }}>
@@ -55,9 +56,11 @@ function StoryModal(props) {
          }
         />
         <span className="add-story-plus">
-         <i className="fa-solid fa-plus"></i>
+         <i className="fa-solid fa-cloud-arrow-up"></i>
+         Upload image
         </span>
         <textarea
+         placeholder="Story content"
          name="name"
          onChange={(e) => {
           setStoryState({

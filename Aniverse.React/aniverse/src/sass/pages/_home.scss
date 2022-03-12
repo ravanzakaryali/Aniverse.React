@@ -1,13 +1,13 @@
 .main {
     margin: 0;
-    margin-top: 90px;
+    margin-top: $page-margin-top-bottom;
     @media screen and (max-width: 768px) {
-        margin-top: 70px;
+        margin-top: $page-margin-top-bottom - 20;
     }
     .fixed-sidebar {
         position: fixed;
-        top: 83px;
-        padding-bottom: 83px;
+        top: $page-margin-top-bottom;
+        padding-bottom: $page-margin-top-bottom;
         overflow-y: scroll;
         height: 100%;
         &::-webkit-scrollbar {

@@ -10,6 +10,12 @@ export function getStorySuccess(story) {
 export function postStorySuccess() {
     return { type: actionTypes.POST_STORY_SUCCESS }
 }
+export function deleteStorySuccess() {
+    return { type: actionTypes.DELETE_STORY_SUCCESS }
+}
+export function archiveStorySuccess() {
+    return { type: actionTypes.ARCHIVE_STORY_SUCCESS }
+}
 export function getStory(username) {
     return async function (dispatch) {
         let url = `${actionTypes.baseUrl}/story/${username}`;
@@ -58,3 +64,36 @@ export function postStory(formData) {
         });
     }
 }
+export function deleteStory(id) {
+    return async function (dispatch) {
+        let url = `${actionTypes.baseUrl}/story/delete/${id}`;
+        axios.patch(url, {}, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                'Accept': 'application/json, text/plain',
+                'Content-Type': 'application/json;charset=UTF-8',
+            },
+        }).then((res) => {
+            dispatch(deleteStorySuccess())
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+}
+
+export function archiveStory(id) {
+    return async function (dispatch) {
+        let url = `${actionTypes.baseUrl}/story/archive/${id}`;
+        axios.patch(url, {}, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                'Accept': 'application/json, text/plain',
+                'Content-Type': 'application/json;charset=UTF-8',
+            },
+        }).then((res) => {
+            dispatch(archiveStorySuccess())
+        }).then((error) => {
+            console.log(error.data.response);
+        })
+    }
+}  

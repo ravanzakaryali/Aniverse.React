@@ -12,8 +12,8 @@ function SidebarRight(props) {
  }, [getFriendRequest]);
  return (
   <>
-   {/* <UserRequest request={props.usersRequest} /> */}
-   {/* <Sponsored /> */}
+   <UserRequest request={props.usersRequest} />
+   <Sponsored />
   </>
  );
 }

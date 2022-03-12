@@ -10,11 +10,10 @@ function MenuList() {
    </div>
    <ul className="menu-list">
     <li>
-     {console.log(location.pathname)}
      <Link
       to="/people"
       className={location.pathname === '/people' ? 'active' : ''}>
-      <i class="fa-solid fa-users"></i>
+      <i className="fa-solid fa-users"></i>
       All people
      </Link>
     </li>
@@ -22,7 +21,7 @@ function MenuList() {
      <Link
       to="friends"
       className={location.pathname === '/people/friends' ? 'active' : ''}>
-      <i class="fa-solid fa-user-group"></i>
+      <i className="fa-solid fa-user-group"></i>
       Friends
      </Link>
     </li>
@@ -30,7 +29,7 @@ function MenuList() {
      <Link
       to="request"
       className={location.pathname === '/people/request' ? 'active' : ''}>
-      <i class="fa-solid fa-user-check"></i>
+      <i className="fa-solid fa-user-check"></i>
       Friends request
      </Link>
     </li>
@@ -38,7 +37,7 @@ function MenuList() {
      <Link
       to="block"
       className={location.pathname === '/people/block' ? 'active' : ''}>
-      <i class="fa-solid fa-user-lock"></i>
+      <i className="fa-solid fa-user-lock"></i>
       Block users
      </Link>
     </li>

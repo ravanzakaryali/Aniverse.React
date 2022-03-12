@@ -1,0 +1,30 @@
+.about-user {
+    width: 100%;
+    .about-row {
+        ul {
+            padding: $padding-normal;
+        }
+        ul li {
+            display: flex;
+            align-items: center;
+            padding: $padding-normal;
+        }
+        ul li > i {
+            width: 7%;
+            text-align: center;
+            font-size: $fs-normal;
+            color: $gray-70;
+        }
+        .about-items {
+            margin-left: $padding-normal;
+            font-weight: $fs-weight-normal;
+        }
+        ul li .btn {
+            font-size: $fs-min + 2;
+            margin-left: auto;
+            width: auto;
+            background-color: $gray-10;
+            text-align: center;
+        }
+    }
+}

@@ -2,53 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import ReactTimeAgo from 'react-time-ago';
 import { commentCreate } from '../../redux/actions/commentAction';
+import CommentAdd from './CommentAdd';
 
 function Comment(props) {
  const { commentUser } = props;
  const [commentState, setcommentState] = useState({});
+
  return (
   <>
-   <div className="add-comment">
-    <form
-     onSubmit={(e) => {
-      e.preventDefault();
-      commentUser(commentState);
-      document.querySelector('.add-comment-input input').value = '';
-     }}>
-     <div className="">
-      <img
-       className="user-comment-profile-img"
-       src={
-        props.user.profilPicture == null
-         ? `../../img/user.png`
-         : `${props.user.profilPicture}`
-       }
-      />
-     </div>
-     <div className="add-comment-input">
-      <input
-       onChange={(e) => {
-        const content = e.target.value;
-        const postId = props.postId;
-        setcommentState({
-         ...commentState,
-         ...{ postId, content },
-        });
-       }}
-       className="comment-add"
-       placeholder={`Write a comment, ${props.user.firstname}...`}
-      />
-     </div>
-     <button type="submit" className="btn btn-primary">
-      Send
-     </button>
-    </form>
-   </div>
    {props.comments.map((comment) => (
     <div className="user-comment" key={comment.id}>
      <>
       <div className="user-profile">
        <img
+        alt="Profile"
         className="user-comment-profile-img"
         src={
          comment.user.profilPicture == null
@@ -80,7 +47,6 @@ function Comment(props) {
 }
 const mapStateToProps = (state) => {
  return {
-  user: state.userReducer,
   commentsCreate: state.commentReducer,
  };
 };

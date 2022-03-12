@@ -19,8 +19,8 @@ export function getAnimalCategorySuccess(result) {
 export function createAnimalSuccess(animal) {
     return { type: actionTypes.CREATE_ANIMAL_SUCCESS, payload: animal }
 }
-export function selectAnimalSuccess(selectAnimal){
-    return{type: actionTypes.GET_SELECT_ANIMAL_SUCCESS, payload: selectAnimal}
+export function selectAnimalSuccess(selectAnimal) {
+    return { type: actionTypes.GET_SELECT_ANIMAL_SUCCESS, payload: selectAnimal }
 }
 export function getAnimal(animalname) {
     return async function (dispatch) {
@@ -105,31 +105,31 @@ export function getAnimalCategory() {
 export function createAnimal(animalCreate) {
     return async function (dispatch) {
         let url = `${actionTypes.baseUrl}/animal/create`;
-        axios.post(url,animalCreate,{
+        axios.post(url, animalCreate, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("token")}`,
                 'Accept': 'application/json, text/plain',
                 'Content-Type': 'application/json;charset=UTF-8'
-            },  
-        }).then((res)=>{
+            },
+        }).then((res) => {
             dispatch(createAnimalSuccess())
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log(error.response.data.message);
         })
     }
 }
-export function selectAnimal(){
-    return async function (dispatch){
+export function selectAnimal() {
+    return async function (dispatch) {
         let url = `${actionTypes.baseUrl}/animal/select`
-        axios.get(url,{
+        axios.get(url, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("token")}`,
                 'Accept': 'application/json, text/plain',
                 'Content-Type': 'application/json;charset=UTF-8'
-            }, 
-        }).then((res)=>{
+            },
+        }).then((res) => {
             dispatch(selectAnimalSuccess(res.data))
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log(error.response.data.message);
         })
     }

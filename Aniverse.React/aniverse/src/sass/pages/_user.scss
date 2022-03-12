@@ -1,7 +1,12 @@
-.user-profile-parent{
-    .right-sidebar{
+.user-profile-parent {
+    .right-sidebar {
         position: sticky;
         top: 90px;
         height: fit-content;
+    }
+    @media screen and (max-width: 768px) {
+        .right-sidebar {
+            position: static;
+        }
     }
 }

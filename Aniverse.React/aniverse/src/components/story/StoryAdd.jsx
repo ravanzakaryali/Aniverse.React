@@ -34,7 +34,15 @@ function StoryAdd(props) {
      <p className="story-text">The story of the day</p>
     </div>
    </div>
-   {modalActive ? <StoryModal setModal={setModalActive} /> : ''}
+   {modalActive ? (
+    <StoryModal
+     setModal={setModalActive}
+     addStory={props.addStory}
+     setStory={props.setStory}
+    />
+   ) : (
+    ''
+   )}
   </div>
  );
 }

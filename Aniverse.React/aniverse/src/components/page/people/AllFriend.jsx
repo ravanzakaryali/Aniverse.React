@@ -5,9 +5,10 @@ import { getUserFriend } from '../../../redux/actions/userActions';
 
 function AllFriend(props) {
  const { getFriend } = props;
+ const loginUser = JSON.parse(localStorage.getItem('loginUser'));
  useEffect(() => {
-  getFriend(props.userAuth.username);
- }, [getFriend, props.userAuth.username]);
+  getFriend(loginUser.username);
+ }, [getFriend, loginUser.username]);
  return (
   <>
    <UserItem users={props.users} />
@@ -17,7 +18,6 @@ function AllFriend(props) {
 function mapStateToProps(state) {
  return {
   users: state.friendReducer,
-  userAuth: state.userNavbarReducer,
  };
 }
 

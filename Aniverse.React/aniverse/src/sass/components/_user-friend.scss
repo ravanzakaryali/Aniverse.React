@@ -1,8 +1,4 @@
 .user-friend {
-    padding: $padding-normal;
-    margin: $margin-normal 0;
-    border-radius: $border-radius-min;
-    @extend %box-shadow-main;
     .friend-card {
         margin: $margin-normal 0;
         padding: $padding-normal;
@@ -11,6 +7,7 @@
         border-radius: $border-radius-min;
         .friends-profile {
             @include boxSize($box-size-img * 3, $box-size-img * 3, 50%);
+            object-fit: cover;
         }
         .friend-name {
             margin: auto $margin-normal;
@@ -22,6 +19,7 @@
             height: fit-content;
             margin: auto 0;
             margin-left: auto;
+            width: auto;
         }
     }
 }

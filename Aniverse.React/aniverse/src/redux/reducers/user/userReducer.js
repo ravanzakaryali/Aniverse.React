@@ -37,3 +37,19 @@ export function userPhotosReducer(state = initialState.userPhotos, action) {
             return state;
     }
 }
+export function userLoginReducer(state = initialState.userLogin, action) {
+    switch (action.type) {
+        case actionTypes.GET_USER_LOGIN_SUCCESS:
+            return action.payload
+        default:
+            return state;
+    }
+}
+export function animalFollowsReducer(state = initialState.animalFollows, action) {
+    switch (action.type) {
+        case actionTypes.GET_USER_FOLLOWS_ANIMAL:
+            return action.payload
+        default:
+            return state;
+    }
+}

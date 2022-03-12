@@ -21,12 +21,13 @@
         border-radius: $border-radius-min;
         min-height: 70px;
         padding: $padding-normal;
-        background-color: $gray-05;
+        background-color: $white;
         width: 100%;
         border: 1px solid $gray-30;
         resize: none;
         &:focus-visible {
             outline: none;
+            border: 1px solid $color-brand-primary-5;
         }
         ::placeholder {
             color: $gray-30;
@@ -72,7 +73,7 @@
         padding-left: $padding-min;
         font-size: $fs-min;
     }
-    .clear-select-files{
+    .clear-select-files {
         cursor: pointer;
         background-color: transparent;
         padding: 0;
@@ -81,10 +82,13 @@
         display: inline-block;
         margin-left: $margin-min;
     }
-    .animals{
+    .animals {
         padding: 0 $padding-normal;
+        padding-left: 0;
         margin-top: $margin-normal;
-        select{
+        display: flex;
+        align-items: center;
+        select {
             border-radius: $border-radius-min;
             border: 1px solid $gray-20;
             color: $gray-90;
@@ -92,7 +96,7 @@
             color: $color-brand-primary;
             font-weight: $fs-weight-normal;
             font-size: $fs-min;
-            &:focus-visible{
+            &:focus-visible {
                 outline: 0;
                 border: 1px solid $gray-30;
             }

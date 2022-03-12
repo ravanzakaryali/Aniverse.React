@@ -5,9 +5,10 @@ import LightGallery from 'lightgallery/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useWindowSize } from '@react-hook/window-size';
 import StoryController from './StoryController';
+import { Link } from 'react-router-dom';
 
 function Stories(props) {
- let sliderPerView = 2;
+ let sliderPerView = 1;
  const [width] = useWindowSize();
 
  if (width > 992) {
@@ -21,17 +22,19 @@ function Stories(props) {
  }
 
  const { storiesRequest } = props;
+ const { addStory } = props;
+
  const userLogin = JSON.parse(localStorage.getItem('loginUser'));
 
  useEffect(() => {
   storiesRequest();
- }, [sliderPerView, props.stories]);
+ }, [addStory]);
 
  return (
   <>
    <Swiper slidesPerView={sliderPerView}>
-    {props.stories.map((story) => (
-     <SwiperSlide key={story.id}>
+    {props.stories.map((story, index) => (
+     <SwiperSlide key={index}>
       <LightGallery speed={500}>
        <a href={story.imageSrc}>
         <div className="story-col">
@@ -50,7 +53,15 @@ function Stories(props) {
         </div>
        </a>
       </LightGallery>
-      {userLogin.username === story.user.username ? <StoryController /> : ''}
+      {userLogin.username === story.user.username ? (
+       <StoryController
+        addStory={props.addStory}
+        setStory={props.setStory}
+        storyId={story.id}
+       />
+      ) : (
+       ''
+      )}
      </SwiperSlide>
     ))}
    </Swiper>

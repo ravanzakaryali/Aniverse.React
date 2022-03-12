@@ -8,15 +8,16 @@ import { getFriendAnimals } from '../../redux/actions/animalAction';
 function Sidebar(props) {
  const { getFriend } = props;
  const { getFriendAnimal } = props;
-
+ const userLogin = JSON.parse(localStorage.getItem('loginUser'));
+ const username = userLogin.username;
  useEffect(() => {
-  getFriend(props.userAuth.username);
-  getFriendAnimal(props.userAuth.username);
- }, [getFriend, getFriendAnimal, props.userAuth.username]);
+  getFriend(username);
+  getFriendAnimal(username);
+ }, []);
  return (
   <>
-   {/* <Users users={props.users} /> */}
-   {/* <Animals animals={props.animals} /> */}
+   <Users users={props.users} />
+   <Animals animals={props.animals} />
   </>
  );
 }
@@ -25,7 +26,6 @@ function mapStateToProps(state) {
  return {
   users: state.friendReducer,
   animals: state.animalReducer,
-  userAuth: state.userNavbarReducer,
  };
 }
 

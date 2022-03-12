@@ -3,6 +3,7 @@
     margin: $margin-normal 0;
     display: inline-block;
     @extend %box-shadow-main;
+    width: 100%;
     .row {
         align-items: center;
     }
@@ -28,11 +29,11 @@
         display: flex;
         justify-content: end;
     }
-    .friend-card{
+    .friend-card {
         margin-bottom: $margin-min;
         text-align: center;
     }
-    .friend-name{
+    .friend-name {
         color: $gray-80;
         font-weight: $fs-weight-normal;
         text-align: center;

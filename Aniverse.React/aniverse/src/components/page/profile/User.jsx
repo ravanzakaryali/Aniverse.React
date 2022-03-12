@@ -1,40 +1,55 @@
+import { useWindowSize } from '@react-hook/window-size';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
-import { getUser, getUserFriend } from '../../redux/actions/userActions';
-import Intro from '../profile/Intro';
-import FriendsIntro from '../friend/FriendsIntro';
-import Posts from '../post/Posts';
-import PostAdd from '../post/PostAdd';
-import UserFriend from '../profile/UserFriend';
-import UserCoverPicture from '../profile/UserCoverPicture';
-import UserProfilePicture from '../profile/UserProfilePicture';
+import {
+ getLoginUser,
+ getUser,
+ getUserFriend,
+} from '../../../redux/actions/userActions';
+import UserCoverPicture from './UserCoverPicture';
+import UserProfilePicture from './UserProfilePicture';
 
 function User(props) {
+ const { loginUserRequest } = props;
+ const [width] = useWindowSize();
  const location = useLocation();
-
+ const [comRender, setComRender] = useState(1);
  const { userMethod } = props;
  const { userFriendMethod } = props;
- const [userState, setUserState] = useState({});
  const params = useParams().username;
+
  useEffect(() => {
-  setUserState(params);
   userMethod(params);
-  userFriendMethod(userState);
- }, [userState]);
+  userFriendMethod(params);
+  loginUserRequest();
+ }, [params]);
+
  const { firstname, lastname, username, id, profilPicture, coverPicture } =
    props.user,
   friends = props.userFriend;
  return (
   <>
-   <div className="container user-profile-parent">
+   <div
+    className={`${
+     width > 992 ? 'container' : 'container-lg'
+    } user-profile-parent`}>
     <div className="cover-picture">
-     <UserCoverPicture coverPicture={coverPicture} />
+     <UserCoverPicture
+      userId={id}
+      setComRender={setComRender}
+      comRender={comRender}
+      coverPicture={coverPicture}
+     />
     </div>
-    <div className="container-min">
+    <div className={`${width > 992 ? 'container-min' : ''}`}>
      <div className="profile-row row">
       <div className="profile-picture-row col-8 d-flex">
-       <UserProfilePicture profilPicture={profilPicture} />
+       <UserProfilePicture
+        setComRender={setComRender}
+        comRender={comRender}
+        profilPicture={profilPicture}
+       />
        <div className="profil-content col-6">
         <h2 className="profile-name-surname">
          {firstname} {lastname}
@@ -46,9 +61,9 @@ function User(props) {
           'Find new friends'
          )}
         </span>
-        <div className="friends-pp">
-         {friends.map((friend) => (
-          <div key={friend.id} className="ml-10">
+        <div className="friends-pp d-none d-sm-flex">
+         {friends.map((friend, index) => (
+          <div key={index} className="ml-10">
            <Link to={`${friend.username}`}>
             <img
              alt={`${friend.firstname + friend.lastname + 's profile picture'}`}
@@ -72,9 +87,7 @@ function User(props) {
           <button className="btn btn-light">Edit Profile</button>
          </>
         ) : (
-         <>
-          <button className="btn btn-primary">Message</button>
-         </>
+         <></>
         )}
        </div>
       </div>
@@ -152,7 +165,7 @@ const mapStateToProps = (state) => {
  return {
   user: state.userReducer,
   userFriend: state.friendReducer,
-  userAuth: state.userNavbarReducer,
+  userAuth: state.userLoginReducer,
  };
 };
 
@@ -163,6 +176,9 @@ const mapDispatchToProps = (dispatch) => {
   },
   userFriendMethod: (username) => {
    dispatch(getUserFriend(username));
+  },
+  loginUserRequest: () => {
+   dispatch(getLoginUser());
   },
  };
 };

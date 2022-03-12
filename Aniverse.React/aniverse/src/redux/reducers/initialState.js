@@ -14,5 +14,8 @@ export default {
     userPhotos: [],
     animalCategory: [],
     story: [],
-    authUser: []
+    authUser: [],
+    comments: [],
+    userLogin: [],
+    animalFollows: []
 }

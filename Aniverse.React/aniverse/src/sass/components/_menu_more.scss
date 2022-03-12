@@ -1,0 +1,32 @@
+.menu-more {
+    .right-menu-title h4 {
+        padding-top: $padding-normal;
+        font-size: $fs-normal - 2;
+        font-weight: $fs-weight-normal;
+    }
+    position: absolute;
+    top: 50px;
+    left: 25%;
+    background-color: $white;
+    @extend %box-shadow-main;
+    padding: 0 $padding-normal;
+    .right-menu-items {
+        ul {
+            padding: $padding-normal 0;
+        }
+        :first-child.first {
+            border-bottom: 1px solid $gray-30;
+        }
+        ul li .btn {
+            width: 100%;
+            text-align: start;
+            font-weight: $fs-weight-normal;
+            &:hover {
+                background-color: $gray-10;
+            }
+            i {
+                margin-right: $margin-min;
+            }
+        }
+    }
+}

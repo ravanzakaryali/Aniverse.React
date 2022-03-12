@@ -6,13 +6,12 @@ import UserItemButtons from './UserItemsButtons/UserItemButtons';
 function UserItem(props) {
  return (
   <>
-   {console.log(props.users)}
    <div className="container user-all">
     <div className="row users-row">
      {props.users.length ? (
       props.users.map((user) =>
        props.userAuth.username !== user.username ? (
-        <div className="col-3" key={user.id}>
+        <div className="col-12  col-sm-4 col-lg-3" key={user.id}>
          <Link to={`/user/${user.username}`}>
           <div className="user-card">
            <img

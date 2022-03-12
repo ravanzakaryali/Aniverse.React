@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Home from '../page/home/Home';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import User from '../user/User';
+import User from '../page/profile/User';
 import { loadUser } from '../../redux/actions/authAction';
 import '../../sass/main.scss';
 import Navbar from '../navbar/Navbar';
-import Profile from '../profile/Profile';
-import UserFriend from '../profile/UserFriend';
+import Profile from '../page/profile/Profile';
+import UserFriend from '../page/profile/UserFriend';
 import Auth from '../auth/Auth';
 import Login from '../auth/Login';
 import Register from '../auth/Register';
@@ -19,6 +19,9 @@ import AllFriend from '../page/people/AllFriend';
 import AllFriendRequest from '../page/people/AllFriendRequest';
 import BlockUsers from '../page/people/BlockUsers';
 import { Navigate } from 'react-router';
+import Explore from '../page/explore/Explore';
+import About from '../page/profile/About';
+import Follows from '../page/profile/Follows';
 
 function App() {
  const dispatch = useDispatch();
@@ -31,18 +34,28 @@ function App() {
    <Navbar />
    <Routes>
     <Route path="/" element={<Home />} />
-    {/* <Route path="people" element={<People />}>
+    <Route path="people" element={<People />}>
      <Route path="friends" element={<AllFriend />} />
      <Route path="request" element={<AllFriendRequest />} />
      <Route path="block" element={<BlockUsers />} />
      <Route index element={<AllUser />} />
-    </Route> */}
-    {/* <Route path="user/:username" element={<User />}>
+    </Route>
+    <Route path="user/:username" element={<User />}>
      <Route path="friends" element={<UserFriend />} />
+     <Route
+      path="about"
+      element={
+       <>
+        <About />
+        <Follows />
+       </>
+      }
+     />
      <Route index element={<Profile />} />
      <Route path="chat" element={<Chat />} />
-    </Route> */}
-    {/* <Route path="animal/:animalname" element={<Animal />} /> */}
+    </Route>
+    <Route path="animal/:animalname" element={<Animal />} />
+    <Route path="/explore" element={<Explore />} />
     <Route path="auth/" element={<Auth />}>
      <Route path="login" element={<Login />} />
      <Route path="register" element={<Register />} />
