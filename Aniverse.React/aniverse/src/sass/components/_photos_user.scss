@@ -1,0 +1,15 @@
+.intro.user-photos {
+    .photos-row {
+        padding: $padding-normal;
+        .col-3 {
+            padding: 0;
+        }
+    }
+    .photo-img {
+        border: 4px solid $white;
+        border-radius: $border-radius-min + 6;
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+}

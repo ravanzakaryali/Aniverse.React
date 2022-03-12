@@ -22,6 +22,7 @@ import { Navigate } from 'react-router';
 import Explore from '../page/explore/Explore';
 import About from '../page/profile/About';
 import Follows from '../page/profile/Follows';
+import Photos from '../page/profile/Photos';
 
 function App() {
  const dispatch = useDispatch();
@@ -51,6 +52,7 @@ function App() {
        </>
       }
      />
+     <Route path="photos" element={<Photos />} />
      <Route index element={<Profile />} />
      <Route path="chat" element={<Chat />} />
     </Route>

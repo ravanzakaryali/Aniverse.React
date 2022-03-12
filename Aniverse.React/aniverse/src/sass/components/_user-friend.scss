@@ -3,8 +3,6 @@
         margin: $margin-normal 0;
         padding: $padding-normal;
         display: flex;
-        border: 1px solid $gray-10;
-        border-radius: $border-radius-min;
         .friends-profile {
             @include boxSize($box-size-img * 3, $box-size-img * 3, 50%);
             object-fit: cover;
@@ -20,6 +18,16 @@
             margin: auto 0;
             margin-left: auto;
             width: auto;
+        }
+    }
+    a {
+        border: 1px solid $gray-10;
+        border-radius: $border-radius-min;
+        display: inline-block;
+        width: 100%;
+        margin-bottom: $margin-normal * 2;
+        &:hover {
+            background-color: $gray-05;
         }
     }
 }

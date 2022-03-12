@@ -33,6 +33,8 @@ export function userPhotosReducer(state = initialState.userPhotos, action) {
     switch (action.type) {
         case actionTypes.GET_PHOTOS_SUCCESS:
             return action.payload
+        case actionTypes.GET_ONLY_USER_PHOTOS:
+            return action.payload
         default:
             return state;
     }

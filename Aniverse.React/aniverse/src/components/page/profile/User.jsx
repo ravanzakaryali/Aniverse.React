@@ -32,7 +32,7 @@ function User(props) {
   <>
    <div
     className={`${
-     width > 992 ? 'container' : 'container-lg'
+     width > 992 ? ' container' : ' container-lg'
     } user-profile-parent`}>
     <div className="cover-picture">
      <UserCoverPicture

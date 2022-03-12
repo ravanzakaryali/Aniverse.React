@@ -1,5 +1,4 @@
 import axios from "axios"
-import initialState from "../reducers/initialState"
 import * as actionTypes from "./actionTypes"
 import { getAnimalFollowSuccess } from "./animalAction"
 
@@ -25,6 +24,9 @@ export function changeProfileSuccess() {
     return { type: actionTypes.PROFILE_CREATE_SUCCESS }
 }
 export function getUserPhotosSuccess(photos) {
+    return { type: actionTypes.GET_PHOTOS_SUCCESS, payload: photos }
+}
+export function getOnlyUserPhotosSuccess(photos) {
     return { type: actionTypes.GET_PHOTOS_SUCCESS, payload: photos }
 }
 export function getBlockUsersSuccess(users) {
@@ -192,6 +194,23 @@ export function getUserPhotos(username, page, size) {
         })
             .then((res) => {
                 dispatch(getUserPhotosSuccess(res.data));
+            }).catch((error) => {
+                console.log(error);
+            })
+    }
+}
+export function getOnlyUserPhotos(username, page, size) {
+    return async function (dispatch) {
+        let url = `${actionTypes.baseUrl}/user/only/photos/${username}?page=${page}&size=${size}`;
+        axios.get(url, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                'Accept': 'application/json, text/plain',
+                'Content-Type': 'application/json;charset=UTF-8'
+            },
+        })
+            .then((res) => {
+                dispatch(getOnlyUserPhotosSuccess(res.data));
             }).catch((error) => {
                 console.log(error);
             })

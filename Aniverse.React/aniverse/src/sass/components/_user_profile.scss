@@ -1,5 +1,5 @@
 .user-profile-parent {
-   @import './user_cover_picture';
+    @import "./user_cover_picture";
     .container-min {
         margin: 0 $margin-normal * 10;
     }
@@ -14,9 +14,9 @@
             @include boxSize($box-size-img * 4, $box-size-img * 4, 50%);
             border: 2px solid $white;
         }
-        .profile-picture-parent{
+        .profile-picture-parent {
             position: relative;
-            .profile-img-btn{
+            .profile-img-btn {
                 right: 0;
                 top: 15px;
                 background-color: $gray-20;
@@ -25,21 +25,21 @@
                 position: absolute;
             }
         }
-        .profile-img-modal{
-            background-color: rgba(0, 0, 0, 0.700);
+        .profile-img-modal {
+            background-color: rgba(0, 0, 0, 0.7);
         }
-        .profile-img-modal .modal-content{
+        .profile-img-modal .modal-content {
             background-color: transparent;
         }
-        .profile-img-modal .modal-body{
+        .profile-img-modal .modal-body {
             text-align: center;
             padding: 0;
         }
-        .profile-img-modal .modal-body img{
+        .profile-img-modal .modal-body img {
             object-fit: cover;
             @include boxSize($box-size-img * 10, $box-size-img * 10, 50%);
         }
-        .profile-picture-row{
+        .profile-picture-row {
             margin-bottom: $margin-normal;
             padding-bottom: $padding-normal;
         }
@@ -90,13 +90,13 @@
         .profile-menu {
             display: flex;
         }
-        .profile-menu a{
+        .profile-menu a {
             padding: $padding-normal;
             margin: 0 $margin-min;
             border-radius: $border-radius-min;
             display: inline-block;
         }
-        .profile-menu a{
+        .profile-menu a {
             &:hover {
                 @extend %navbar-link-active;
             }
@@ -110,13 +110,13 @@
                 bottom: -15px !important;
             }
         }
-        .profile-menu a{
+        .profile-menu a {
             display: inline-block;
             color: $gray-80;
             font-weight: $fs-weight-normal;
         }
     }
-    .new-friend-text{
+    .new-friend-text {
         text-align: center;
     }
 }

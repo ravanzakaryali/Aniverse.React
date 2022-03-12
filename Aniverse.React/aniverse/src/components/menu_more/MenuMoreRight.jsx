@@ -12,7 +12,7 @@ function MenuMoreRight() {
      <li>
       <button className="btn">
        <i className="fa-solid fa-pen-to-square"></i>
-       Post cerate
+       Post
       </button>
      </li>
      <li>

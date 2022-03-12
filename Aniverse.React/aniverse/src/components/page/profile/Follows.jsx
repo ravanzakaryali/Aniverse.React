@@ -11,14 +11,14 @@ function Follows(props) {
   follows(username);
  }, []);
  return (
-  <div className="col-6">
+  <div className="">
    <div className="intro follow-user">
     <h3 className="intro-title">Follows</h3>
     <div className="row follow-row">
      {props.animalFollows.map((animal) => (
       <Link
        to={`/animal/${animal.animalname}`}
-       className="col-4"
+       className="col-2"
        key={animal.id}>
        <div className="animal-img">
         <img
