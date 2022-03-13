@@ -35,7 +35,7 @@ function StoryModal(props) {
         e.preventDefault();
         formData.append('storyFile', storyState.storyFile);
         formData.append('content', storyState.name);
-        props.setStory(props.addStory + 1);
+        props.setStory(storyState);
         story(formData);
         props.setModal(false);
        }}>

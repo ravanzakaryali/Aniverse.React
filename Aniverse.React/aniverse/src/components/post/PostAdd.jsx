@@ -74,7 +74,6 @@ function PostAdd(props) {
          console.log(postState.postFile);
          document.querySelector('.fileUpload').value = '';
          e.currentTarget.parentElement.className = 'd-none image-select';
-         console.log(e.currentTarget.parentElement);
         }}
         className="clear-select-files">
         <i className="fa-solid fa-xmark"></i>

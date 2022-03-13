@@ -6,6 +6,7 @@ function StoryController(props) {
  const { deleteStoryRequest } = props;
  const { archive } = props;
  const [activeMenu, setActiveMenu] = useState(false);
+ useEffect(() => {}, props.addStory);
  return (
   <>
    <button
@@ -21,7 +22,7 @@ function StoryController(props) {
       <li>
        <button
         onClick={() => {
-         props.setStory(props.addStory + 1);
+         props.setStory('archive');
          archive(props.storyId);
         }}
         className="btn">
@@ -30,14 +31,13 @@ function StoryController(props) {
        </button>
       </li>
       <li>
-       <form>
-        <button
-         onClick={() => {
-          props.setStory(props.addStory + 1);
-          deleteStoryRequest(props.storyId);
-         }}
-         type="button"
-         className="btn">
+       <form
+        onSubmit={(e) => {
+         e.preventDefault();
+         props.setStory('delete');
+         deleteStoryRequest(props.storyId);
+        }}>
+        <button type="submit" className="btn">
          Delete
          <i className="fa-solid fa-trash"></i>
         </button>

@@ -9,12 +9,12 @@ import ReactTimeAgo from 'react-time-ago';
 import PostMenu from './PostMenu';
 import Like from './Like';
 import CommentAdd from './CommentAdd';
+import LikeCommentView from './LikeCommentView';
 
 function Posts(props) {
  const { loginUser } = props;
 
  const { comRender, setComRender } = props;
- const [commentView, setCommentView] = useState(false);
 
  const [currentPage, setCurrentPage] = useState(1);
  const [sizePost, setSizePost] = useState(20);
@@ -65,7 +65,13 @@ function Posts(props) {
         </p>
         <p className="hasTag">{post.hasTag}</p>
        </div>
-       <PostMenu userId={post.user.id} postId={post.id} isSave={post.isSave} />
+       <PostMenu
+        setComRender={setComRender}
+        comRender={comRender}
+        userId={post.user.id}
+        postId={post.id}
+        isSave={post.isSave}
+       />
        <div className="post-content col-12">{post.content}</div>
       </div>
       <div className="post-body item">
@@ -99,41 +105,11 @@ function Posts(props) {
         </span>
        </div>
       </div>
-      <div className="post-event">
-       <div className="col-6 event like">
-        <Like
-         postId={post.id}
-         likes={post.likes}
-         setComRender={setComRender}
-         comRender={comRender}
-        />
-       </div>
-       <div className="col-6 event comment">
-        <button
-         className="btn btn-comment"
-         onClick={() => {
-          setCommentView(!commentView);
-         }}>
-         <i className="fa-regular fa-comment"></i>
-         Comment
-        </button>
-       </div>
-      </div>
-      {commentView ? (
-       <div className="comments">
-        <div className="add-comment">
-         <CommentAdd
-          setComRender={setComRender}
-          comRender={comRender}
-          postId={post.id}
-          user={props.user}
-         />
-        </div>
-        <Comment comments={post.comments} />
-       </div>
-      ) : (
-       ''
-      )}
+      <LikeCommentView
+       comRender={comRender}
+       setComRender={setComRender}
+       post={post}
+      />
      </div>
     ))}
    </div>

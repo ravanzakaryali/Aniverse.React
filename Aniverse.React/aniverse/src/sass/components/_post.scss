@@ -116,6 +116,7 @@
         top: 45px;
         right: 0px;
         margin-right: $margin-min;
+        background-color: $white;
         .post-menu-item {
             padding: $padding-normal;
             &:hover {
@@ -127,15 +128,19 @@
             align-items: center;
             justify-content: space-between;
             font-size: $fs-min + 1 !important;
-            i {
-                margin-right: $margin-min;
+            .icon {
+                margin-left: $margin-min;
             }
         }
     }
     .menu-controller-btn {
+        color: $black;
         background-color: $gray-05;
         &:focus {
             background-color: $gray-10;
         }
+    }
+    .post-menu-active .btn {
+        color: $black !important;
     }
 }

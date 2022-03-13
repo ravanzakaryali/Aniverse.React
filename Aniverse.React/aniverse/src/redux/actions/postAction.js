@@ -22,9 +22,11 @@ export function getAnimalPostSuccess(animalPost) {
 export function getAllPostSuccess(allPosts) {
     return { type: actionTypes.GET_FRIEND_ALL_POSTS_SUCCESS, payload: allPosts }
 }
-
 export function postSaveSuccess() {
     return { type: actionTypes.POST_SAVE_SUCCESS }
+}
+export function postDeleteSuccess() {
+    return { type: actionTypes.POST_DELETE_SUCCESS }
 }
 
 export function getAllPosts() {
@@ -134,6 +136,22 @@ export function postSave(postSave) {
             },
         }).then((res) => {
             dispatch(postSaveSuccess())
+        }).catch((error) => {
+            console.log(error.response.data);
+        })
+    }
+}
+export function postDelete(id) {
+    return function (dispatch) {
+        let url = `${actionTypes.baseUrl}/post/delete/${id}`;
+        axios.delete(url, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                'Accept': 'application/json, text/plain',
+                'Content-Type': 'application/json;charset=UTF-8'
+            },
+        }).then((res) => {
+            dispatch(postDeleteSuccess())
         }).catch((error) => {
             console.log(error.response.data);
         })

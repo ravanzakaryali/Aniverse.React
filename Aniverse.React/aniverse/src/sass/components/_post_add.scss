@@ -103,3 +103,27 @@
         }
     }
 }
+.post-delete-modal {
+    .modal-header {
+        padding: $padding-normal;
+        border-bottom: 1px solid $gray-20;
+    }
+    .modal-body {
+        padding: $padding-normal;
+    }
+    .modal-footer {
+        justify-content: end;
+        padding: $padding-normal;
+        :first-child {
+            margin-right: $margin-normal;
+        }
+        .btn-light {
+            color: $color-brand-primary;
+        }
+        .btn {
+            border-radius: $border-radius-min;
+            padding: $padding-min;
+            width: auto;
+        }
+    }
+}

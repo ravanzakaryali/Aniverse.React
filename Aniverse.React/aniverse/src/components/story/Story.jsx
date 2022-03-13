@@ -3,7 +3,10 @@ import StoryAdd from './StoryAdd';
 import Stories from './Stories';
 
 function Story() {
- const [addStory, setStory] = useState(1);
+ const [addStory, setStory] = useState({});
+ useEffect(() => {
+  setStory(addStory);
+ }, addStory);
  return (
   <div className="story-row d-flex">
    <StoryAdd addStory={addStory} setStory={setStory} />
