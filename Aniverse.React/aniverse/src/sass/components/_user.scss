@@ -2,6 +2,7 @@
     margin: $margin-normal 0;
     border-radius: $border-radius-min;
     padding: $padding-normal 0;
+    padding: 0;
     background-color: white;
     @extend %box-shadow-main;
     .section-title {
@@ -51,6 +52,10 @@
         }
     }
     .btn-loadmore {
-        margin-top: $margin-min;
+        font-weight: $fs-weight-normal;
+        margin-top: $padding-normal;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 }

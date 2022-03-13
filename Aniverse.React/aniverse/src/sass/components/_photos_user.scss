@@ -12,4 +12,26 @@
         height: 200px;
         object-fit: cover;
     }
+    .photo {
+        display: inline-block;
+        position: relative;
+    }
+    .img-btn {
+        width: auto;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: $white;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 50%;
+        text-align: center;
+        padding: 0;
+        transition: $transition-min;
+        &:hover {
+            background-color: $gray-10;
+            transform: scale(1.1);
+        }
+    }
 }

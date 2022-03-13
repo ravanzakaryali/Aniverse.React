@@ -12,7 +12,7 @@ function PostAdd(props) {
 
  useEffect(() => {
   selectAnimal();
- }, [selectAnimal]);
+ }, [postState]);
 
  const formData = new FormData();
 

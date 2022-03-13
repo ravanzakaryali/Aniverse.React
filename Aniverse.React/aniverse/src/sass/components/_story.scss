@@ -71,13 +71,17 @@
     }
     .btn-story {
         position: absolute;
-        top: 0;
-        right: 0;
+        top: 5px;
+        right: 5px;
         border: 0;
+        background-color: $white;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        line-height: 10px;
+        padding: 0;
         &:focus-visible,
         &:focus {
-            background-color: #fff1;
-            border-radius: 0;
             box-shadow: none;
             border: 0;
             outline: 0;
@@ -87,6 +91,7 @@
         position: absolute;
         top: 35px;
         right: 2px;
+        z-index: 2;
         background-color: $white;
         border-radius: $border-radius-min;
         .btn {

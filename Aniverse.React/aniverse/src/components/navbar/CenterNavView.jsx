@@ -1,6 +1,8 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+
 function CenterNavView() {
  const location = useLocation();
 
@@ -29,7 +31,7 @@ function CenterNavView() {
     <Link
      to="/animals"
      className={location.pathname === '/animals' ? 'active' : ''}>
-     <i className="fa-solid fa-paw"></i>
+     <FontAwesomeIcon icon={['fas', 'paw']} />
     </Link>
    </li>
   </ul>

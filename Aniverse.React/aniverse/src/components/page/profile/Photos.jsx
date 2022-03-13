@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router';
 import { getOnlyUserPhotos } from '../../../redux/actions/userActions';
+import LightGallery from 'lightgallery/react';
 
 function Photos(props) {
  const { getPhotos } = props;
@@ -9,24 +10,26 @@ function Photos(props) {
  useEffect(() => {
   getPhotos(username, 1, 100);
  }, [username]);
- console.log(props);
  return (
   <>
    <div className="col-12">
     <div className="intro user-photos">
      <h3 className="intro-title">Photos</h3>
      <div className="photos-row row">
-      {props.photos.map((photo) => (
-       <>
-        <div className="col-3">
-         <img
-          alt="user photos"
-          className="photo-img"
-          src={`${photo.imageName}`}
-         />
-        </div>
-       </>
-      ))}
+      {props.photos.length > 0 ? (
+       <LightGallery speed={500}>
+        {props.photos.map((photo, index) => (
+         <a key={photo.id} href={photo.imageName} className="photo col-3">
+          <img alt="" className="photo-img" src={photo.imageName} />
+          <button className="btn img-btn">
+           <i className="fa-solid fa-pen"></i>
+          </button>
+         </a>
+        ))}
+       </LightGallery>
+      ) : (
+       ''
+      )}
      </div>
     </div>
    </div>

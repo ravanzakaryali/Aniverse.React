@@ -23,6 +23,10 @@ export function getAllPostSuccess(allPosts) {
     return { type: actionTypes.GET_FRIEND_ALL_POSTS_SUCCESS, payload: allPosts }
 }
 
+export function postSaveSuccess() {
+    return { type: actionTypes.POST_SAVE_SUCCESS }
+}
+
 export function getAllPosts() {
     return async function (dispatch) {
         let url = `${actionTypes.baseUrl}/post`;
@@ -114,6 +118,22 @@ export function getAnimalPosts(animalname) {
             },
         }).then((res) => {
             dispatch(getAnimalPostSuccess(res.data))
+        }).catch((error) => {
+            console.log(error.response.data);
+        })
+    }
+}
+export function postSave(postSave) {
+    return function (dispatch) {
+        let url = `${actionTypes.baseUrl}/post/save`
+        axios.post(url, postSave, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                'Accept': 'application/json, text/plain',
+                'Content-Type': 'application/json;charset=UTF-8'
+            },
+        }).then((res) => {
+            dispatch(postSaveSuccess())
         }).catch((error) => {
             console.log(error.response.data);
         })

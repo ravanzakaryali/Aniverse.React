@@ -11,7 +11,7 @@ function FriendsIntro(props) {
      <div className="friends-title col-6">Friends</div>
 
      <div className="col-6 all-friends-btn">
-      <Link to={`${props.username}/friends`}>See All Friends</Link>
+      <Link to={`/user/${props.username}/friends`}>See All Friends</Link>
      </div>
     </div>
     <p className="count">{userFriend.length} friends</p>

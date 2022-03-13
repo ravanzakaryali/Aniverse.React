@@ -1,18 +1,40 @@
-import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { BsBookmark, BsFillBookmarkFill } from 'react-icons/bs';
+import { postSave } from '../../redux/actions/postAction';
 
 function PostMenu(props) {
- const [activeSave, setStateSave] = useState(false);
+ const { postSaveRequest } = props;
+ const [activeSave, setStateSave] = useState(true);
  const [activeMenu, setActiveMenu] = useState(false);
+ const [postSave, setPostSave] = useState({});
+
+ const postSaveSubmit = (e) => {
+  e.preventDefault();
+  postSaveRequest(postSave);
+ };
+
+ useEffect(() => {
+  if (props.isSave) {
+   setStateSave(!activeSave);
+  }
+ }, []);
 
  return (
   <div className="post-menu col-1">
    {props.userId !== props.userAuth.id ? (
     <>
-     <button className="btn save-post">
-      <i className="fa-regular fa-bookmark"></i>
-      <i className="fa-solid fa-bookmark d-none"></i>
-     </button>
+     <form onSubmit={postSaveSubmit}>
+      <button
+       onClick={() => {
+        setPostSave({ postId: props.postId, isSave: activeSave });
+        setStateSave(!activeSave);
+       }}
+       className="btn save-post">
+       {activeSave ? <BsBookmark /> : <BsFillBookmarkFill />}
+      </button>
+     </form>
     </>
    ) : (
     <>
@@ -51,5 +73,12 @@ const mapStateToProps = (state) => {
   userAuth: state.userNavbarReducer,
  };
 };
+const mapDispatchToProps = (dispatch) => {
+ return {
+  postSaveRequest: (postData) => {
+   dispatch(postSave(postData));
+  },
+ };
+};
 
-export default connect(mapStateToProps)(PostMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(PostMenu);

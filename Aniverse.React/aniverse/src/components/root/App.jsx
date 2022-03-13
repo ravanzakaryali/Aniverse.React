@@ -18,11 +18,12 @@ import AllUser from '../page/people/AllUser';
 import AllFriend from '../page/people/AllFriend';
 import AllFriendRequest from '../page/people/AllFriendRequest';
 import BlockUsers from '../page/people/BlockUsers';
-import { Navigate } from 'react-router';
 import Explore from '../page/explore/Explore';
 import About from '../page/profile/About';
 import Follows from '../page/profile/Follows';
 import Photos from '../page/profile/Photos';
+import Pages from '../page/profile/Pages';
+import FontAwesome from '../fontAwesome/FontAwesome';
 
 function App() {
  const dispatch = useDispatch();
@@ -53,8 +54,9 @@ function App() {
       }
      />
      <Route path="photos" element={<Photos />} />
-     <Route index element={<Profile />} />
+     <Route path="pages" element={<Pages />} />
      <Route path="chat" element={<Chat />} />
+     <Route index element={<Profile />} />
     </Route>
     <Route path="animal/:animalname" element={<Animal />} />
     <Route path="/explore" element={<Explore />} />

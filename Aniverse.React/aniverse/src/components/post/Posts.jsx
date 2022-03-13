@@ -14,15 +14,8 @@ function Posts(props) {
  const { loginUser } = props;
 
  const { comRender, setComRender } = props;
+ const [commentView, setCommentView] = useState(false);
 
- function commentView(e) {
-  let comments = document.querySelectorAll('.comments');
-  comments.forEach((comment) => {
-   if (e.currentTarget.id === comment.getAttribute('data-id')) {
-    comment.classList.toggle('d-none');
-   }
-  });
- }
  const [currentPage, setCurrentPage] = useState(1);
  const [sizePost, setSizePost] = useState(20);
 
@@ -31,6 +24,7 @@ function Posts(props) {
  }, [sizePost, currentPage, comRender]);
 
  const { posts } = props;
+ console.log(posts);
  return (
   <>
    <div className="col-12">
@@ -71,7 +65,7 @@ function Posts(props) {
         </p>
         <p className="hasTag">{post.hasTag}</p>
        </div>
-       <PostMenu userId={post.user.id} />
+       <PostMenu userId={post.user.id} postId={post.id} isSave={post.isSave} />
        <div className="post-content col-12">{post.content}</div>
       </div>
       <div className="post-body item">
@@ -114,24 +108,32 @@ function Posts(props) {
          comRender={comRender}
         />
        </div>
-       <div className="col-6 event comment" id={post.id} onClick={commentView}>
-        <button className="btn btn-comment">
+       <div className="col-6 event comment">
+        <button
+         className="btn btn-comment"
+         onClick={() => {
+          setCommentView(!commentView);
+         }}>
          <i className="fa-regular fa-comment"></i>
          Comment
         </button>
        </div>
       </div>
-      <div className="comments d-none" data-id={post.id}>
-       <div className="add-comment">
-        <CommentAdd
-         setComRender={setComRender}
-         comRender={comRender}
-         postId={post.id}
-         user={props.user}
-        />
+      {commentView ? (
+       <div className="comments">
+        <div className="add-comment">
+         <CommentAdd
+          setComRender={setComRender}
+          comRender={comRender}
+          postId={post.id}
+          user={props.user}
+         />
+        </div>
+        <Comment comments={post.comments} />
        </div>
-       <Comment comments={post.comments} />
-      </div>
+      ) : (
+       ''
+      )}
      </div>
     ))}
    </div>

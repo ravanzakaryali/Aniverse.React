@@ -132,11 +132,11 @@ function User(props) {
          </li>
          <li>
           <Link
-           to={`/user/${username}/groups`}
+           to={`/user/${username}/pages`}
            className={
-            location.pathname === `/user/${username}/groups` ? 'active' : ''
+            location.pathname === `/user/${username}/pages` ? 'active' : ''
            }>
-           Groups
+           Pages
           </Link>
          </li>
         </ul>

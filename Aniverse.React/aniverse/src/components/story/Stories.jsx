@@ -11,14 +11,14 @@ function Stories(props) {
  let sliderPerView = 1;
  const [width] = useWindowSize();
 
- if (width > 992) {
+ if (width > 992 && props.stories.length >= 4) {
   sliderPerView = 4;
- } else if (width > 768) {
+ } else if (width > 768 && props.stories.length >= 3) {
   sliderPerView = 3;
- } else if (width > 576) {
-  sliderPerView = 3;
- } else {
+ } else if (width > 576 && props.stories.length >= 2) {
   sliderPerView = 2;
+ } else {
+  sliderPerView = 1;
  }
 
  const { storiesRequest } = props;
@@ -33,8 +33,8 @@ function Stories(props) {
  return (
   <>
    <Swiper slidesPerView={sliderPerView}>
-    {props.stories.map((story, index) => (
-     <SwiperSlide key={index}>
+    {props.stories.map((story) => (
+     <SwiperSlide key={story.id}>
       <LightGallery speed={500}>
        <a href={story.imageSrc}>
         <div className="story-col">

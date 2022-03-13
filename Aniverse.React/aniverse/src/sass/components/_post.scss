@@ -46,9 +46,11 @@
             margin-left: auto;
             text-align: end;
             display: inline-block;
+            padding: 0;
             .btn {
-                font-size: $fs-normal + 4;
+                font-size: $fs-normal + 6;
                 padding: 0;
+                color: $color-brand-primary;
             }
             i {
                 padding: $padding-min;
