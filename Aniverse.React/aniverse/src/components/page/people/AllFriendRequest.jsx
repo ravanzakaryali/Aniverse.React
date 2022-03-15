@@ -1,29 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getFriendRequest } from '../../../redux/actions/userActions';
+import { getFriendRequest } from '../../../redux/actions/friendAction';
 import UserItem from './UserItem';
 
 function AllFriendRequest(props) {
- const { getFriendRequest } = props;
+ const { getRequest } = props;
 
  useEffect(() => {
-  getFriendRequest();
- }, [getFriendRequest]);
+  getRequest();
+ }, [getRequest]);
+ console.log(props);
  return (
   <>
-   <UserItem users={props.usersRequest} />
+   <UserItem users={props.request} />
   </>
  );
 }
 function mapStateToProps(state) {
  return {
-  usersRequest: state.friendRequestReducer,
+  request: state.getFriendRequestReducer,
  };
 }
 
 const mapDispatchToProps = (dispatch) => {
  return {
-  getFriendRequest: () => {
+  getRequest: () => {
    dispatch(getFriendRequest());
   },
  };

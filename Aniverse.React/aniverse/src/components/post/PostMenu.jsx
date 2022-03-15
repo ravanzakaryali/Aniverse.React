@@ -48,7 +48,7 @@ function PostMenu(props) {
        onClick={() => {
         setActiveMenu(!activeMenu);
        }}>
-       <i className="fa-solid fa-ellipsis"></i>
+       <FontAwesomeIcon icon="fa-solid fa-ellipsis" />
       </button>
       {activeMenu ? (
        <div className="post-menu-active">

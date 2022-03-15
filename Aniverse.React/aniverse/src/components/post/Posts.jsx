@@ -10,12 +10,11 @@ import PostMenu from './PostMenu';
 import Like from './Like';
 import CommentAdd from './CommentAdd';
 import LikeCommentView from './LikeCommentView';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Posts(props) {
  const { loginUser } = props;
-
  const { comRender, setComRender } = props;
-
  const [currentPage, setCurrentPage] = useState(1);
  const [sizePost, setSizePost] = useState(20);
 
@@ -93,13 +92,13 @@ function Posts(props) {
        <div className="post-result">
         <span className="index like">
          <Link to="/">
-          <i className="fa-solid fa-thumbs-up"></i>
+          <FontAwesomeIcon icon="fa-solid fa-thumbs-up" />
           <span className="count">{post.likes.length}</span>
          </Link>
         </span>
         <span className="index comment">
          <Link to="/sds">
-          <i className="fa-solid fa-comment"></i>
+          <FontAwesomeIcon icon="fa-solid fa-comment" />
           <span className="count">{post.comments.length}</span>
          </Link>
         </span>

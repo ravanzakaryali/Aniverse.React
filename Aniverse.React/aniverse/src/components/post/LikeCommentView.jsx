@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Comment from './Comment';
@@ -24,7 +25,7 @@ function LikeCommentView(props) {
       onClick={() => {
        setCommentView(!commentView);
       }}>
-      <i className="fa-regular fa-comment"></i>
+      <FontAwesomeIcon icon="fa-regular fa-comment" />
       Comment
      </button>
     </div>

@@ -13,6 +13,7 @@ function Home(props) {
  const token = localStorage.getItem('token');
  useEffect(() => {
   if (token == null) return navigate('/auth/login');
+  document.title = 'Aniverse';
  });
  return (
   <>

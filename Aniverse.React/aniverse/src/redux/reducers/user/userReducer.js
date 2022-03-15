@@ -55,3 +55,13 @@ export function animalFollowsReducer(state = initialState.animalFollows, action)
             return state;
     }
 }
+export function seachUsersReducer(state = initialState.searchUsers, action) {
+    switch (action.type) {
+        case actionTypes.GET_SEARCH_SUCCESS:
+            return action.payload
+        case actionTypes.GET_SEARCH_ERROR:
+            return action.payload
+        default:
+            return state;
+    }
+}

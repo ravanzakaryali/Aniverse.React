@@ -134,7 +134,9 @@
         }
     }
     .menu-controller-btn {
+        display: inline-block;
         color: $black;
+        padding: $padding-min;
         background-color: $gray-05;
         &:focus {
             background-color: $gray-10;

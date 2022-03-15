@@ -12,8 +12,8 @@ function UserItem(props) {
       props.users.map((user) =>
        props.userAuth.username !== user.username ? (
         <div className="col-12  col-sm-4 col-lg-3" key={user.id}>
-         <Link to={`/user/${user.username}`}>
-          <div className="user-card">
+         <div className="user-card">
+          <Link to={`/user/${user.username}`}>
            <img
             alt="Profile"
             className="user-profile-img"
@@ -28,11 +28,11 @@ function UserItem(props) {
              {user.firstname} {user.lastname}
             </p>
            </div>
-           <div className="user-card-footer">
-            <UserItemButtons />
-           </div>
+          </Link>
+          <div className="user-card-footer">
+           <UserItemButtons userId={user.id} />
           </div>
-         </Link>
+         </div>
         </div>
        ) : (
         ''

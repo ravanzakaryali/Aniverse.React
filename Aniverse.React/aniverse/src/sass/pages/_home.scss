@@ -6,8 +6,8 @@
     }
     .fixed-sidebar {
         position: fixed;
-        top: $page-margin-top-bottom;
-        padding-bottom: $page-margin-top-bottom;
+        top: 0;
+        padding-top: $page-margin-top-bottom;
         overflow-y: scroll;
         height: 100%;
         &::-webkit-scrollbar {
@@ -20,8 +20,8 @@
     }
     .fixed-sidebar-right {
         position: fixed;
-        top: 83px;
-        padding-bottom: 83px;
+        top: 0;
+        padding-top: $page-margin-top-bottom;
         overflow-y: scroll;
         height: 100%;
         right: 0;

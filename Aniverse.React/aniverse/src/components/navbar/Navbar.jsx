@@ -6,11 +6,13 @@ import AccountView from './AccountView';
 import MenuBarsView from './MenuBarsView';
 import RightNavView from './RightNavView';
 import LogoView from './LogoView';
-import SearchView from './SearchView';
 import CenterNavView from './CenterNavView';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
+import SearchInput from './SearchInput';
 
 function Navbar(props) {
+ const navigate = useNavigate();
+ const token = localStorage.getItem('token');
  const location = useLocation();
  const [width] = useWindowSize();
 
@@ -18,6 +20,7 @@ function Navbar(props) {
  const userLogin = JSON.parse(localStorage.getItem('loginUser'));
 
  useEffect(() => {
+  if (token == null) return navigate('/auth/login');
   if (!location.pathname.includes('/auth')) {
    getUser(userLogin.username);
   }
@@ -45,7 +48,7 @@ function Navbar(props) {
        <div className="row navbar-header">
         <div className="logo-search col-6 col-md-3">
          <LogoView />
-         <SearchView />
+         <SearchInput />
         </div>
 
         {width > 769 ? (

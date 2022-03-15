@@ -1,0 +1,11 @@
+.search-row {
+    position: absolute;
+    top: $page-margin-top-bottom;
+    background-color: $white;
+    width: 30%;
+    max-height: 350px;
+    overflow-y: scroll;
+    border-radius: $border-radius-min;
+    @extend %box-shadow-main;
+    padding: $padding-normal;
+}

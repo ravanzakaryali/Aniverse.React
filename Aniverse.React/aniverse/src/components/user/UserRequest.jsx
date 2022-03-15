@@ -1,11 +1,18 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getFriendRequest } from '../../redux/actions/friendAction';
 import { postFriendConfirm } from '../../redux/actions/userActions';
 
 function UserRequest(props) {
  const { confirm } = props;
+ const { friendRequest } = props;
  const [confirmState, setConfirmState] = useState({});
+
+ useEffect(() => {
+  friendRequest();
+ }, [friendRequest]);
  return (
   <>
    {props.request.length ? (
@@ -72,7 +79,7 @@ function UserRequest(props) {
       </div>
      ))}
      <Link to="/people/request" className="btn btn-loadmore">
-      More friend request <i className="fa-solid fa-chevron-right"></i>
+      More friend request <FontAwesomeIcon icon="fa-solid fa-chevron-right" />
      </Link>
     </div>
    ) : (
@@ -82,12 +89,20 @@ function UserRequest(props) {
  );
 }
 
+const mapStateToProps = (state) => {
+ return {
+  request: state.getFriendRequestReducer,
+ };
+};
 const mapDispatchToProps = (dispatch) => {
  return {
   confirm: (friendId) => {
    dispatch(postFriendConfirm(friendId));
   },
+  friendRequest: () => {
+   dispatch(getFriendRequest());
+  },
  };
 };
 
-export default connect(null, mapDispatchToProps)(UserRequest);
+export default connect(mapStateToProps, mapDispatchToProps)(UserRequest);

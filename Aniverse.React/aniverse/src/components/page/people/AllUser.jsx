@@ -8,7 +8,7 @@ function AllUser(props) {
 
  useEffect(() => {
   getUsers();
- }, [getUsers]);
+ }, []);
  return (
   <>
    <UserItem users={props.users} />

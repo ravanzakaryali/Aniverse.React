@@ -49,8 +49,8 @@
         font-size: $fs-max;
     }
     .image {
-        font-size: $fs-normal + 10;
-        padding: $padding-normal;
+        font-size: $fs-normal + 15;
+        padding: $padding-min;
         color: $color-brand-primary;
         @extend %display-flex-center;
         margin-top: $margin-normal;
@@ -62,11 +62,11 @@
     .image-select {
         position: relative;
         background-color: $color-brand-primary-5;
-        padding: $padding-normal;
+        padding: $padding-min;
         margin-top: $margin-normal;
         margin-left: $margin-normal + 10;
         border-radius: $border-radius-min;
-        font-size: $fs-normal;
+        font-size: $fs-normal + 2;
         color: $color-brand-primary;
     }
     .image-select-text {

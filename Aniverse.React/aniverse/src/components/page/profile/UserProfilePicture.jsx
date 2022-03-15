@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { chagePorfile } from '../../../redux/actions/userActions';
@@ -32,7 +33,7 @@ function UserProfilePicture(props) {
        e.currentTarget.parentElement.nextElementSibling.click();
       }}
       className="btn profile-img-btn">
-      <i className="fa-solid fa-camera"></i>
+      <FontAwesomeIcon icon="fa-solid fa-camera" />
      </button>
     ) : (
      ''

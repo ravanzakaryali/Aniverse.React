@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -29,7 +30,7 @@ function UserFriend(props) {
              {friend.firstname} {friend.lastname}
             </p>
             <button className="btn btn-light">
-             <i className="fa-solid fa-ellipsis"></i>
+             <FontAwesomeIcon icon="fa-solid fa-ellipsis" />
             </button>
            </div>
           </a>

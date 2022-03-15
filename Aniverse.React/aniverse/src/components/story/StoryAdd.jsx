@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { getUserNavbar } from '../../redux/actions/userActions';
@@ -29,7 +30,7 @@ function StoryAdd(props) {
        : `${props.user.profilPicture}`
      }
     />
-    <i className="fa-solid fa-plus story-add-icon"></i>
+    <FontAwesomeIcon icon="fa-solid fa-plus" className=" story-add-icon" />
     <div className="story-add-plus">
      <p className="story-text">The story of the day</p>
     </div>

@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -11,13 +12,13 @@ function MenuMoreRight() {
     <ul className="first">
      <li>
       <button className="btn">
-       <i className="fa-solid fa-pen-to-square"></i>
+       <FontAwesomeIcon icon="fa-solid fa-pen-to-square" />
        Post
       </button>
      </li>
      <li>
       <button className="btn">
-       <i className="fa-solid fa-file-image"></i>
+       <FontAwesomeIcon icon="fa-file-image" />
        Story
       </button>
      </li>
@@ -25,19 +26,19 @@ function MenuMoreRight() {
     <ul>
      <li>
       <button className="btn">
-       <i className="fa-solid fa-paw"></i>
+       <FontAwesomeIcon icon="fa-solid fa-paw" />
        Animal
       </button>
      </li>
      <li>
       <button className="btn">
-       <i className="fa-solid fa-window-maximize"></i>
+       <FontAwesomeIcon icon="fa-solid fa-window-maximize" />
        Page
       </button>
      </li>
      <li>
       <button className="btn">
-       <i className="fa-solid fa-bullhorn"></i>
+       <FontAwesomeIcon icon="fa-solid fa-bullhorn" />
        Ad
       </button>
      </li>

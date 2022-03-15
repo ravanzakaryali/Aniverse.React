@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { likePost } from '../../redux/actions/postAction';
@@ -38,12 +39,12 @@ function Like(props) {
     <button onClick={likeClikc} type="submit" className="btn btn-like">
      {likeActive ? (
       <>
-       <i className="fa-regular fa-heart"></i>
+       <FontAwesomeIcon icon="fa-regular fa-heart" />
        Like
       </>
      ) : (
       <>
-       <i className="fa-solid fa-heart"></i>
+       <FontAwesomeIcon icon="fa-solid fa-heart" />
        Like
       </>
      )}

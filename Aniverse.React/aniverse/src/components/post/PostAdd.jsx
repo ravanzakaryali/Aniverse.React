@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { createPost } from '../../redux/actions/postAction';
 import { selectAnimal } from '../../redux/actions/animalAction';
 import Select from 'react-select';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { MdAddPhotoAlternate } from 'react-icons/md';
+import { VscAdd } from 'react-icons/vsc';
 
 function PostAdd(props) {
  const { post } = props;
@@ -63,11 +66,11 @@ function PostAdd(props) {
        document.querySelector('.fileUpload').click();
       }}
       className="image col-1">
-      <i className="fa-solid fa-images"></i>
+      <MdAddPhotoAlternate />
      </div>
      <div>
       <div className="image-select d-none">
-       <i className="fa-solid fa-images"></i>
+       <FontAwesomeIcon icon="fa-solid fa-images" />
        <span className="fileSaveIndex image-select-text"></span>
        <span
         onClick={(e) => {
@@ -76,12 +79,12 @@ function PostAdd(props) {
          e.currentTarget.parentElement.className = 'd-none image-select';
         }}
         className="clear-select-files">
-        <i className="fa-solid fa-xmark"></i>
+        <FontAwesomeIcon icon="fa-solid fa-xmark" />
        </span>
       </div>
      </div>
      <button type="submit" className=" btn btn-primary">
-      Add post
+      Add post <VscAdd />
      </button>
     </div>
     <div className="image-content col-3">

@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -11,7 +12,7 @@ function MenuBarsView(prosp) {
      setMenuBars(!menuBars);
     }}
     className="btn menu-bars">
-    <i className="fa-solid fa-bars"></i>
+    <FontAwesomeIcon icon="fa-solid fa-bars" />
    </button>
    {menuBars ? (
     <div className="menu-bars-list">
@@ -19,19 +20,19 @@ function MenuBarsView(prosp) {
       <li>
        <Link to="/">
         Notfication
-        <i className="fa-solid fa-bell"></i>
+        <FontAwesomeIcon icon="fa-solid fa-bell" />
        </Link>
       </li>
       <li>
        <Link to="/">
         Settings
-        <i className="fa-solid fa-gear"></i>
+        <FontAwesomeIcon icon="fa-solid fa-gear" />
        </Link>
       </li>
       <li>
        <Link to="/">
         Logout
-        <i className="fa-solid fa-arrow-right-from-bracket"></i>
+        <FontAwesomeIcon icon="fa-solid fa-arrow-right-from-bracket" />
        </Link>
       </li>
      </ul>

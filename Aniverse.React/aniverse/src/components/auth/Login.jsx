@@ -34,7 +34,7 @@ function Login(props) {
   if (Object.keys(formErrors).length === 0 && isSubmit) {
    login(loginState);
   }
-  if (JSON.stringify(localStorage.getItem('token'))) return navigate('/');
+  if (!JSON.stringify(localStorage.getItem('token'))) return navigate('/');
  }, [formErrors]);
  const auth = useSelector((state) => state.authReducer);
  return (

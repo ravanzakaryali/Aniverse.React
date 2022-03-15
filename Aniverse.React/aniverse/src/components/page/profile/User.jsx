@@ -1,7 +1,14 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useWindowSize } from '@react-hook/window-size';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
+import {
+ Link,
+ Outlet,
+ useParams,
+ useLocation,
+ useNavigate,
+} from 'react-router-dom';
 import {
  getLoginUser,
  getUser,
@@ -18,16 +25,27 @@ function User(props) {
  const { userMethod } = props;
  const { userFriendMethod } = props;
  const params = useParams().username;
+ const { firstname, lastname, username, id, profilPicture, coverPicture } =
+   props.user,
+  friends = props.userFriend;
 
  useEffect(() => {
   userMethod(params);
   userFriendMethod(params);
   loginUserRequest();
- }, [params]);
+  if (props.user.firstname) {
+   document.title = `${firstname} ${lastname} | Aniverse`;
+  }
+ }, [
+  firstname,
+  lastname,
+  loginUserRequest,
+  params,
+  props.user.firstname,
+  userFriendMethod,
+  userMethod,
+ ]);
 
- const { firstname, lastname, username, id, profilPicture, coverPicture } =
-   props.user,
-  friends = props.userFriend;
  return (
   <>
    <div
@@ -145,7 +163,7 @@ function User(props) {
         <ul className="profile-menu justify-content-end">
          <li>
           <Link to="/menu">
-           <i className="fa-solid fa-ellipsis"></i>
+           <FontAwesomeIcon icon="fa-solid fa-ellipsis" />
           </Link>
          </li>
         </ul>

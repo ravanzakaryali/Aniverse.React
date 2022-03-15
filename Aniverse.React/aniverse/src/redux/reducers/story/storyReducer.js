@@ -23,3 +23,11 @@ export function storyFriendReducer(state = initialState.storyFriend, action) {
             return state;
     }
 }
+export function storiesReducer(state = initialState.stories, action) {
+    switch (action.type) {
+        case actionTypes.GET_STORIES_SUCCESS:
+            return action.payload
+        default:
+            return state;
+    }
+}

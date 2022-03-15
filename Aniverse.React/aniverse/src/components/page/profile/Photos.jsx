@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router';
 import { getOnlyUserPhotos } from '../../../redux/actions/userActions';
 import LightGallery from 'lightgallery/react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Photos(props) {
  const { getPhotos } = props;
@@ -22,7 +23,7 @@ function Photos(props) {
          <a key={photo.id} href={photo.imageName} className="photo col-3">
           <img alt="" className="photo-img" src={photo.imageName} />
           <button className="btn img-btn">
-           <i className="fa-solid fa-pen"></i>
+           <FontAwesomeIcon icon="fa-solid fa-pen" />
           </button>
          </a>
         ))}

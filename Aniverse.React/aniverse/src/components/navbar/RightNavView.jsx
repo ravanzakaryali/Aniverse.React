@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import MenuMore from '../menu_more/MenuMore';
 import Footer from './Footer';
 import Notfication from './Notfication';
+import { CgMenuGridO } from 'react-icons/cg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { MdAppRegistration } from 'react-icons/md';
 
 function RightNavView(props) {
  const { firstname, lastname, username, profilPicture } = props.userNavbar;
@@ -18,21 +21,15 @@ function RightNavView(props) {
    <ul className="right-nav col-7">
     <li className="right-nav-item">
      <a id="menu_more" onClick={(e) => dropDown(e)}>
-      <i className="fa-brands fa-elementor"></i>
+      <MdAppRegistration />
      </a>
      <div className="d-none" data-id="menu_more">
       <MenuMore />
      </div>
     </li>
     <li className="right-nav-item">
-     <a href="/">
-      <i className="fa-solid fa-message"></i>
-     </a>
-    </li>
-    <li className="right-nav-item">
      <a id="notf" onClick={(e) => dropDown(e)}>
-      <i className="fa-solid fa-bell"></i>
-      <i className="fa-solid fa-bell-on d-none"></i>
+      <FontAwesomeIcon icon="fa-solid fa-bell" />
      </a>
      <Notfication />
     </li>
@@ -41,7 +38,7 @@ function RightNavView(props) {
       className="activeAccount"
       id="activeAccount"
       onClick={(e) => dropDown(e)}>
-      <i className="fa-solid fa-caret-down"></i>
+      <FontAwesomeIcon icon="fa-caret-down" />
      </a>
      <div className="account d-none" data-id="activeAccount">
       <div className="account-header row">
@@ -61,18 +58,18 @@ function RightNavView(props) {
        <Link to="user/setting" className="setting">
         <div className="content">
          <div className="icon">
-          <i className="fa-solid fa-gear"></i>
+          <FontAwesomeIcon icon="fa-solid fa-gear" />
          </div>
          <p className="text">Setting</p>
         </div>
         <div className="left-icon">
-         <i className="fa-solid fa-angle-right"></i>
+         <FontAwesomeIcon icon="fa-solid fa-angle-right" />
         </div>
        </Link>
        <Link to="user/setting" className="setting bt">
         <div className="content">
          <div className="icon">
-          <i className="fa-solid fa-right-from-bracket"></i>{' '}
+          <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" />
          </div>
          <p className="text">Log out</p>
         </div>

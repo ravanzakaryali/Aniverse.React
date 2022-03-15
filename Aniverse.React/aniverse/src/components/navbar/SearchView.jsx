@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-export default function SearchView() {
+function SearchView(props) {
+ const { users } = props;
+ const [state, setState] = useState();
  return (
-  <div className="search col-6 col-md-2">
-   <input type="text" placeholder="Search Aniverse" />
-  </div>
+  <>
+   {users.length ? (
+    <div className="row search-row">
+     {users.map((user) => (
+      <>
+       <Link to={`user/${user.username}`}>
+        <div className="user">
+         <div className="user-image">
+          <img alt="User profile" src="" />
+         </div>
+         {user.firstname} {user.lastname}
+        </div>
+       </Link>
+      </>
+     ))}
+    </div>
+   ) : (
+    ''
+   )}
+  </>
  );
 }
+export default SearchView;

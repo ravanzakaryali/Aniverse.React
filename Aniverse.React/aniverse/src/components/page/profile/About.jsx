@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import Moment from 'react-moment';
 import { connect } from 'react-redux';
@@ -24,25 +25,25 @@ function About(props) {
      <div className="row about-row">
       <ul>
        <li>
-        <i className="fa-solid fa-user-pen"></i>
+        <FontAwesomeIcon icon="fa-solid fa-user-pen" />
         <span className="about-items">{bio}</span>
        </li>
        <li>
-        <i className="fa-solid fa-location-dot"></i>
+        <FontAwesomeIcon icon="fa-solid fa-location-dot" />
         <span className="about-items">{address}</span>
        </li>
        <li>
-        <i className="fa-solid fa-cake-candles"></i>
+        <FontAwesomeIcon icon="fa-solid fa-cake-candles" />
         <span className="about-items">
          <Moment format="MMM DD YYYY">{Date.parse(birthday)}</Moment>
         </span>
        </li>
        <li>
-        <i className="fa-solid fa-venus-double"></i>
+        <FontAwesomeIcon icon="fa-solid fa-venus-double" />
         <span className="about-items">{gender}</span>
        </li>
        <li>
-        <i className="fa-solid fa-user"></i>
+        <FontAwesomeIcon icon="fa-solid fa-user" />
         <span className="about-items">{username}</span>
        </li>
       </ul>

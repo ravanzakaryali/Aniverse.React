@@ -1,18 +1,38 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { connect } from 'react-redux';
+import { addFriend } from '../../../../redux/actions/friendAction';
 
 export const AllPeopleButton = (props) => {
+ const { userId, addFriendRequest } = props;
  return (
   <>
-   <form className="buttons">
-    <button className="btn btn-light">Add Friends</button>
+   <form
+    onClick={(e) => {
+     e.preventDefault();
+     addFriendRequest(userId);
+    }}
+    className="buttons">
+    <button type="submit" className="btn btn-primary">
+     <FontAwesomeIcon icon="fa-solid fa-user-plus" />
+     Add Friends
+    </button>
    </form>
   </>
  );
 };
 
-const mapStateToProps = (state) => ({});
+function mapStateToProps(state) {
+ return {
+  usersRequest: state.friendReducer,
+ };
+}
 
-const mapDispatchToProps = {};
-
+const mapDispatchToProps = (dispatch) => {
+ return {
+  addFriendRequest: (userId) => {
+   dispatch(addFriend(userId));
+  },
+ };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(AllPeopleButton);

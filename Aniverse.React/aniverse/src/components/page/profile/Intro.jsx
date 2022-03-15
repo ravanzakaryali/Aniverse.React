@@ -3,6 +3,7 @@ import Moment from 'react-moment';
 import { changeBio } from '../../../redux/actions/bioAction';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Intro(props) {
  const { bioChange } = props;
@@ -77,20 +78,20 @@ function Intro(props) {
    <div className="col-12">
     <ul className="from-address">
      <li>
-      <i className="fa-solid fa-location-dot"></i>
+      <FontAwesomeIcon icon="fa-solid fa-location-dot" />
       From
       <Link to={`page/${address}`}>{address}</Link>
      </li>
      <li>
-      <i className="fa-solid fa-cake-candles"></i>
+      <FontAwesomeIcon icon="fa-solid fa-cake-candles" />
       Birthday
       <Moment format="MMM DD YYYY">{Date.parse(birthday)}</Moment>
      </li>
      <li>
       {gender === 'Male' ? (
-       <i className="fa-solid fa-person"></i>
+       <FontAwesomeIcon icon="fa-solid fa-person" />
       ) : (
-       <i className="fa-solid fa-person-dress"></i>
+       <FontAwesomeIcon icon="fa-solid fa-person-dress" />
       )}
       Gender
       <p>{gender}</p>

@@ -4,31 +4,13 @@ import { connect } from 'react-redux';
 import { getFriendRequest } from '../../redux/actions/userActions';
 import Sponsored from '../Sponsored/Sponsored';
 
-function SidebarRight(props) {
- const { getFriendRequest } = props;
-
- useEffect(() => {
-  getFriendRequest();
- }, [getFriendRequest]);
+function SidebarRight() {
  return (
   <>
-   <UserRequest request={props.usersRequest} />
+   <UserRequest />
    <Sponsored />
   </>
  );
 }
 
-function mapStateToProps(state) {
- return {
-  usersRequest: state.friendRequestReducer,
- };
-}
-
-const mapDispatchToProps = (dispatch) => {
- return {
-  getFriendRequest: () => {
-   dispatch(getFriendRequest());
-  },
- };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(SidebarRight);
+export default SidebarRight;

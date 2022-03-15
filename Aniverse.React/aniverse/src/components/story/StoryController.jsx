@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { archiveStory, deleteStory } from '../../redux/actions/storyAction';
@@ -14,7 +15,7 @@ function StoryController(props) {
      setActiveMenu(!activeMenu);
     }}
     className="btn btn-story">
-    <i className="fa-solid fa-ellipsis-vertical"></i>
+    <FontAwesomeIcon icon="fa-solid fa-ellipsis-vertical" />
    </button>
    {activeMenu ? (
     <div className="story-menu">
@@ -27,7 +28,7 @@ function StoryController(props) {
         }}
         className="btn">
         Archive
-        <i className="fa-solid fa-box-open"></i>
+        <FontAwesomeIcon icon="fa-solid fa-box-open" />
        </button>
       </li>
       <li>
@@ -39,7 +40,7 @@ function StoryController(props) {
         }}>
         <button type="submit" className="btn">
          Delete
-         <i className="fa-solid fa-trash"></i>
+         <FontAwesomeIcon icon="fa-solid fa-trash" />
         </button>
        </form>
       </li>

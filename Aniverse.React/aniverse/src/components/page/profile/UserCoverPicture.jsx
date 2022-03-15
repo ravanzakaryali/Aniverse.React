@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { chageCover } from '../../../redux/actions/userActions';
@@ -25,7 +26,7 @@ function UserCoverPicture(props) {
        e.currentTarget.nextElementSibling.click();
       }}
       className="btn cover-img-btn">
-      <i className="fa-solid fa-camera"></i> Edit Cover Pictue
+      <FontAwesomeIcon icon="fa-solid fa-camera" />
      </button>
     </>
    ) : (

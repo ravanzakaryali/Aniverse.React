@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { postStory } from '../../redux/actions/storyAction';
@@ -25,7 +26,7 @@ function StoryModal(props) {
        data-bs-dismiss="modal"
        aria-label="Close"
        onClick={() => props.setModal(false)}>
-       <i className="fa-solid fa-xmark"></i>
+       <FontAwesomeIcon icon="fa-solid fa-xmark" />
       </button>
      </div>
      <div className="modal-body">
@@ -56,7 +57,7 @@ function StoryModal(props) {
          }
         />
         <span className="add-story-plus">
-         <i className="fa-solid fa-cloud-arrow-up"></i>
+         <FontAwesomeIcon icon="fa-solid fa-cloud-arrow-up" />
          Upload image
         </span>
         <textarea

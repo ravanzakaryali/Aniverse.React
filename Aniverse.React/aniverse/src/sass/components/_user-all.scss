@@ -7,7 +7,7 @@
     }
     .user-profile-img {
         object-fit: cover;
-        @include boxSize(100%, $box-size-img * 4.6, $border-radius-min);
+        @include boxSize(100%, $box-size-img * 4, $border-radius-min);
     }
     .user-name {
         margin: $margin-normal 0;

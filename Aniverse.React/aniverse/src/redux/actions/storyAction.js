@@ -4,6 +4,9 @@ import * as actionTypes from "./actionTypes"
 export function getFriendStorySuccess(stories) {
     return { type: actionTypes.GET_FRIEND_STORY_SUCCESS, payload: stories }
 }
+export function getStoriesSuccess(stories) {
+    return { type: actionTypes.GET_STORIES_SUCCESS, payload: stories }
+}
 export function getStorySuccess(story) {
     return { type: actionTypes.GET_STORY_SUCCESS, payload: story }
 }
@@ -32,7 +35,22 @@ export function getStory(username) {
         });
     }
 }
-
+export function getStories() {
+    return async function (dispatch) {
+        let url = `${actionTypes.baseUrl}/story`;
+        axios.get(url, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                'Accept': 'application/json, text/plain',
+                'Content-Type': 'application/json;charset=UTF-8'
+            },
+        }).then((res) => {
+            dispatch(getStoriesSuccess(res.data))
+        }).catch((error) => {
+            console.log(error);
+        })
+    }
+}
 export function getFriendStory() {
     return async function (dispatch) {
         let url = `${actionTypes.baseUrl}/story/friend`;

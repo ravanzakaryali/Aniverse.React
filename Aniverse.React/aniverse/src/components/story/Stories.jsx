@@ -26,16 +26,7 @@ function Stories(props) {
  } else {
   sliderPerView = 1;
  }
-
- const { storiesRequest } = props;
- const { addStory } = props;
-
  const userLogin = JSON.parse(localStorage.getItem('loginUser'));
-
- useEffect(() => {
-  storiesRequest();
- }, [addStory]);
-
  return (
   <>
    <Swiper slidesPerView={sliderPerView}>
@@ -74,17 +65,5 @@ function Stories(props) {
   </>
  );
 }
-const mapStateToProps = (state) => {
- return {
-  stories: state.storyFriendReducer,
- };
-};
-const mapDispatchToProps = (dispatch) => {
- return {
-  storiesRequest: () => {
-   dispatch(getFriendStory());
-  },
- };
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Stories);
+export default Stories;

@@ -1,6 +1,25 @@
 import axios from "axios"
 import * as actionTypes from "./actionTypes"
-import { getAnimalFollowSuccess } from "./animalAction"
+import { header, baseUrl } from "./axiosConfiguration"
+
+export function getSearchUsersSuccess(data) {
+    return { type: actionTypes.GET_SEARCH_SUCCESS, payload: data }
+}
+export function getSearchUsersError(error) {
+    return { type: actionTypes.GET_SEARCH_ERROR, payload: error }
+}
+export function getUsersSearch(search) {
+    return async function (dispatch) {
+        let url = `${baseUrl}/user/search?search=${search}`
+        axios.get(url, header,)
+            .then((res) => {
+                dispatch(getSearchUsersSuccess(res.data));
+            }).catch((error) => {
+                dispatch(getSearchUsersError(error));
+            })
+    }
+}
+
 
 export function getUsersSuccess(users) {
     return { type: actionTypes.GET_USERS_SUCCESS, payload: users }
@@ -13,9 +32,6 @@ export function getUserSuccess(user) {
 }
 export function getUserFriendSuccess(userFriend) {
     return { type: actionTypes.GET_USER_FRIEND_SUCCESS, payload: userFriend }
-}
-export function getFriendRequestSuccess(userFriend) {
-    return { type: actionTypes.GET_USER_FRIEND_REQUEST_SUCCESS, payload: userFriend }
 }
 export function postFriendConfirmSuccess() {
     return { type: actionTypes.POST_FRIEND_CONFIRM_SUCCESS }
@@ -119,22 +135,7 @@ export function getUserFriend(username) {
         });
     }
 }
-export function getFriendRequest() {
-    return async function (dispatch) {
-        let url = `${actionTypes.baseUrl}/friend/request`;
-        axios.get(url, {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem("token")}`,
-                'Accept': 'application/json, text/plain',
-                'Content-Type': 'application/json;charset=UTF-8'
-            },
-        }).then((res) => {
-            dispatch(getFriendRequestSuccess(res.data));
-        }).catch((error) => {
-            console.log(error);
-        });
-    }
-}
+
 
 export function postFriendConfirm(friendConfirm) {
     return async function (dispatch) {

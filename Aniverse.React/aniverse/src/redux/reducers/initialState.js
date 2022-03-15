@@ -11,11 +11,18 @@ export default {
     selectAnimal: [],
     animal: [],
     storyFriend: [],
+    stories: [],
     userPhotos: [],
     animalCategory: [],
     story: [],
     authUser: [],
     comments: [],
     userLogin: [],
-    animalFollows: []
+    animalFollows: [],
+    friendRequest: [],
+    friends: [],
+    friendsAnimal: [],
+    searchUsers: [],
+    getFriendRequest: [],
+    loading: true
 }

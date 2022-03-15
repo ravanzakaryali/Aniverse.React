@@ -7,7 +7,7 @@ function BlockUsers(props) {
  const { getBlockUsers } = props;
  useEffect(() => {
   getBlockUsers();
- }, [getBlockUsers]);
+ }, []);
  return (
   <>
    <UserItem users={props.users} />

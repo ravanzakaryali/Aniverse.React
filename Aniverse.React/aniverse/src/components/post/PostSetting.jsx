@@ -32,6 +32,9 @@ const mapDispatchToProps = (dispatch) => {
   allPosts: (page, size) => {
    dispatch(getFriendAllPost(page, size));
   },
+  // logout: (history) => {
+  //  dispatch(LogOutAuthAction(history));
+  // },
  };
 };
 

@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { connect } from 'react-redux';
 import { postDelete } from '../../redux/actions/postAction';
@@ -16,7 +17,7 @@ function PostDeleteModal(props) {
         className="btn"
         type="button"
         onClick={() => setDeleteModalActive(false)}>
-        <i className="fa-solid fa-xmark"></i>
+        <FontAwesomeIcon icon="fa-solid fa-xmark" />
        </button>
       </div>
       <div className="modal-body">

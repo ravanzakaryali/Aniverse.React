@@ -144,7 +144,7 @@ export function postSave(postSave) {
 export function postDelete(id) {
     return function (dispatch) {
         let url = `${actionTypes.baseUrl}/post/delete/${id}`;
-        axios.delete(url, {
+        axios.patch(url, {}, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("token")}`,
                 'Accept': 'application/json, text/plain',
