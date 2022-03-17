@@ -14,6 +14,7 @@ export default {
     stories: [],
     userPhotos: [],
     animalCategory: [],
+    animalPhotos: [],
     story: [],
     authUser: [],
     comments: [],
@@ -24,5 +25,6 @@ export default {
     friendsAnimal: [],
     searchUsers: [],
     getFriendRequest: [],
+    changePicture: [],
     loading: true
 }

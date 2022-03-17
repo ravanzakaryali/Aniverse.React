@@ -11,7 +11,7 @@ export function getSearchUsersError(error) {
 export function getUsersSearch(search) {
     return async function (dispatch) {
         let url = `${baseUrl}/user/search?search=${search}`
-        axios.get(url, header,)
+        axios.get(url, header)
             .then((res) => {
                 dispatch(getSearchUsersSuccess(res.data));
             }).catch((error) => {

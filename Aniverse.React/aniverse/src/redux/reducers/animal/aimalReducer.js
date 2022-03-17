@@ -54,3 +54,27 @@ export function selectAnimalReducer(state = initialState.selectAnimal, action) {
             return state;
     }
 }
+export function getAnimalPhototsReducer(state = initialState.animalPhotos, action) {
+    switch (action.type) {
+        case actionTypes.GET_ANIMAL_PHOTOS_SUCCESS:
+            return action.payload
+        case actionTypes.GET_ANIMAL_PHOTOS_ERROR:
+            return action.payload
+        default:
+            return state;
+    }
+}
+export function animalChangePictureReducer(state = initialState.changePicture, action) {
+    switch (action.type) {
+        case actionTypes.ANIMAL_CHANGE_COVER_SUCCESS:
+            return action.payload
+        case actionTypes.ANIMAL_CHANGE_COVER_ERROR:
+            return action.payload
+        case actionTypes.ANIMAL_CHANGE_PROFILE_SUCCESS:
+            return action.payload
+        case actionTypes.ANIMAL_CHANGE_PROFILE_ERROR:
+            return action.payload
+        default:
+            return state
+    }
+}

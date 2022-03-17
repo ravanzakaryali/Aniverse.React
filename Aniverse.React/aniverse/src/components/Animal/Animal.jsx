@@ -6,6 +6,9 @@ import { getAnimalPosts } from '../../redux/actions/postAction';
 import Moment from 'react-moment';
 import Posts from '../post/Posts';
 import AnimalProfileEdit from './AnimalProfileEdit';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import AnimalPhotos from './AnimalPhotos';
+import AnimalCoverPicture from './AnimalCoverPicture';
 
 function Animal(props) {
  const animalname = useParams().animalname;
@@ -13,14 +16,10 @@ function Animal(props) {
  const { animalPosts } = props;
  const { animalMethod } = props;
 
+ const [activeRow, setActiveRow] = useState(true);
  const { follow } = props;
  const [followState, setfollowState] = useState({});
  const [isFollow, setIsFollow] = useState(true);
-
- useEffect(() => {
-  animalMethod(animalname);
-  animalPosts(animalname);
- }, [animalMethod, animalPosts, animalname]);
 
  const {
   id,
@@ -34,20 +33,20 @@ function Animal(props) {
   profilePicture,
   animalFollow,
  } = props.animal;
+ useEffect(() => {
+  document.title = `${name} | Aniverse`;
+  animalMethod(animalname);
+  animalPosts(animalname);
+ }, [animalMethod, animalPosts, animalname]);
 
  return (
   <div className="animal-profile">
    <div className="background-img">
-    <img
-     className="animal-cover-picture"
-     src={
-      coverPicture == null ? `../../img/animal_cover.jpg` : `${coverPicture}`
-     }
-    />
+    <AnimalCoverPicture coverPicture={coverPicture} animalId={id} />
    </div>
    <div className="container animal-container">
     <div className="row profile-title">
-     <div className="profile col-4">
+     <div className="profile col-3">
       <img
        className="profile-img"
        src={
@@ -55,7 +54,7 @@ function Animal(props) {
        }
       />
      </div>
-     <div className="profile-content col-8">
+     <div className="profile-content col-9">
       <div className="title">
        <h2 className="col-3 profile-name">{name}</h2>
        <div className="col-9 profile-right-title ">
@@ -135,10 +134,27 @@ function Animal(props) {
     </div>
     <div className="posts">
      <div className="row posts-title">
-      <p className=" col-12">Posts</p>
+      <div className="col-6">
+       <button
+        className="btn btn-light"
+        onClick={() => {
+         setActiveRow(true);
+        }}>
+        Posts
+       </button>
+      </div>
+      <div className="col-6">
+       <button
+        className="btn btn-light"
+        onClick={() => {
+         setActiveRow(false);
+        }}>
+        Photos
+       </button>
+      </div>
      </div>
      <div className="row animal-posts">
-      <Posts posts={props.posts} />
+      {activeRow ? <Posts posts={props.posts} /> : <AnimalPhotos />}
      </div>
     </div>
    </div>

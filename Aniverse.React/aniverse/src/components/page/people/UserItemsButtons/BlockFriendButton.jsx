@@ -6,10 +6,7 @@ export const BlockUsersButton = (props) => {
  return (
   <>
    <form className="buttons">
-    <button className="btn btn-light">
-     <FontAwesomeIcon icon="fa-solid fa-user-minus" />
-     Unblock
-    </button>
+    <button className="btn btn-light">Unblock</button>
    </form>
   </>
  );

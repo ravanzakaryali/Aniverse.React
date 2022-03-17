@@ -1,10 +1,35 @@
 import { combineReducers } from 'redux'
 import { postReducer } from './post/postReducer'
 import { authReducer } from './Auth/authReducer';
-import { storyFriendReducer, storyReducer, storiesReducer } from './story/storyReducer';
-import { friendReducer, friendRequestReducer, getFriendRequestReducer } from './friend/friendReducer'
-import { userReducer, animalFollowsReducer, userNavbarReducer, usersReducer, userPhotosReducer, userLoginReducer, seachUsersReducer } from './user/userReducer';
-import { animalPostReducer, animalGetReducer, animalReducer, animalCategoryReducer, selectAnimalReducer, friendsAnimalReducer } from './animal/aimalReducer';
+import {
+    storyFriendReducer,
+    storyReducer,
+    storiesReducer
+} from './story/storyReducer';
+import {
+    friendReducer,
+    friendRequestReducer,
+    getFriendRequestReducer
+} from './friend/friendReducer'
+import {
+    userReducer,
+    animalFollowsReducer,
+    userNavbarReducer,
+    usersReducer,
+    userPhotosReducer,
+    userLoginReducer,
+    seachUsersReducer
+} from './user/userReducer';
+import {
+    animalPostReducer,
+    animalGetReducer,
+    animalReducer,
+    animalCategoryReducer,
+    selectAnimalReducer,
+    friendsAnimalReducer,
+    getAnimalPhototsReducer,
+    animalChangePictureReducer
+} from './animal/aimalReducer';
 import { commentPostReducer } from './comment/commentReducer';
 
 
@@ -30,6 +55,8 @@ const rootReducer = combineReducers({
     storiesReducer,
     friendsAnimalReducer,
     seachUsersReducer,
-    getFriendRequestReducer
+    getFriendRequestReducer,
+    getAnimalPhototsReducer,
+    animalChangePictureReducer,
 })
 export default rootReducer;

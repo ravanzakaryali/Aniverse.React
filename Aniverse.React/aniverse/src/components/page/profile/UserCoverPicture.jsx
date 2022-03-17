@@ -83,12 +83,7 @@ function UserCoverPicture(props) {
          data-bs-dismiss="modal">
          Close
         </button>
-        <button
-         onClick={() => {
-          window.location.reload();
-         }}
-         type="submit"
-         className="btn btn-primary">
+        <button type="submit" className="btn btn-primary">
          Save changes
         </button>
        </form>

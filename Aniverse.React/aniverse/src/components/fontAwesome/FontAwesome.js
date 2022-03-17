@@ -79,6 +79,6 @@ library.add(faB,
     faComment,
     faImages,
     faThumbsUp,
-    faMagnifyingGlass
+    faMagnifyingGlass,
 );
 export default function FontAwesome() { }

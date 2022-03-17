@@ -6,3 +6,9 @@ export const header = {
         'Content-Type': 'application/json;charset=UTF-8'
     },
 }
+export const headerPicture = {
+    headers: {
+        'Authorization': `Bearer ${localStorage.getItem("token")}`,
+        'Accept': '*/*',
+    },
+}

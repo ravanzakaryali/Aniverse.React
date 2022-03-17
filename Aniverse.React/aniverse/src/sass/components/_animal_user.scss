@@ -2,25 +2,26 @@
     @extend %box-shadow-main;
     margin: $margin-normal 0;
     padding: $padding-normal;
-    .user-profile-title{
+    .user-profile-title {
         width: 100%;
         display: flex;
         justify-content: space-between;
-        h3{
+        h3 {
             margin: auto 0;
         }
-        .btn{
+        .btn {
             padding: $padding-min $padding-normal;
             font-size: $fs-min - 2;
         }
     }
+
     .animal-card {
         text-align: center;
         border-radius: $border-radius-min;
         margin: $margin-normal 0;
         border: 1px solid $gray-10;
         transition: $transition-min;
-        &:hover{
+        &:hover {
             transform: scale(1.04);
         }
     }
@@ -42,5 +43,4 @@
         font-size: $fs-normal;
         font-weight: $fs-weight-normal + 100;
     }
-    
 }

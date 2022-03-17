@@ -23,7 +23,6 @@ function Posts(props) {
  }, [sizePost, currentPage, comRender]);
 
  const { posts } = props;
- console.log(posts);
  return (
   <>
    <div className="col-12">

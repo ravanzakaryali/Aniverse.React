@@ -1,0 +1,11 @@
+.animal-posts {
+    .img-animal-photo img {
+        width: 100%;
+        height: 270px;
+        object-fit: cover;
+    }
+    .img-animal-photo {
+        display: inline-block;
+        padding: $padding-min;
+    }
+}

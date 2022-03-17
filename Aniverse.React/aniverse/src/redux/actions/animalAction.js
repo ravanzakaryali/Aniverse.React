@@ -1,13 +1,13 @@
 import * as actionTypes from "./actionTypes"
 import axios from 'axios';
-import { header, baseUrl } from "./axiosConfiguration"
+import { header, baseUrl, headerPicture } from "./axiosConfiguration"
 
 
 export function getFriendAnimalsSuccess(data) {
     return { type: actionTypes.GET_FRIEND_ANIMALS_ERROR, payload: data }
 }
-export function getFriendAnimalsError(data) {
-    return { type: actionTypes.GET_FRIEND_ANIMALS_ERROR, payload: data }
+export function getFriendAnimalsError(error) {
+    return { type: actionTypes.GET_FRIEND_ANIMALS_ERROR, payload: error }
 }
 export function getFriendAnimals(username, page, size) {
     return async function (dispatch) {
@@ -18,6 +18,58 @@ export function getFriendAnimals(username, page, size) {
             }).catch((error) => {
                 dispatch(getFriendAnimalsError(error))
             })
+    }
+}
+export function getAnimalPhotosSuccess(data) {
+    return { type: actionTypes.GET_ANIMAL_PHOTOS_SUCCESS, payload: data }
+}
+export function getAnimalPhtotsError(error) {
+    return { type: actionTypes.GET_ALL_FRIENDS_ERROR, payload: error }
+}
+
+export function getAnimalPhotos(animalname, page, size) {
+    return async function (dispatch) {
+        let url = `${baseUrl}/animal/photos/${animalname}?page=${page}&size=${size}`;
+        axios.get(url, header)
+            .then((res) => {
+                dispatch(getAnimalPhotosSuccess(res.data));
+            }).catch((error) => {
+                dispatch(getAnimalPhotosSuccess(error));
+            })
+    }
+}
+
+export function animalChangePorfileSuccess(data) {
+    return { type: actionTypes.ANIMAL_CHANGE_PROFILE_SUCCESS, payload: data }
+}
+export function animalChangeProfileError(error) {
+    return { type: actionTypes.ANIMAL_CHANGE_PROFILE_ERROR, payload: error }
+}
+export function animalChangeProfile(id, picture) {
+    return async function (dispatch) {
+        let url = `${baseUrl}/animal/profilePicture/${id}`;
+        axios.post(url, picture, headerPicture).then((res) => {
+            dispatch(animalChangePorfileSuccess(res.data));
+        }).catch((error) => {
+            dispatch(animalChangeProfileError(error));
+        })
+    }
+}
+
+export function animalChangeCoverSuccess(data) {
+    return { type: actionTypes.ANIMAL_CHANGE_COVER_SUCCESS, payload: data }
+}
+export function animalChangeCoverError(error) {
+    return { type: actionTypes.ANIMAL_CHANGE_COVER_ERROR, payload: error }
+}
+export function animalChangeCover(id, picture) {
+    return async function (dispatch) {
+        let url = `${baseUrl}/animal/coverPicture/${id}`;
+        axios.post(url, picture, headerPicture).then((res) => {
+            dispatch(animalChangeCoverSuccess(res.data));
+        }).catch((error) => {
+            dispatch(animalChangeCoverError(error));
+        })
     }
 }
 export function getAnimalSuccess(animal) {
