@@ -89,7 +89,7 @@ function AnimalProfileEdit(props) {
 
 const mapStateToProps = (state) => {
  return {
-  animal: state.animalGetReducer,
+  animal: state.getAnimalReducer,
  };
 };
 const mapDispatchToProps = (dispatch) => {

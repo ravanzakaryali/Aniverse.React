@@ -9,12 +9,13 @@ import AnimalProfileEdit from './AnimalProfileEdit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AnimalPhotos from './AnimalPhotos';
 import AnimalCoverPicture from './AnimalCoverPicture';
+import AnimalProfilePicture from './AnimalProfilePicture';
 
 function Animal(props) {
  const animalname = useParams().animalname;
-
+ const [comRender, setComRender] = useState();
  const { animalPosts } = props;
- const { animalMethod } = props;
+ const { animalGetRequest } = props;
 
  const [activeRow, setActiveRow] = useState(true);
  const { follow } = props;
@@ -30,14 +31,15 @@ function Animal(props) {
   bio,
   birthday,
   coverPicture,
-  profilePicture,
+  profilPicture,
   animalFollow,
  } = props.animal;
  useEffect(() => {
-  document.title = `${name} | Aniverse`;
-  animalMethod(animalname);
+  if (name) document.title = `${name} | Aniverse`;
+
+  animalGetRequest(animalname);
   animalPosts(animalname);
- }, [animalMethod, animalPosts, animalname]);
+ }, [animalGetRequest, animalPosts, animalname, name]);
 
  return (
   <div className="animal-profile">
@@ -47,12 +49,7 @@ function Animal(props) {
    <div className="container animal-container">
     <div className="row profile-title">
      <div className="profile col-3">
-      <img
-       className="profile-img"
-       src={
-        profilePicture == null ? `../../img/animal.jpg` : `${profilePicture}`
-       }
-      />
+      <AnimalProfilePicture profilPicture={profilPicture} animalId={id} />
      </div>
      <div className="profile-content col-9">
       <div className="title">
@@ -154,7 +151,15 @@ function Animal(props) {
       </div>
      </div>
      <div className="row animal-posts">
-      {activeRow ? <Posts posts={props.posts} /> : <AnimalPhotos />}
+      {activeRow ? (
+       <Posts
+        setComRender={setComRender}
+        comRender={comRender}
+        posts={props.posts}
+       />
+      ) : (
+       <AnimalPhotos />
+      )}
      </div>
     </div>
    </div>
@@ -164,15 +169,15 @@ function Animal(props) {
 const mapStateToProps = (state) => {
  return {
   posts: state.postReducer,
-  animal: state.animalGetReducer,
+  animal: state.getAnimalReducer,
   userAuth: state.userNavbarReducer,
  };
 };
 
 const mapDispatchToProps = (dispatch) => {
  return {
-  animalMethod: (anmname) => {
-   dispatch(getAnimal(anmname));
+  animalGetRequest: (animalname) => {
+   dispatch(getAnimal(animalname));
   },
   follow: (follow) => {
    dispatch(animalFollow(follow));

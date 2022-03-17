@@ -12,14 +12,18 @@ function AnimalCoverPicture(props) {
  return (
   <>
    {coverPicture ? (
-    <img alt="Cover" className="cover-img" src={coverPicture} />
+    <img
+     alt="Cover"
+     className="cover-img animal-cover-picture"
+     src={coverPicture}
+    />
    ) : (
     <div className="cover-style"></div>
    )}
    <div className="cover-change-button">
     <input
      onChange={(e) => {
-      setActiveMenu(!activeMenu);
+      setActiveMenu(true);
       setImageUrl(URL.createObjectURL(e.target.files[0]));
       if (e.currentTarget.files) {
        let uploadFile = e.target.files;
@@ -49,7 +53,7 @@ function AnimalCoverPicture(props) {
    </div>
    {activeMenu ? (
     <div
-     className="modal fade show"
+     className="modal modal-animal-cover fade show"
      id="exampleModal"
      tabIndex="-1"
      aria-labelledby="exampleModalLabel"
@@ -58,7 +62,7 @@ function AnimalCoverPicture(props) {
      <div className="modal-dialog modal-xl">
       <div className="modal-content">
        <div className="modal-body">
-        <img src={`${imageSrc}`}></img>
+        <img className="cover" src={`${imageSrc}`}></img>
        </div>
        <form
         className="modal-footer"
@@ -69,7 +73,7 @@ function AnimalCoverPicture(props) {
         }}>
         <button
          onClick={() => {
-          setActiveMenu(!activeMenu);
+          setActiveMenu(false);
          }}
          type="button"
          className="btn btn-light"

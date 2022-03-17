@@ -1,9 +1,11 @@
 import * as actionTypes from "../../actions/actionTypes";
 import initialState from '../initialState';
 
-export function animalGetReducer(state = initialState.animal, action) {
+export function getAnimalReducer(state = initialState.animal, action) {
     switch (action.type) {
         case actionTypes.GET_ANIMAL_SUCCESS:
+            return action.payload
+        case actionTypes.GET_ANIMAL_ERROR:
             return action.payload
         default:
             return state;

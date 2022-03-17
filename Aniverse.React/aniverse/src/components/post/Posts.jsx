@@ -45,7 +45,7 @@ function Posts(props) {
          {post.animal ? (
           <>
            <Link to={`/animal/${post.animal.name}`}>{post.animal.name}</Link>
-           <span>and</span>
+           <span>with</span>
           </>
          ) : (
           ''

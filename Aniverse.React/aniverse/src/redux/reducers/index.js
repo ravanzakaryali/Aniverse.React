@@ -22,7 +22,7 @@ import {
 } from './user/userReducer';
 import {
     animalPostReducer,
-    animalGetReducer,
+    getAnimalReducer,
     animalReducer,
     animalCategoryReducer,
     selectAnimalReducer,
@@ -44,7 +44,7 @@ const rootReducer = combineReducers({
     storyFriendReducer,
     userNavbarReducer,
     friendRequestReducer,
-    animalGetReducer,
+    getAnimalReducer,
     animalPostReducer,
     userPhotosReducer,
     animalCategoryReducer,
