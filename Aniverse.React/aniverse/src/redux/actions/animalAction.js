@@ -48,11 +48,12 @@ export function animalChangeProfileError(error) {
 export function animalChangeProfile(id, picture) {
     return async function (dispatch) {
         let url = `${baseUrl}/animal/profilePicture/${id}`;
-        axios.post(url, picture, headerPicture).then((res) => {
-            dispatch(animalChangePorfileSuccess(res.data));
-        }).catch((error) => {
-            dispatch(animalChangeProfileError(error));
-        })
+        axios.post(url, picture, headerPicture)
+            .then((res) => {
+                dispatch(animalChangePorfileSuccess(res.data));
+            }).catch((error) => {
+                dispatch(animalChangeProfileError(error));
+            })
     }
 }
 
@@ -65,11 +66,12 @@ export function animalChangeCoverError(error) {
 export function animalChangeCover(id, picture) {
     return async function (dispatch) {
         let url = `${baseUrl}/animal/coverPicture/${id}`;
-        axios.post(url, picture, headerPicture).then((res) => {
-            dispatch(animalChangeCoverSuccess(res.data));
-        }).catch((error) => {
-            dispatch(animalChangeCoverError(error));
-        })
+        axios.post(url, picture, headerPicture)
+            .then((res) => {
+                dispatch(animalChangeCoverSuccess(res.data));
+            }).catch((error) => {
+                dispatch(animalChangeCoverError(error));
+            })
     }
 }
 
@@ -83,19 +85,74 @@ export function getAnimalError(error) {
 export function getAnimal(animalname) {
     return async function (dispatch) {
         let url = `${baseUrl}/animal/${animalname}`;
-        axios.get(url, header).then((res) => {
-            dispatch(getAnimalSuccess(res.data))
-        }).catch((error) => {
-            dispatch(getAnimalError(error))
-        })
+        axios.get(url, header)
+            .then((res) => {
+                dispatch(getAnimalSuccess(res.data))
+            }).catch((error) => {
+                dispatch(getAnimalError(error))
+            })
+    }
+}
+export function updateAnimalProfileSuccess(data) {
+    return { type: actionTypes.ANIMAL_PROFILE_UPDATE_SUCCESS, payload: data }
+}
+export function updateAnimalProfileError(error) {
+    return { type: actionTypes.ANIMAL_PROFILE_UPDATE_ERROR, payload: error }
+}
+
+export function updateAnimalProfile(id, profileData) {
+    return async function (dispatch) {
+        let url = `${baseUrl}/animal/update/${id}`;
+        axios.put(url, profileData, header)
+            .then((res) => {
+                dispatch(updateAnimalProfileSuccess(res.data));
+            }).catch((error) => {
+                dispatch(updateAnimalProfileError(error));
+            })
+
+    }
+}
+
+
+export function animalFollowSuccess(data) {
+    return { type: actionTypes.ANIMAL_FOLLOW_SUCCESS, payload: data }
+}
+export function animalFollowError(error) {
+    return { type: actionTypes.ANIMAL_FOLLOW_ERROR, payload: error }
+}
+export function animalFollow(follow, id) {
+    return async function (dispatch) {
+        let url = `${actionTypes.baseUrl}/animal/follow/${id}`;
+        axios.post(url, follow, header)
+            .then((res) => {
+                dispatch(animalFollowSuccess(res.data));
+            }).catch((error) => {
+                dispatch(animalFollowError(error));
+            });
+    }
+}
+
+export function getAllAnimalsSuccess(data) {
+    return { type: actionTypes.GET_ALL_ANIMALS_SUCCESS, payload: data }
+}
+export function getAllAnimalsError(error) {
+    return { type: actionTypes.GET_ALL_ANIMALS_ERROR, payload: error }
+}
+export function getAllAnimals() {
+    return async function (dispatch) {
+        let url = `${baseUrl}/animal`;
+        axios.get(url, header)
+            .then((res) => {
+                dispatch(getAnimalSuccess(res.data));
+            }).catch((error) => {
+                dispatch(getAnimalError(error));
+            })
+
     }
 }
 
 export function getAnimalUserSuccess(animals) {
     return { type: actionTypes.GET_ANIAML_USER_SUCCESS, payload: animals }
-}
-export function getAnimalFollowSuccess(result) {
-    return { type: actionTypes.ANIMAL_FOLLOW_SUCCESS, payload: result }
 }
 export function getAnimalCategorySuccess(result) {
     return { type: actionTypes.GET_ANIMAL_CATEGORY_SUCCESS, payload: result }
@@ -124,22 +181,7 @@ export function getAnimalUser(username) {
         })
     }
 }
-export function animalFollow(follow) {
-    return async function (dispatch) {
-        let url = `${actionTypes.baseUrl}/animal/follow`;
-        axios.post(url, follow, {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem("token")}`,
-                'Accept': 'application/json, text/plain',
-                'Content-Type': 'application/json;charset=UTF-8'
-            },
-        }).then((res) => {
-            dispatch(getAnimalFollowSuccess(res.data))
-        }).catch((error) => {
-            console.log(error.response.data.message);
-        });
-    }
-}
+
 export function getAnimalCategory() {
     return async function (dispatch) {
         let url = `${actionTypes.baseUrl}/animal/category`;

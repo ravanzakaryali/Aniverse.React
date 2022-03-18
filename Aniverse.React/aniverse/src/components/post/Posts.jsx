@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Comment from './Comment';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getLoginUser } from '../../redux/actions/userActions';
@@ -7,8 +6,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { likePost } from '../../redux/actions/postAction';
 import ReactTimeAgo from 'react-time-ago';
 import PostMenu from './PostMenu';
-import Like from './Like';
-import CommentAdd from './CommentAdd';
 import LikeCommentView from './LikeCommentView';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -17,6 +14,7 @@ function Posts(props) {
  const { comRender, setComRender } = props;
  const [currentPage, setCurrentPage] = useState(1);
  const [sizePost, setSizePost] = useState(20);
+ console.log(props);
 
  useEffect(() => {
   loginUser();
@@ -44,7 +42,9 @@ function Posts(props) {
         <p className="user-name">
          {post.animal ? (
           <>
-           <Link to={`/animal/${post.animal.name}`}>{post.animal.name}</Link>
+           <Link to={`/animal/${post.animal.animalname}`}>
+            {post.animal.name}
+           </Link>
            <span>with</span>
           </>
          ) : (

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { updateAnimalProfile } from '../../redux/actions/animalAction';
 
 function AnimalProfileEdit(props) {
+ const { updateProfile, comRender, setComRender } = props;
  const [editModal, setEditModal] = useState();
  const [editAnimal, setEditAnimal] = useState({});
 
@@ -16,8 +18,13 @@ function AnimalProfileEdit(props) {
  };
  function editSubmit(e) {
   e.preventDefault();
-  console.log(editAnimal);
+  updateProfile(id, editAnimal);
+  setComRender(!comRender);
+  modalActive();
  }
+ useEffect(() => {
+  setEditAnimal({ name: name, breed: breed, bio: bio });
+ }, []);
  return (
   <>
    <div className="edit-button">
@@ -94,9 +101,9 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
  return {
-  // login: (loginState) => {
-  //     dispatch(authLogin(loginState));
-  // }
+  updateProfile: (id, profileData) => {
+   dispatch(updateAnimalProfile(id, profileData));
+  },
  };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(AnimalProfileEdit);

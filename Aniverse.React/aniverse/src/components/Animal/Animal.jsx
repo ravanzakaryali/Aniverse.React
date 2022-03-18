@@ -6,22 +6,19 @@ import { getAnimalPosts } from '../../redux/actions/postAction';
 import Moment from 'react-moment';
 import Posts from '../post/Posts';
 import AnimalProfileEdit from './AnimalProfileEdit';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AnimalPhotos from './AnimalPhotos';
 import AnimalCoverPicture from './AnimalCoverPicture';
 import AnimalProfilePicture from './AnimalProfilePicture';
 
 function Animal(props) {
  const animalname = useParams().animalname;
- const [comRender, setComRender] = useState();
+ const [comRender, setComRender] = useState(false);
  const { animalPosts } = props;
  const { animalGetRequest } = props;
 
  const [activeRow, setActiveRow] = useState(true);
  const { follow } = props;
  const [followState, setfollowState] = useState({});
- const [isFollow, setIsFollow] = useState(true);
-
  const {
   id,
   name,
@@ -29,17 +26,28 @@ function Animal(props) {
   breed,
   user,
   bio,
+  isFollow,
   birthday,
   coverPicture,
   profilPicture,
   animalFollow,
  } = props.animal;
+ const [isFollowLocal, setIsFollowLocal] = useState(isFollow);
  useEffect(() => {
   if (name) document.title = `${name} | Aniverse`;
-
   animalGetRequest(animalname);
   animalPosts(animalname);
- }, [animalGetRequest, animalPosts, animalname, name]);
+ }, [
+  animalGetRequest,
+  animalPosts,
+  bio,
+  breed,
+  isFollowLocal,
+  animalname,
+  name,
+  isFollow,
+  comRender,
+ ]);
 
  return (
   <div className="animal-profile">
@@ -57,7 +65,10 @@ function Animal(props) {
        <div className="col-9 profile-right-title ">
         {props.animal.user !== undefined ? (
          props.animal.user.id === props.userAuth.id ? (
-          <AnimalProfileEdit />
+          <AnimalProfileEdit
+           setComRender={setComRender}
+           comRender={comRender}
+          />
          ) : (
           ''
          )
@@ -89,22 +100,21 @@ function Animal(props) {
        <form
         onSubmit={(e) => {
          e.preventDefault();
-         follow(followState);
+         follow(followState, id);
         }}
         className="follow-button col-4">
         <button
          onClick={(e) => {
-          const isFollowing = isFollow,
-           animalId = id;
+          const isFollowing = !isFollowLocal;
           setfollowState({
            ...followState,
-           ...{ isFollowing, animalId },
+           ...{ isFollowing },
           });
-          setIsFollow(!isFollow);
+          setIsFollowLocal(!isFollowLocal);
          }}
          type="submit"
-         className={`btn ${isFollow ? 'btn-primary' : 'btn-light'}`}>
-         {isFollow ? 'Follow' : 'UnFollow'}
+         className={`btn ${!isFollowLocal ? 'btn-primary' : 'btn-light'}`}>
+         {!isFollowLocal ? 'Follow' : 'UnFollow'}
         </button>
        </form>
       </div>
@@ -179,8 +189,8 @@ const mapDispatchToProps = (dispatch) => {
   animalGetRequest: (animalname) => {
    dispatch(getAnimal(animalname));
   },
-  follow: (follow) => {
-   dispatch(animalFollow(follow));
+  follow: (follow, id) => {
+   dispatch(animalFollow(follow, id));
   },
   animalPosts: (animalname) => {
    dispatch(getAnimalPosts(animalname));

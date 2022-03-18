@@ -28,7 +28,9 @@ import {
     selectAnimalReducer,
     friendsAnimalReducer,
     getAnimalPhototsReducer,
-    animalChangePictureReducer
+    animalChangePictureReducer,
+    animalProfileUpdateReducer,
+    allAnimalsReducer
 } from './animal/aimalReducer';
 import { commentPostReducer } from './comment/commentReducer';
 
@@ -58,5 +60,7 @@ const rootReducer = combineReducers({
     getFriendRequestReducer,
     getAnimalPhototsReducer,
     animalChangePictureReducer,
+    animalProfileUpdateReducer,
+    allAnimalsReducer
 })
 export default rootReducer;

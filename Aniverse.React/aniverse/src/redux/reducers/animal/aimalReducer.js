@@ -1,6 +1,17 @@
 import * as actionTypes from "../../actions/actionTypes";
 import initialState from '../initialState';
 
+export function allAnimalsReducer(state = initialState.allAnimals, action) {
+    switch (action.type) {
+        case actionTypes.GET_ALL_ANIMALS_SUCCESS:
+            return action.payload
+        case actionTypes.GET_ALL_ANIMALS_ERROR:
+            return action.payload
+        default:
+            return state;
+    }
+}
+
 export function getAnimalReducer(state = initialState.animal, action) {
     switch (action.type) {
         case actionTypes.GET_ANIMAL_SUCCESS:
@@ -34,8 +45,6 @@ export function animalReducer(state = initialState.animals, action) {
     switch (action.type) {
         case actionTypes.GET_ANIAML_USER_SUCCESS:
             return action.payload
-        case actionTypes.ANIMAL_FOLLOW_SUCCESS:
-            return state
         default:
             return state;
     }
@@ -75,6 +84,26 @@ export function animalChangePictureReducer(state = initialState.changePicture, a
         case actionTypes.ANIMAL_CHANGE_PROFILE_SUCCESS:
             return action.payload
         case actionTypes.ANIMAL_CHANGE_PROFILE_ERROR:
+            return action.payload
+        default:
+            return state
+    }
+}
+export function animalProfileUpdateReducer(state = initialState.animalUpdate, action) {
+    switch (action.type) {
+        case actionTypes.ANIMAL_PROFILE_UPDATE_SUCCESS:
+            return action.payload
+        case actionTypes.ANIMAL_CHANGE_PROFILE_ERROR:
+            return action.payload
+        default:
+            return state
+    }
+}
+export function animalFollowReducer(state = initialState.animalFollow, action) {
+    switch (action.type) {
+        case actionTypes.ANIMAL_FOLLOW_SUCCESS:
+            return action.payload
+        case actionTypes.ANIMAL_FOLLOW_ERROR:
             return action.payload
         default:
             return state

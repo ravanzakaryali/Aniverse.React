@@ -65,7 +65,7 @@ function AnimalCoverPicture(props) {
         <img className="cover" src={`${imageSrc}`}></img>
        </div>
        <form
-        className="modal-footer"
+        className="modal-footer.animal"
         onSubmit={(e) => {
          e.preventDefault();
          formData.append('imageFile', cover.postFile[0]);
