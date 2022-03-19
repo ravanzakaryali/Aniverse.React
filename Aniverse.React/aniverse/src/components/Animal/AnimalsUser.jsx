@@ -32,6 +32,7 @@ function AnimalsUser(props) {
   const { name, value } = e.target;
   setAnimalState({ ...animalState, ...{ [name]: value } });
  };
+ console.log(props);
  return (
   <div className="row animal-user-profile">
    <div className="user-profile-title">
@@ -49,15 +50,15 @@ function AnimalsUser(props) {
     )}
    </div>
    {props.animals.map((animal) => (
-    <div className="animal-col col-6 col-sm-4" key={animal.id}>
+    <div className="animal-col col-6 col-sm-3" key={animal.id}>
      <Link to={`/animal/${animal.animalname}`} className="animal-card">
       <div className="animal-img-parent">
        <img
         className="animal-img"
         src={
-         animal.profilPicture == null
+         animal.profilePicture == null
           ? `../../img/animal.jpg`
-          : `${animal.profilPicture}`
+          : `${animal.profilePicture}`
         }
         alt={`${animal.name} profile`}
        />
@@ -158,7 +159,7 @@ function AnimalsUser(props) {
 function mapStateToProps(state) {
  return {
   userProfile: state.userReducer,
-  user: state.userNavbarReducer,
+  user: state.userLoginReducer,
   animals: state.animalReducer,
   category: state.animalCategoryReducer,
  };

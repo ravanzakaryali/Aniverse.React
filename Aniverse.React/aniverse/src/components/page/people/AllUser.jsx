@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getUsers } from '../../../redux/actions/userActions';
+import { getAllUsers } from '../../../redux/actions/userActions';
 import UserItem from './UserItem';
 
 function AllUser(props) {
@@ -8,7 +8,7 @@ function AllUser(props) {
 
  useEffect(() => {
   getUsers();
- }, []);
+ }, [getUsers]);
  return (
   <>
    <UserItem users={props.users} />
@@ -25,7 +25,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => {
  return {
   getUsers: () => {
-   dispatch(getUsers());
+   dispatch(getAllUsers());
   },
  };
 };

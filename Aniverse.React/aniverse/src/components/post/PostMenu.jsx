@@ -94,7 +94,7 @@ function PostMenu(props) {
 
 const mapStateToProps = (state) => {
  return {
-  userAuth: state.userNavbarReducer,
+  userAuth: state.userLoginReducer,
  };
 };
 const mapDispatchToProps = (dispatch) => {

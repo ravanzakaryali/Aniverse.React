@@ -110,4 +110,40 @@ export function archiveStory(id) {
                 dispatch(archiveStoryError(error));
             })
     }
-}  
+}
+
+export function getArchiveStorySuccess(data) {
+    return { type: actionTypes.GET_STORY_ARCHIVE_SUCCESS, payload: data }
+}
+export function getArchiveStoryError(error) {
+    return { type: actionTypes.GET_STORY_ARCHIVE_ERROR, payload: error }
+}
+export function getArchiveStory(page, size) {
+    return function (dispatch) {
+        let url = `${baseUrl}/story/archive?page=${page}&size=${size}`;
+        axios.get(url, header)
+            .then((res) => {
+                dispatch(getArchiveStorySuccess(res.data));
+            }).catch((error) => {
+                dispatch(getArchiveStoryError(error));
+            })
+    }
+}
+
+export function getRecycleStorySuccess(data) {
+    return { type: actionTypes.GET_STORY_RECYCLE_SUCCESS, payload: data }
+}
+export function getRecycleStoryError(error) {
+    return { type: actionTypes.GET_STORY_RECYCLE_ERROR, payload: error }
+}
+export function getRecycleStory(page, size) {
+    return function (dispatch) {
+        let url = `${baseUrl}/story/recycle?page=${page}&size=${size}`;
+        axios.get(url, header)
+            .then((res) => {
+                dispatch(getRecycleStorySuccess(res.data));
+            }).catch((error) => {
+                dispatch(getRecycleStoryError(error));
+            })
+    }
+}

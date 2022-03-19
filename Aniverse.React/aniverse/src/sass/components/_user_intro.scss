@@ -4,6 +4,7 @@
     padding: $padding-normal;
     margin: $margin-normal 0;
     border-radius: $border-radius-min;
+    background-color: $white;
     display: inline-block;
     .intro-title {
         font-size: $fs-normal;
@@ -54,7 +55,7 @@
     .from-address li {
         padding: $padding-normal;
         font-size: $fs-min;
-        i {
+        .icon {
             font-size: $fs-normal;
             color: $color-brand-primary;
             padding-right: $padding-normal;

@@ -4,6 +4,7 @@
     display: inline-block;
     @extend %box-shadow-main;
     width: 100%;
+    background-color: $white;
     .row {
         align-items: center;
     }

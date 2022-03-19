@@ -1,5 +1,10 @@
 import { combineReducers } from 'redux'
-import { postReducer } from './post/postReducer'
+import {
+    postReducer,
+    postCreateReducer,
+    postArchiveReducer,
+    postRecycleReducer
+} from './post/postReducer'
 import {
     authReducer,
     loginReducer,
@@ -8,7 +13,10 @@ import {
 import {
     storyFriendReducer,
     storyReducer,
-    storiesReducer
+    storiesReducer,
+    storiesAllReducer,
+    storyArchiveReducer,
+    storyRecycleReducer
 } from './story/storyReducer';
 import {
     friendReducer,
@@ -18,11 +26,10 @@ import {
 import {
     userReducer,
     animalFollowsReducer,
-    userNavbarReducer,
-    usersReducer,
-    userPhotosReducer,
+    userOnlyPhotosReducer,
     userLoginReducer,
-    seachUsersReducer
+    seachUsersReducer,
+    usersAllReducer
 } from './user/userReducer';
 import {
     animalPostReducer,
@@ -40,7 +47,6 @@ import { commentPostReducer } from './comment/commentReducer';
 
 
 const rootReducer = combineReducers({
-    usersReducer,
     userReducer,
     friendReducer,
     animalReducer,
@@ -48,11 +54,10 @@ const rootReducer = combineReducers({
     storyReducer,
     authReducer,
     storyFriendReducer,
-    userNavbarReducer,
     friendRequestReducer,
     getAnimalReducer,
     animalPostReducer,
-    userPhotosReducer,
+    userOnlyPhotosReducer,
     animalCategoryReducer,
     selectAnimalReducer,
     commentPostReducer,
@@ -67,6 +72,13 @@ const rootReducer = combineReducers({
     animalProfileUpdateReducer,
     allAnimalsReducer,
     loginReducer,
-    registerReducer
+    registerReducer,
+    postCreateReducer,
+    usersAllReducer,
+    storiesAllReducer,
+    postArchiveReducer,
+    postRecycleReducer,
+    storyArchiveReducer,
+    storyRecycleReducer
 })
 export default rootReducer;

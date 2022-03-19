@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { postStory } from '../../redux/actions/storyAction';
+import { createPost } from '../../redux/actions/postAction';
 
 function StoryModal(props) {
  const { story } = props;
@@ -15,7 +15,11 @@ function StoryModal(props) {
  }, [imageState]);
 
  return (
-  <div className="modal story-modal" style={{ display: 'block' }}>
+  <div
+   className="modal story-modal"
+   id="storyModal"
+   aria-labelledby="storyModal"
+   aria-hidden="true">
    <div className="modal-dialog modal-dialog-centered">
     <div className="modal-content">
      <div className="modal-header">
@@ -107,14 +111,14 @@ function StoryModal(props) {
 const mapStateToProps = (state) => {
  return {
   story: state.storyModal,
-  user: state.userNavbarReducer,
+  user: state.userLoginReducer,
   stories: state.storyFriendReducer,
  };
 };
 const mapDispatchToProps = (dispatch) => {
  return {
   story: (formData) => {
-   dispatch(postStory(formData));
+   dispatch(createPost(formData));
   },
  };
 };

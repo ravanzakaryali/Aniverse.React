@@ -2,28 +2,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useWindowSize } from '@react-hook/window-size';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import {
- Link,
- Outlet,
- useParams,
- useLocation,
- useNavigate,
-} from 'react-router-dom';
-import {
- getLoginUser,
- getUser,
- getUserFriend,
-} from '../../../redux/actions/userActions';
+import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
+import { getAllFriends } from '../../../redux/actions/friendAction';
+import { getLoginUser, getUser } from '../../../redux/actions/userActions';
 import UserCoverPicture from './UserCoverPicture';
 import UserProfilePicture from './UserProfilePicture';
 
 function User(props) {
- const { loginUserRequest } = props;
+ const { loginUserRequest, userMethod, userFriendMethod } = props;
  const [width] = useWindowSize();
  const location = useLocation();
  const [comRender, setComRender] = useState(1);
- const { userMethod } = props;
- const { userFriendMethod } = props;
  const params = useParams().username;
  const { firstname, lastname, username, id, profilPicture, coverPicture } =
    props.user,
@@ -31,7 +20,7 @@ function User(props) {
 
  useEffect(() => {
   userMethod(params);
-  userFriendMethod(params);
+  userFriendMethod(params, 1, 100);
   loginUserRequest();
   if (props.user.firstname) {
    document.title = `${firstname} ${lastname} | Aniverse`;
@@ -190,8 +179,8 @@ const mapDispatchToProps = (dispatch) => {
   userMethod: (username) => {
    dispatch(getUser(username));
   },
-  userFriendMethod: (username) => {
-   dispatch(getUserFriend(username));
+  userFriendMethod: (username, page, size) => {
+   dispatch(getAllFriends(username, page, size));
   },
   loginUserRequest: () => {
    dispatch(getLoginUser());

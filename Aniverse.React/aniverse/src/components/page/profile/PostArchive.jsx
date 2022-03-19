@@ -1,21 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { getArchivePost } from '../../../redux/actions/postAction';
+import Posts from '../../post/Posts';
 
 function PostArchive(props) {
  const { postArhiveRequest } = props;
- console.log(props);
- return <></>;
+ const [comRender, setComRender] = useState(false);
+ useEffect(() => {
+  postArhiveRequest(1, 100);
+ }, [postArhiveRequest, comRender]);
+
+ return (
+  <>
+   <Posts
+    comRender={comRender}
+    setComRender={setComRender}
+    posts={props.posts}
+   />
+  </>
+ );
 }
 const mapStateToProps = (state) => {
  return {
-  posts: state.postArhiveReducer,
+  posts: state.postArchiveReducer,
  };
 };
 
 const mapDispatchToProps = (dispatch) => {
  return {
-  postArhiveRequest: () => {
-   dispatch();
+  postArhiveRequest: (page, size) => {
+   dispatch(getArchivePost(page, size));
   },
  };
 };

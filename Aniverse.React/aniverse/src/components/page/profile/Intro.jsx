@@ -78,18 +78,18 @@ function Intro(props) {
    <div className="col-12">
     <ul className="from-address">
      <li>
-      <FontAwesomeIcon icon="fa-solid fa-location-dot" />
+      <FontAwesomeIcon icon="fa-solid fa-location-dot" className="icon" />
       From
       <Link to={`page/${address}`}>{address}</Link>
      </li>
      <li>
-      <FontAwesomeIcon icon="fa-solid fa-cake-candles" />
+      <FontAwesomeIcon icon="fa-solid fa-cake-candles" className="icon" />
       Birthday
       <Moment format="MMM DD YYYY">{Date.parse(birthday)}</Moment>
      </li>
      <li>
       {gender === 'Male' ? (
-       <FontAwesomeIcon icon="fa-solid fa-person" />
+       <FontAwesomeIcon icon="fa-solid fa-person" className="icon" />
       ) : (
        <FontAwesomeIcon icon="fa-solid fa-person-dress" />
       )}

@@ -10,10 +10,11 @@ function Explore(props) {
  const { postAllRequest, getAllStories } = props;
  const [comRender, setComRender] = useState(1);
  useEffect(() => {
-  document.title = 'Explore | Aniverse';
   getAllStories();
   postAllRequest();
- }, [comRender]);
+  document.title = 'Explore | Aniverse';
+ }, [comRender, getAllStories, postAllRequest]);
+ console.log(props);
  return (
   <>
    <div className="row explore main">
@@ -38,17 +39,17 @@ function Explore(props) {
 const mapStateToProps = (state) => {
  return {
   posts: state.postReducer,
-  stories: state.storiesReducer,
+  stories: state.storiesAllReducer,
  };
 };
 
 const mapDispatchToProps = (dispatch) => {
  return {
-  postAllRequest: () => {
-   dispatch(getAllPosts());
-  },
   getAllStories: () => {
    dispatch(getStories());
+  },
+  postAllRequest: () => {
+   dispatch(getAllPosts());
   },
  };
 };

@@ -64,7 +64,7 @@ export function getUserPostsError(error) {
 }
 export function getPost(username) {
     return async function (dispatch) {
-        let url = `${actionTypes.baseUrl}/post/${username}`;
+        let url = `${baseUrl}/post/${username}`;
         axios.get(url, header).then((res) => {
             dispatch(getUserPostsSuccess(res.data));
         }).catch((error) => {
@@ -74,10 +74,10 @@ export function getPost(username) {
 }
 
 export function postCreateSuccess(data) {
-    return { type: actionTypes.POST_POST_CREATE_SUCCESS, payload: data }
+    return { type: actionTypes.POST_CERATE_SUCCESS, payload: data }
 }
 export function postCreateError(error) {
-    return { type: actionTypes.POST_POST_CREATE_EROOR, payload: error }
+    return { type: actionTypes.POST_CERATE_ERROR, payload: error }
 }
 export function createPost(postData) {
     return async function (dispatch) {
@@ -99,7 +99,7 @@ export function likePostError(error) {
 }
 export function likePost(likeData) {
     return async function (dispatch) {
-        let url = `${actionTypes.baseUrl}/post/like`;
+        let url = `${baseUrl}/post/like`;
         axios.post(url, likeData, header)
             .then((res) => {
                 dispatch(likePostSuccess(res));
@@ -135,12 +135,48 @@ export function postDeleteError(error) {
 }
 export function postDelete(id) {
     return function (dispatch) {
-        let url = `${actionTypes.baseUrl}/post/delete/${id}`;
+        let url = `${baseUrl}/post/delete/${id}`;
         axios.patch(url, {}, header)
             .then((res) => {
                 dispatch(postDeleteSuccess(res));
             }).catch((error) => {
                 dispatch(postDeleteError(error));
+            })
+    }
+}
+
+export function getArchivePostSuccess(data) {
+    return { type: actionTypes.GET_POST_ARCHIVE_SUCCESS, payload: data }
+}
+export function getArchivePostError(error) {
+    return { type: actionTypes.GET_POST_ARCHIVE_ERROR, payload: error }
+}
+export function getArchivePost(page, size) {
+    return function (dispatch) {
+        let url = `${baseUrl}/post/archive?page=${page}&size=${size}`;
+        axios.get(url, header)
+            .then((res) => {
+                dispatch(getArchivePostSuccess(res.data));
+            }).catch((error) => {
+                dispatch(getArchivePostError(error));
+            })
+    }
+}
+
+export function getRecyclePostSuccess(data) {
+    return { type: actionTypes.GET_POST_RECYCLE_SUCCESS, payload: data }
+}
+export function getRecyclePostError(error) {
+    return { type: actionTypes.GET_POST_RECYCLE_ERROR, payload: error }
+}
+export function getRecyclePost(page, size) {
+    return function (dispatch) {
+        let url = `${baseUrl}/post/recycle?page=${page}&size=${size}`;
+        axios.get(url, header)
+            .then((res) => {
+                dispatch(getRecyclePostSuccess(res.data));
+            }).catch((error) => {
+                dispatch(getRecyclePostError(error));
             })
     }
 }

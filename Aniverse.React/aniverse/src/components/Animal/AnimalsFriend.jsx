@@ -30,10 +30,10 @@ const AnimalsFriend = (props) => {
     </div>
    ))}
 
-   <button className="btn btn-loadmore">
+   <Link to="/animals" className="btn btn-loadmore">
     More animals
     <FontAwesomeIcon icon="fa-solid fa-chevron-right" />
-   </button>
+   </Link>
   </div>
  );
 };

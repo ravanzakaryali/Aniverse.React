@@ -63,7 +63,7 @@ function App() {
      />
      <Route path="setting" element={<Setting />}>
       <Route path="archive" element={<Archive />}>
-       <Route path="post" element={<PostArchive />} />
+       <Route index path="post" element={<PostArchive />} />
        <Route path="story" element={<StoryArchive />} />
       </Route>
      </Route>

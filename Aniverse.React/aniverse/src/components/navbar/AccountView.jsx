@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 function AccountView(props) {
- const { firstname, lastname, username, profilPicture } = props.userNavbar;
-
+ const { firstname, username, profilPicture } = props.userLogin;
+ console.log(props);
  return (
   <Link to={`user/${username}`} className="account-profile">
    <img
@@ -19,7 +19,7 @@ function AccountView(props) {
 
 const mapStateToProps = (state) => {
  return {
-  userNavbar: state.userNavbarReducer,
+  userLogin: state.userLoginReducer,
  };
 };
 

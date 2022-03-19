@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getUserNavbar } from '../../redux/actions/userActions';
+import { getLoginUser } from '../../redux/actions/userActions';
 import { useWindowSize } from '@react-hook/window-size';
 import AccountView from './AccountView';
 import MenuBarsView from './MenuBarsView';
@@ -15,14 +15,12 @@ function Navbar(props) {
  const token = localStorage.getItem('token');
  const location = useLocation();
  const [width] = useWindowSize();
-
  const { getUser } = props;
- const userLogin = JSON.parse(localStorage.getItem('loginUser'));
 
  useEffect(() => {
   if (token === null) return navigate('/authenticate/login');
   if (!location.pathname.includes('/authenticate')) {
-   getUser(userLogin.username);
+   getUser();
   }
  }, []);
 
@@ -77,14 +75,14 @@ function Navbar(props) {
 
 const mapStateToProps = (state) => {
  return {
-  userNavbar: state.userNavbarReducer,
+  userLogin: state.userLoginReducer,
  };
 };
 
 const mapDispatchToProps = (dispatch) => {
  return {
-  getUser: (userState) => {
-   dispatch(getUserNavbar(userState));
+  getUser: () => {
+   dispatch(getLoginUser());
   },
  };
 };

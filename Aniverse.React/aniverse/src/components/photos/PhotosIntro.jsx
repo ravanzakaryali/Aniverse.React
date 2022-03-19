@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import { getUserPhotos } from '../../redux/actions/userActions';
+import {
+ getOnlyUserPhotos,
+ getUserPhotos,
+} from '../../redux/actions/userActions';
 
 function PhotosIntro(props) {
  const { getPhotos } = props;
@@ -35,14 +38,14 @@ function PhotosIntro(props) {
 }
 function mapStateToProps(state) {
  return {
-  userPhotos: state.userPhotosReducer,
+  userPhotos: state.userOnlyPhotosReducer,
  };
 }
 
 const mapDispatchToProps = (dispatch) => {
  return {
   getPhotos: (username, page, size) => {
-   dispatch(getUserPhotos(username, page, size));
+   dispatch(getOnlyUserPhotos(username, page, size));
   },
  };
 };

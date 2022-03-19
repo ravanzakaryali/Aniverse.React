@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import UserItemButtons from './UserItemsButtons/UserItemButtons';
 
 function UserItem(props) {
+ console.log(props);
  return (
   <>
    <div className="container user-all">
@@ -51,7 +52,7 @@ function UserItem(props) {
 
 const mapStateToProps = (state) => {
  return {
-  userAuth: state.userNavbarReducer,
+  userAuth: state.userLoginReducer,
  };
 };
 

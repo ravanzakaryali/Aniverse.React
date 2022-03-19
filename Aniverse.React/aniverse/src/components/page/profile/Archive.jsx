@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router';
 import { Link } from 'react-router-dom';
 
-function Archive() {
+function Archive(props) {
  return (
   <>
    <div className="archive">

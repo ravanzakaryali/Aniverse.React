@@ -2,8 +2,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getFriendRequest } from '../../redux/actions/friendAction';
-import { postFriendConfirm } from '../../redux/actions/userActions';
+import {
+ confirmFriend,
+ getFriendRequest,
+} from '../../redux/actions/friendAction';
 
 function UserRequest(props) {
  const { confirm } = props;
@@ -97,7 +99,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
  return {
   confirm: (friendId) => {
-   dispatch(postFriendConfirm(friendId));
+   dispatch(confirmFriend(friendId));
   },
   friendRequest: () => {
    dispatch(getFriendRequest());

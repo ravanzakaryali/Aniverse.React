@@ -108,7 +108,7 @@ function UserProfilePicture(props) {
 
 function mapStateToProps(state) {
  return {
-  userAuth: state.userNavbarReducer,
+  userAuth: state.userLoginReducer,
   user: state.userReducer,
  };
 }

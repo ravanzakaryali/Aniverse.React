@@ -25,25 +25,25 @@ function About(props) {
      <div className="row about-row">
       <ul>
        <li>
-        <FontAwesomeIcon icon="fa-solid fa-user-pen" />
+        <FontAwesomeIcon icon="fa-solid fa-user-pen" className="icon" />
         <span className="about-items">{bio}</span>
        </li>
        <li>
-        <FontAwesomeIcon icon="fa-solid fa-location-dot" />
+        <FontAwesomeIcon icon="fa-solid fa-location-dot" className="icon" />
         <span className="about-items">{address}</span>
        </li>
        <li>
-        <FontAwesomeIcon icon="fa-solid fa-cake-candles" />
+        <FontAwesomeIcon icon="fa-solid fa-cake-candles" className="icon" />
         <span className="about-items">
          <Moment format="MMM DD YYYY">{Date.parse(birthday)}</Moment>
         </span>
        </li>
        <li>
-        <FontAwesomeIcon icon="fa-solid fa-venus-double" />
+        <FontAwesomeIcon icon="fa-solid fa-venus-double" className="icon" />
         <span className="about-items">{gender}</span>
        </li>
        <li>
-        <FontAwesomeIcon icon="fa-solid fa-user" />
+        <FontAwesomeIcon icon="fa-solid fa-user" className="icon" />
         <span className="about-items">{username}</span>
        </li>
       </ul>

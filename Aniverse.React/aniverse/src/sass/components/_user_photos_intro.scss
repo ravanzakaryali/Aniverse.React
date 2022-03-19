@@ -4,20 +4,22 @@
     margin: $margin-normal 0;
     border-radius: $border-radius-min;
     @extend %box-shadow-main;
-    .card-photos .card-imgs{
+    background-color: $white;
+    .card-photos .card-imgs {
         border: 2px solid $white;
         border-radius: $border-radius-min;
         width: 100%;
         height: 150px;
         object-fit: cover;
     }
-    .col-4{
+    .col-4 {
         padding: 0;
     }
-    .photos-intro-title{
+    .photos-intro-title {
         padding-bottom: $padding-min;
     }
     .row {
+        padding: 0 $padding-min;
         align-items: center;
     }
     .photos-title {

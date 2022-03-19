@@ -137,17 +137,19 @@ function Animal(props) {
          <Moment format="MMM DD YYYY">{Date.parse(birthday)}</Moment>
         </span>
        </p>
-       {breed ? (
-        <>
-         <p className="bio-strong">
-          Breed
-          <span className="strong">{breed}</span>
-         </p>
-         <p className="bio-content">{bio}</p>
-        </>
-       ) : (
-        ''
-       )}
+       <>
+        {breed ? (
+         <>
+          <p className="bio-strong">
+           Breed
+           <span className="strong">{breed}</span>
+          </p>
+         </>
+        ) : (
+         ''
+        )}
+        <p className="bio-content">{bio}</p>
+       </>
       </div>
      </div>
     </div>
@@ -192,7 +194,7 @@ const mapStateToProps = (state) => {
  return {
   posts: state.postReducer,
   animal: state.getAnimalReducer,
-  userAuth: state.userNavbarReducer,
+  userAuth: state.userLoginReducer,
  };
 };
 

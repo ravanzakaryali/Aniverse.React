@@ -32,11 +32,11 @@ export function usersAllReducer(state = initialState.users, action) {
             return state;
     }
 }
-export function userPhotosReducer(state = initialState.userPhotos, action) {
+export function userOnlyPhotosReducer(state = initialState.userPhotos, action) {
     switch (action.type) {
-        case actionTypes.GET_PHOTOS_SUCCESS:
+        case actionTypes.GET_ONLY_USER_PHOTOS_SUCCESS:
             return action.payload
-        case actionTypes.GET_ONLY_USER_PHOTOS:
+        case actionTypes.GET_ONLY_USER_PHOTOS_ERROR:
             return action.payload
         default:
             return state;
@@ -46,13 +46,17 @@ export function userLoginReducer(state = initialState.userLogin, action) {
     switch (action.type) {
         case actionTypes.GET_USER_LOGIN_SUCCESS:
             return action.payload
+        case actionTypes.GET_USER_LOGIN_ERROR:
+            return action.payload
         default:
             return state;
     }
 }
 export function animalFollowsReducer(state = initialState.animalFollows, action) {
     switch (action.type) {
-        case actionTypes.GET_USER_FOLLOWS_ANIMAL:
+        case actionTypes.GET_USER_FOLLOWS_ANIMAL_SUCCESS:
+            return action.payload
+        case actionTypes.GET_USER_FOLLOWS_ANIMAL_ERROR:
             return action.payload
         default:
             return state;

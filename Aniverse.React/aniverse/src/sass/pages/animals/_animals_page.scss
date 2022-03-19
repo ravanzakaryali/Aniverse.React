@@ -7,18 +7,19 @@
         position: fixed;
         overflow-y: scroll;
         height: 88%;
-        left: 100px;
+        left: 0px;
         display: inline-block;
-        padding: $padding-normal 0;
+        padding: 0;
     }
     .sidebar-title {
         font-size: $fs-normal + 5;
         font-weight: $fs-weight-normal;
         color: $gray-90;
-        padding: $padding-min $padding-normal;
+        padding: $padding-normal;
+        border-bottom: 1px solid $gray-20;
     }
     .animal-item {
-        padding: $padding-min;
+        padding: $padding-min $padding-normal;
         display: flex;
         &:hover {
             background-color: $gray-10;
@@ -36,6 +37,8 @@
         img {
             width: 100%;
             height: 100%;
+            border: 1px solid $gray-20;
+            border-radius: 50%;
             object-fit: cover;
         }
     }
@@ -49,13 +52,24 @@
         }
     }
     .animal-profile {
+        padding: 0px $padding-normal * 4;
         margin-left: auto;
         .no-select {
             height: 88vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-wrap: wrap;
+            .paw-img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                opacity: 0.6;
+            }
             p {
+                position: absolute;
+                bottom: 15%;
+                text-align: center;
                 font-weight: $fs-weight-normal;
                 font-size: $fs-normal;
                 color: $gray-80;

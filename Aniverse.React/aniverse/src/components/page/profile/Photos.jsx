@@ -40,7 +40,7 @@ function Photos(props) {
 
 function mapStateToProps(state) {
  return {
-  photos: state.userPhotosReducer,
+  photos: state.userOnlyPhotosReducer,
  };
 }
 function mapDispatchToProps(dispatch) {

@@ -169,8 +169,8 @@
     }
     .animal-posts {
         .post {
+            background-color: $white;
             margin: $margin-normal 0;
-            border-radius: $border-radius-max;
             @extend %box-shadow-main;
         }
         .post-title {

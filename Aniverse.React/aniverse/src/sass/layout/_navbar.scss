@@ -97,7 +97,9 @@
     width: 80%;
     margin-left: auto;
     position: relative;
-    @extend %display-flex-between-x-center-y;
+    display: flex;
+    align-items: center;
+    justify-content: end;
 }
 .account-nav ul {
     justify-content: space-between;

@@ -32,5 +32,10 @@ export default {
     loginReducer: [],
     registerReducer: [],
     profilePicture: [],
+    storiesAll: [],
+    postArchive: [],
+    postRecycle: [],
+    storyArchive: [],
+    storyRecycle: [],
     loading: true
 }

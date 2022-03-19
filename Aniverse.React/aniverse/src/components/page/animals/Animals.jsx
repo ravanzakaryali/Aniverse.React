@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getAllAnimals } from '../../../redux/actions/animalAction';
 import Animal from '../../Animal/Animal';
+import BgPaw from './img/default-bg.jpg';
 
 function Animals(props) {
  const { getAnimals, animalsAll } = props;
@@ -44,11 +45,14 @@ function Animals(props) {
      </Link>
     ))}
    </div>
-   <div className="col-8 animal-profile">
+   <div className="col-9 animal-profile">
     {activeAnimal ? (
      <Animal animalname={animalname} />
     ) : (
      <div className="no-select">
+      <div className="bg-image">
+       <img src={BgPaw} className="paw-img" />
+      </div>
       <p>Select animal's names to preview their profile.</p>
      </div>
     )}

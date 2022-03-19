@@ -11,7 +11,7 @@ import { logOut } from '../../redux/actions/authAction';
 function RightNavView(props) {
  const navigate = useNavigate();
  const { logOutRequest } = props;
- const { firstname, lastname, username, profilPicture } = props.userNavbar;
+ const { firstname, lastname, username, profilPicture } = props.userLogin;
  function dropDown(e) {
   let element = e.currentTarget.nextElementSibling;
   if (e.currentTarget.id === element.getAttribute('data-id')) {
@@ -20,7 +20,7 @@ function RightNavView(props) {
  }
  return (
   <>
-   <ul className="right-nav col-7">
+   <ul className="right-nav ">
     {/* <li className="right-nav-item">
      <a id="menu_more" onClick={(e) => dropDown(e)}>
       <MdAppRegistration />
@@ -36,19 +36,22 @@ function RightNavView(props) {
      <Notfication />
     </li> */}
     <li className="right-nav-item">
-     <a
-      className="activeAccount"
+     <button
+      className="btn activeAccount"
       id="activeAccount"
       onClick={(e) => dropDown(e)}>
       <FontAwesomeIcon icon="fa-caret-down" />
-     </a>
+     </button>
      <div className="account d-none" data-id="activeAccount">
       <div className="account-header row">
        <Link className="row" to={`user/${username}`}>
         <div className="col-3 user-profile">
          <img
+          alt="Login user"
           className="user-img-xl"
-          src="https://wallpaperaccess.com/full/2213424.jpg"
+          src={
+           profilPicture == null ? `../../img/user.png` : `${profilPicture}`
+          }
          />
         </div>
         <div className="account-profile col-8">
@@ -73,7 +76,7 @@ function RightNavView(props) {
          <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" />
         </div>
         <button
-         className="text"
+         className="btn text"
          onClick={() => {
           logOutRequest();
           navigate('/authenticate/login');
@@ -93,7 +96,7 @@ function RightNavView(props) {
 }
 const mapStateToProps = (state) => {
  return {
-  userNavbar: state.userNavbarReducer,
+  userLogin: state.userLoginReducer,
  };
 };
 
