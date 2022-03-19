@@ -17,9 +17,7 @@ function Explore(props) {
  return (
   <>
    <div className="row explore main">
-    <div className="col-3 fixed-sidebar">
-     <Sponsored />
-    </div>
+    <div className="col-3 fixed-sidebar"></div>
     <div className="col-6 static-page">
      <div className="story-row">
       <Stories stories={props.stories} />
@@ -30,7 +28,9 @@ function Explore(props) {
       posts={props.posts}
      />
     </div>
-    <div className="col-3 fixed-sidebar-right "></div>
+    <div className="col-3 fixed-sidebar-right ">
+     <Sponsored />
+    </div>
    </div>
   </>
  );

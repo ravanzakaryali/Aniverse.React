@@ -18,7 +18,7 @@ function AllUser(props) {
 
 function mapStateToProps(state) {
  return {
-  users: state.usersReducer,
+  users: state.usersAllReducer,
  };
 }
 

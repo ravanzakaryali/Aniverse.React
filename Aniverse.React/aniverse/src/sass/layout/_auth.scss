@@ -40,7 +40,7 @@
             color: $color-brand-primary;
             margin-bottom: $margin-normal * 4;
             position: relative;
-            &::before{
+            &::before {
                 content: "";
                 bottom: -10px;
                 position: absolute;
@@ -49,23 +49,26 @@
                 background-color: $color-brand-primary;
             }
         }
-        .form-auth input{
+        .form-auth input {
             padding: $padding-normal;
             border-radius: $border-radius-min;
         }
-        .form-auth input:focus{
+        .form-auth input:focus {
             border: 1px solid $color-brand-primary-5;
             box-shadow: 0 0 0 0.25rem $color-brand-primary-3;
         }
-        .form-auth .label-input{
+        .form-auth .label-input {
             padding-bottom: $padding-min;
         }
-        .form-gender{
+        .form-auth .icon {
+            margin-left: $margin-normal;
+        }
+        .form-gender {
             display: flex;
-            .form-auth{
+            .form-auth {
                 padding: 0 $padding-normal;
             }
-            label{
+            label {
                 padding: $padding-normal;
             }
         }
@@ -97,7 +100,7 @@
             margin-left: $margin-min;
         }
     }
-    .validation{
+    .validation {
         color: $color-brand-danger;
         font-size: $fs-min - 1;
         padding: $padding-min - 4 $padding-min;

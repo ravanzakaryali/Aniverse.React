@@ -19,9 +19,9 @@ const AnimalsFriend = (props) => {
       <img
        className="users-profile"
        src={
-        animal.profilPicture == null
+        animal.profilePicture == null
          ? `../../img/animal.jpg`
-         : `${animal.profilPicture}`
+         : `${animal.profilePicture}`
        }
        alt=""
       />

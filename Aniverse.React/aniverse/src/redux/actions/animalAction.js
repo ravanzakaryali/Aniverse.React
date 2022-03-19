@@ -20,13 +20,13 @@ export function getFriendAnimals(username, page, size) {
             })
     }
 }
+
 export function getAnimalPhotosSuccess(data) {
     return { type: actionTypes.GET_ANIMAL_PHOTOS_SUCCESS, payload: data }
 }
 export function getAnimalPhtotsError(error) {
     return { type: actionTypes.GET_ALL_FRIENDS_ERROR, payload: error }
 }
-
 export function getAnimalPhotos(animalname, page, size) {
     return async function (dispatch) {
         let url = `${baseUrl}/animal/photos/${animalname}?page=${page}&size=${size}`;
@@ -81,7 +81,6 @@ export function getAnimalSuccess(data) {
 export function getAnimalError(error) {
     return { type: actionTypes.GET_ANIMAL_ERROR, payload: error }
 }
-
 export function getAnimal(animalname) {
     return async function (dispatch) {
         let url = `${baseUrl}/animal/${animalname}`;
@@ -93,13 +92,13 @@ export function getAnimal(animalname) {
             })
     }
 }
+
 export function updateAnimalProfileSuccess(data) {
     return { type: actionTypes.ANIMAL_PROFILE_UPDATE_SUCCESS, payload: data }
 }
 export function updateAnimalProfileError(error) {
     return { type: actionTypes.ANIMAL_PROFILE_UPDATE_ERROR, payload: error }
 }
-
 export function updateAnimalProfile(id, profileData) {
     return async function (dispatch) {
         let url = `${baseUrl}/animal/update/${id}`;
@@ -138,95 +137,87 @@ export function getAllAnimalsSuccess(data) {
 export function getAllAnimalsError(error) {
     return { type: actionTypes.GET_ALL_ANIMALS_ERROR, payload: error }
 }
-export function getAllAnimals() {
+export function getAllAnimals(page, size) {
     return async function (dispatch) {
-        let url = `${baseUrl}/animal`;
+        let url = `${baseUrl}/animal?page=${page}&size=${size}`;
         axios.get(url, header)
             .then((res) => {
-                dispatch(getAnimalSuccess(res.data));
+                dispatch(getAllAnimalsSuccess(res.data));
             }).catch((error) => {
-                dispatch(getAnimalError(error));
+                dispatch(getAllAnimalsError(error));
             })
 
     }
 }
 
-export function getAnimalUserSuccess(animals) {
-    return { type: actionTypes.GET_ANIAML_USER_SUCCESS, payload: animals }
+export function getAnimalUserSuccess(data) {
+    return { type: actionTypes.GET_ANIMAL_USER_SUCCESS, payload: data }
 }
-export function getAnimalCategorySuccess(result) {
-    return { type: actionTypes.GET_ANIMAL_CATEGORY_SUCCESS, payload: result }
+export function getAnimalUserError(error) {
+    return { type: actionTypes.GET_ANIMAL_USER_ERROR, payload: error }
 }
+export function getAnimalUser(username) {
+    return async function (dispatch) {
+        let url = `${baseUrl}/animal/user/${username}`;
+        axios.get(url, header)
+            .then((res) => {
+                dispatch(getAnimalUserSuccess(res.data));
+            }).catch((error) => {
+                dispatch(getAnimalUserError(error));
+            })
+    }
+}
+
+export function getAnimalCategorySuccess(data) {
+    return { type: actionTypes.GET_ANIMAL_CATEGORY_SUCCESS, payload: data }
+}
+export function getAnimalCategoryError(error) {
+    return { type: actionTypes.GET_ANIMAL_CATEGORY_ERROR, payload: error }
+}
+export function getAnimalCategory() {
+    return async function (dispatch) {
+        let url = `${baseUrl}/animal/category`;
+        axios.get(url, header)
+            .then((res) => {
+                dispatch(getAnimalCategorySuccess(res.data));
+            }).catch((error) => {
+                dispatch(getAnimalCategoryError(error));
+            })
+    }
+}
+
 export function createAnimalSuccess(animal) {
     return { type: actionTypes.CREATE_ANIMAL_SUCCESS, payload: animal }
 }
-export function selectAnimalSuccess(selectAnimal) {
-    return { type: actionTypes.GET_SELECT_ANIMAL_SUCCESS, payload: selectAnimal }
-}
-
-
-export function getAnimalUser(username) {
-    return async function (dispatch) {
-        let url = `${actionTypes.baseUrl}/animal/user/${username}`;
-        axios.get(url, {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem("token")}`,
-                'Accept': 'application/json, text/plain',
-                'Content-Type': 'application/json;charset=UTF-8'
-            },
-        }).then((res) => {
-            dispatch(getAnimalUserSuccess(res.data));
-        }).catch((error) => {
-            console.log(error.response.data.message);
-        })
-    }
-}
-
-export function getAnimalCategory() {
-    return async function (dispatch) {
-        let url = `${actionTypes.baseUrl}/animal/category`;
-        axios.get(url, {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem("token")}`,
-                'Accept': 'application/json, text/plain',
-                'Content-Type': 'application/json;charset=UTF-8'
-            },
-        }).then((res) => {
-            dispatch(getAnimalCategorySuccess(res.data))
-        }).catch((error) => {
-            console.log(error.response.data.message);
-        })
-    }
+export function createAnimalError(error) {
+    return { type: actionTypes.CREATE_ANIMAL_ERROR, payload: error }
 }
 export function createAnimal(animalCreate) {
     return async function (dispatch) {
         let url = `${actionTypes.baseUrl}/animal/create`;
-        axios.post(url, animalCreate, {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem("token")}`,
-                'Accept': 'application/json, text/plain',
-                'Content-Type': 'application/json;charset=UTF-8'
-            },
-        }).then((res) => {
-            dispatch(createAnimalSuccess())
-        }).catch((error) => {
-            console.log(error.response.data.message);
-        })
+        axios.post(url, animalCreate, header)
+            .then((res) => {
+                dispatch(createAnimalSuccess(res.data));
+            }).catch((error) => {
+                dispatch(createAnimalError(error));
+            })
     }
+}
+
+export function selectAnimalSuccess(data) {
+    return { type: actionTypes.GET_SELECT_ANIMAL_SUCCESS, payload: data }
+}
+export function selectAnimalError(error) {
+    return { type: actionTypes.GET_SELECT_ANIMAL_ERROR, payload: error }
 }
 export function selectAnimal() {
     return async function (dispatch) {
         let url = `${actionTypes.baseUrl}/animal/select`
-        axios.get(url, {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem("token")}`,
-                'Accept': 'application/json, text/plain',
-                'Content-Type': 'application/json;charset=UTF-8'
-            },
-        }).then((res) => {
-            dispatch(selectAnimalSuccess(res.data))
-        }).catch((error) => {
-            console.log(error.response.data.message);
-        })
+        axios.get(url, header)
+            .then((res) => {
+                dispatch(selectAnimalSuccess(res.data));
+            }).catch((error) => {
+                dispatch(selectAnimalError(error));
+            })
     }
 }

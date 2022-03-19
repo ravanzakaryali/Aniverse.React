@@ -5,25 +5,28 @@ export function userReducer(state = initialState.user, action) {
     switch (action.type) {
         case actionTypes.GET_USER_SUCCESS:
             return action.payload
-        case actionTypes.GET_BLOCK_USERS_SUCCESS:
+        case actionTypes.GET_USER_ERROR:
+            return action.payload
+        default:
+            return state;
+    }
+}
+export function profilePictureReducer(state = initialState.profilePicture, action) {
+    switch (action.type) {
+        case actionTypes.PROFILE_CREATE_SUCCESS:
+            return action.payload
+        case actionTypes.PROFILE_CREATE_ERROR:
             return action.payload
         default:
             return state;
     }
 }
 
-export function userNavbarReducer(state = initialState.userNavbar, action) {
+export function usersAllReducer(state = initialState.users, action) {
     switch (action.type) {
-        case actionTypes.GET_USER_NAVBAR_SUCCESS:
+        case actionTypes.GET_All_USERS_SUCCESS:
             return action.payload
-        default:
-            return state;
-    }
-}
-
-export function usersReducer(state = initialState.users, action) {
-    switch (action.type) {
-        case actionTypes.GET_USERS_SUCCESS:
+        case actionTypes.GET_All_USERS_ERROR:
             return action.payload
         default:
             return state;

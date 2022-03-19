@@ -122,4 +122,65 @@
     .new-friend-text {
         text-align: center;
     }
+    .setting-menu {
+        position: sticky;
+        top: $page-margin-top-bottom;
+        background-color: $white;
+        @extend %box-shadow-main;
+        .title {
+            padding: $padding-normal;
+            font-size: $fs-normal;
+            font-weight: $fs-weight-normal + 100;
+            border-bottom: 1px solid $gray-20;
+        }
+        .menu-list {
+            ul li a {
+                font-size: $fs-normal - 2;
+                font-weight: $fs-weight-normal;
+                color: $gray-90;
+                padding: $padding-normal;
+                width: 100%;
+                display: inline-block;
+                border-radius: $border-radius-min;
+                &:hover {
+                    background-color: $gray-10;
+                }
+            }
+            ul li a .icon {
+                width: 7%;
+                display: inline-block;
+            }
+        }
+    }
+    .archive {
+        background-color: $white;
+        @extend %box-shadow-main;
+        .archive-title {
+            padding: $padding-normal;
+            font-size: $fs-normal;
+            font-weight: $fs-weight-normal + 100;
+            border-bottom: 1px solid $gray-20;
+        }
+        .archive-list-menu {
+            display: flex;
+            li {
+                display: inline-block;
+                width: 50%;
+                a {
+                    padding: $padding-normal;
+                    text-align: center;
+                    width: 100%;
+                    display: inline-block;
+                    color: $gray-90;
+                    border-radius: $border-radius-min;
+                    &:first-child {
+                        border-right: 1px solid $gray-20;
+                    }
+                    &:hover {
+                        background-color: $gray-10;
+                    }
+                }
+            }
+        }
+    }
 }

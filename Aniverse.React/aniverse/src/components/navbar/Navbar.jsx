@@ -20,8 +20,8 @@ function Navbar(props) {
  const userLogin = JSON.parse(localStorage.getItem('loginUser'));
 
  useEffect(() => {
-  if (token == null) return navigate('/auth/login');
-  if (!location.pathname.includes('/auth')) {
+  if (token === null) return navigate('/authenticate/login');
+  if (!location.pathname.includes('/authenticate')) {
    getUser(userLogin.username);
   }
  }, []);

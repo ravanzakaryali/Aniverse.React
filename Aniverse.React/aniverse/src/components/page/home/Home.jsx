@@ -6,15 +6,16 @@ import PostAdd from '../../post/PostAdd';
 import SiderbarRight from '../../sidebar/SiderbarRight';
 import { useWindowSize } from '@react-hook/window-size';
 import PostSetting from '../../post/PostSetting';
+import SponsoredAdd from '../../Sponsored/SponsoredAdd';
 
 function Home(props) {
  const navigate = useNavigate();
  const [width] = useWindowSize();
- const token = localStorage.getItem('token');
  useEffect(() => {
-  if (token == null) return navigate('/auth/login');
   document.title = 'Aniverse';
- });
+  if (token === null) return navigate('/authenticate/login');
+ }, [navigate]);
+ const token = localStorage.getItem('token');
  return (
   <>
    <div className="main row">
@@ -40,6 +41,7 @@ function Home(props) {
      )}
     </React.Fragment>
    </div>
+   <SponsoredAdd />
   </>
  );
 }

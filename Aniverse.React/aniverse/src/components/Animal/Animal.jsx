@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getAnimal, animalFollow } from '../../redux/actions/animalAction';
@@ -9,9 +9,12 @@ import AnimalProfileEdit from './AnimalProfileEdit';
 import AnimalPhotos from './AnimalPhotos';
 import AnimalCoverPicture from './AnimalCoverPicture';
 import AnimalProfilePicture from './AnimalProfilePicture';
+import { useWindowSize } from '@react-hook/window-size';
 
 function Animal(props) {
  const animalname = useParams().animalname;
+ const ref = useRef(null);
+ const [width, setWidth] = useState();
  const [comRender, setComRender] = useState(false);
  const { animalPosts } = props;
  const { animalGetRequest } = props;
@@ -34,6 +37,7 @@ function Animal(props) {
  } = props.animal;
  const [isFollowLocal, setIsFollowLocal] = useState(isFollow);
  useEffect(() => {
+  setWidth(ref.current.offsetWidth);
   if (name) document.title = `${name} | Aniverse`;
   animalGetRequest(animalname);
   animalPosts(animalname);
@@ -50,11 +54,19 @@ function Animal(props) {
  ]);
 
  return (
-  <div className="animal-profile">
-   <div className="background-img">
+  <div className="animal-profile" ref={ref} id="animal_profile">
+   <div
+    className="background-img"
+    style={window.location.pathname.includes('/animals') ? { top: '0' } : {}}>
     <AnimalCoverPicture coverPicture={coverPicture} animalId={id} />
    </div>
-   <div className="container animal-container">
+   <div
+    className="container animal-container"
+    style={
+     window.location.pathname.includes('/animals')
+      ? { padding: '0px 50px' }
+      : {}
+    }>
     <div className="row profile-title">
      <div className="profile col-3">
       <AnimalProfilePicture profilPicture={profilPicture} animalId={id} />

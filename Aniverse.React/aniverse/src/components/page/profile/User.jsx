@@ -97,18 +97,6 @@ function User(props) {
         </div>
        </div>
       </div>
-      <div className="buttons-parent col-4">
-       <div className="profile-buttons">
-        {props.userAuth.id === props.user.id ? (
-         <>
-          <button className="btn btn-primary">Add to Story</button>
-          <button className="btn btn-light">Edit Profile</button>
-         </>
-        ) : (
-         <></>
-        )}
-       </div>
-      </div>
       <div className="menu-row">
        <div className="col-9">
         <ul className="profile-menu">
@@ -148,7 +136,7 @@ function User(props) {
            Photos
           </Link>
          </li>
-         <li>
+         {/* <li>
           <Link
            to={`/user/${username}/pages`}
            className={
@@ -156,15 +144,25 @@ function User(props) {
            }>
            Pages
           </Link>
-         </li>
+         </li> */}
         </ul>
        </div>
        <div className="col-3">
         <ul className="profile-menu justify-content-end">
-         <li>
-          <Link to="/menu">
-           <FontAwesomeIcon icon="fa-solid fa-ellipsis" />
-          </Link>
+         <li className="setting">
+          {props.userAuth.id === props.user.id ? (
+           <>
+            <Link
+             to={`/user/${username}/setting`}
+             className={
+              location.pathname === `/user/${username}/setting` ? 'active' : ''
+             }>
+             <FontAwesomeIcon icon="fa-solid fa-gear" />
+            </Link>
+           </>
+          ) : (
+           <></>
+          )}
          </li>
         </ul>
        </div>

@@ -43,7 +43,9 @@ export function animalPostReducer(state = initialState.animalPost, action) {
 
 export function animalReducer(state = initialState.animals, action) {
     switch (action.type) {
-        case actionTypes.GET_ANIAML_USER_SUCCESS:
+        case actionTypes.GET_ANIMAL_USER_SUCCESS:
+            return action.payload
+        case actionTypes.GET_ANIMAL_USER_ERROR:
             return action.payload
         default:
             return state;
@@ -53,6 +55,8 @@ export function animalCategoryReducer(state = initialState.animalCategory, actio
     switch (action.type) {
         case actionTypes.GET_ANIMAL_CATEGORY_SUCCESS:
             return action.payload
+        case actionTypes.GET_ANIMAL_CATEGORY_ERROR:
+            return action.payload
         default:
             return state;
     }
@@ -60,6 +64,8 @@ export function animalCategoryReducer(state = initialState.animalCategory, actio
 export function selectAnimalReducer(state = initialState.selectAnimal, action) {
     switch (action.type) {
         case actionTypes.GET_SELECT_ANIMAL_SUCCESS:
+            return action.payload
+        case actionTypes.GET_SELECT_ANIMAL_ERROR:
             return action.payload
         default:
             return state;

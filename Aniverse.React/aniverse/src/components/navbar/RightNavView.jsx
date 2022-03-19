@@ -1,14 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import MenuMore from '../menu_more/MenuMore';
 import Footer from './Footer';
 import Notfication from './Notfication';
-import { CgMenuGridO } from 'react-icons/cg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { MdAppRegistration } from 'react-icons/md';
+import { logOut } from '../../redux/actions/authAction';
 
 function RightNavView(props) {
+ const navigate = useNavigate();
+ const { logOutRequest } = props;
  const { firstname, lastname, username, profilPicture } = props.userNavbar;
  function dropDown(e) {
   let element = e.currentTarget.nextElementSibling;
@@ -19,20 +21,20 @@ function RightNavView(props) {
  return (
   <>
    <ul className="right-nav col-7">
-    <li className="right-nav-item">
+    {/* <li className="right-nav-item">
      <a id="menu_more" onClick={(e) => dropDown(e)}>
       <MdAppRegistration />
      </a>
      <div className="d-none" data-id="menu_more">
       <MenuMore />
      </div>
-    </li>
-    <li className="right-nav-item">
+    </li> */}
+    {/* <li className="right-nav-item">
      <a id="notf" onClick={(e) => dropDown(e)}>
       <FontAwesomeIcon icon="fa-solid fa-bell" />
      </a>
      <Notfication />
-    </li>
+    </li> */}
     <li className="right-nav-item">
      <a
       className="activeAccount"
@@ -66,14 +68,19 @@ function RightNavView(props) {
          <FontAwesomeIcon icon="fa-solid fa-angle-right" />
         </div>
        </Link>
-       <Link to="user/setting" className="setting bt">
-        <div className="content">
-         <div className="icon">
-          <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" />
-         </div>
-         <p className="text">Log out</p>
+       <div className="content">
+        <div className="icon">
+         <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" />
         </div>
-       </Link>
+        <button
+         className="text"
+         onClick={() => {
+          logOutRequest();
+          navigate('/authenticate/login');
+         }}>
+         Log out
+        </button>
+       </div>
       </div>
       <div className="account-footer">
        <Footer />
@@ -90,4 +97,11 @@ const mapStateToProps = (state) => {
  };
 };
 
-export default connect(mapStateToProps)(RightNavView);
+const mapDispatchToProps = (dispatch) => {
+ return {
+  logOutRequest: () => {
+   dispatch(logOut());
+  },
+ };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(RightNavView);

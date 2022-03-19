@@ -20,11 +20,11 @@
     }
     .fixed-sidebar-right {
         position: fixed;
-        top: 0;
-        padding-top: $page-margin-top-bottom;
+        top: $page-margin-top-bottom;
         overflow-y: scroll;
         height: 100%;
         right: 0;
+        z-index: 50;
         &::-webkit-scrollbar {
             width: 10px;
             height: 100px;

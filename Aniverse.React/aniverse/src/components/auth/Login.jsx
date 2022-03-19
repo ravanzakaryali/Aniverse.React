@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { authLogin } from '../../redux/actions/authAction';
 
 function Login(props) {
- const { login } = props;
+ const { login, loginError } = props;
  const [loginState, setLoginState] = useState({});
  const [isSubmit, setIsSubmit] = useState(false);
  const [formErrors, setFormErrors] = useState({});
@@ -31,16 +31,27 @@ function Login(props) {
   return errors;
  };
  useEffect(() => {
+  if (localStorage.getItem('token') !== null) return navigate('/');
   if (Object.keys(formErrors).length === 0 && isSubmit) {
    login(loginState);
   }
-  if (!JSON.stringify(localStorage.getItem('token'))) return navigate('/');
- }, [formErrors]);
+ }, [formErrors, isSubmit, navigate, localStorage.getItem('token')]);
  const auth = useSelector((state) => state.authReducer);
  return (
   <form className="form-horizontal" onSubmit={handleSubmit}>
    <h1 className="auth-title">Login</h1>
    <div className="form-auth">
+    {loginError.response ? (
+     loginError.response.status === 404 ||
+     loginError.response.status === 401 ? (
+      <span className="validation">Email or Password is wrong</span>
+     ) : (
+      ''
+     )
+    ) : (
+     ''
+    )}
+
     <input
      name="username"
      onChange={handleChange}
@@ -70,15 +81,14 @@ function Login(props) {
    </div>
    <div className="other-link">
     Still without account?
-    <Link to="/register">Create one</Link>
+    <Link to="/authenticate/register">Create one</Link>
    </div>
   </form>
  );
 }
 const mapStateToProps = (state) => {
  return {
-  userAuth: state,
-  errorsState: state.errors,
+  loginError: state.loginReducer,
  };
 };
 const mapDispatchToProps = (dispatch) => {

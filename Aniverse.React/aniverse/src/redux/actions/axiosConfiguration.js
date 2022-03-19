@@ -12,3 +12,10 @@ export const headerPicture = {
         'Accept': '*/*',
     },
 }
+
+export const headerRegister = {
+    headers: {
+        'Accept': 'application/json, text/plain',
+        'Content-Type': 'application/json;charset=UTF-8'
+    },
+}

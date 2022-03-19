@@ -29,5 +29,8 @@ export default {
     animalUpdate: [],
     animalFollow: [],
     allAnimals: [],
+    loginReducer: [],
+    registerReducer: [],
+    profilePicture: [],
     loading: true
 }

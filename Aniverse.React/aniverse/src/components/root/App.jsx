@@ -23,7 +23,12 @@ import About from '../page/profile/About';
 import Follows from '../page/profile/Follows';
 import Photos from '../page/profile/Photos';
 import Pages from '../page/profile/Pages';
-import FontAwesome from '../fontAwesome/FontAwesome';
+import Animals from '../page/animals/Animals';
+import './../fontAwesome/FontAwesome';
+import Setting from '../page/profile/Setting';
+import Archive from '../page/profile/Archive';
+import PostArchive from '../page/profile/PostArchive';
+import StoryArchive from '../page/profile/StoryArchive';
 
 function App() {
  const dispatch = useDispatch();
@@ -36,6 +41,9 @@ function App() {
    <Navbar />
    <Routes>
     <Route path="/" element={<Home />} />
+    <Route path="/animals" element={<Animals />}>
+     <Route path=":animalname" element={<AllFriend />} />
+    </Route>
     <Route path="people" element={<People />}>
      <Route path="friends" element={<AllFriend />} />
      <Route path="request" element={<AllFriendRequest />} />
@@ -53,6 +61,12 @@ function App() {
        </>
       }
      />
+     <Route path="setting" element={<Setting />}>
+      <Route path="archive" element={<Archive />}>
+       <Route path="post" element={<PostArchive />} />
+       <Route path="story" element={<StoryArchive />} />
+      </Route>
+     </Route>
      <Route path="photos" element={<Photos />} />
      <Route path="pages" element={<Pages />} />
      <Route path="chat" element={<Chat />} />
@@ -60,7 +74,7 @@ function App() {
     </Route>
     <Route path="animal/:animalname" element={<Animal />} />
     <Route path="/explore" element={<Explore />} />
-    <Route path="auth/" element={<Auth />}>
+    <Route path="authenticate/" element={<Auth />}>
      <Route path="login" element={<Login />} />
      <Route path="register" element={<Register />} />
     </Route>

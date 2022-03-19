@@ -1,11 +1,19 @@
-import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState } from 'react';
+import SponsoredAdd from './SponsoredAdd';
 
-function Sponsored() {
+function Sponsored(props) {
  return (
   <>
    <div className="sponsored">
-    <div>
+    <div className="sponsored-title-parent">
      <h3 className="sponsored-title">Sponsored</h3>
+     <button
+      className="btn"
+      data-bs-toggle="modal"
+      data-bs-target="#sponsored-modal">
+      <FontAwesomeIcon icon="fa-solid fa-plus" />
+     </button>
     </div>
     <div className="sponsored-contetn">
      <div className="sponsored-img col-5">

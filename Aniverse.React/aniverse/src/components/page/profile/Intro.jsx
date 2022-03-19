@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Moment from 'react-moment';
-import { changeBio } from '../../../redux/actions/bioAction';
+import { changeBio } from '../../../redux/actions/userActions';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

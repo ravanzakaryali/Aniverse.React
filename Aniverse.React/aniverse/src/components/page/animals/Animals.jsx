@@ -1,22 +1,71 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { getAllAnimals } from '../../../redux/actions/animalAction';
+import Animal from '../../Animal/Animal';
 
-function Animals() {
- return <div>Animals</div>;
+function Animals(props) {
+ const { getAnimals, animalsAll } = props;
+ const [activeAnimal, setActiveAnimal] = useState(false);
+ const [animalname, setAnimalname] = useState();
+ useEffect(() => {
+  getAnimals(1, 100);
+ }, [getAnimals]);
+ console.log(props);
+ return (
+  <div className="row animals-page">
+   <div className="col-3 sidebar-animals-item">
+    <div className="sidebar-title">
+     <p>Animals</p>
+    </div>
+    {animalsAll.map((animal) => (
+     <Link
+      to={`/animals/${animal.animalname}`}
+      className="animal-item"
+      onClick={() => {
+       setActiveAnimal(true);
+       setAnimalname(animal.animalname);
+      }}
+      key={animal.id}>
+      <div className="profile-img">
+       <img
+        className="animal-img"
+        src={
+         animal.profilePicture == null
+          ? `../../img/animal.jpg`
+          : `${animal.profilePicture}`
+        }
+        alt={`${animal.name} profile`}
+       />
+      </div>
+      <div className="animal-item-content">
+       <h4>{animal.name}</h4>
+      </div>
+     </Link>
+    ))}
+   </div>
+   <div className="col-8 animal-profile">
+    {activeAnimal ? (
+     <Animal animalname={animalname} />
+    ) : (
+     <div className="no-select">
+      <p>Select animal's names to preview their profile.</p>
+     </div>
+    )}
+   </div>
+  </div>
+ );
 }
 const mapStateToProps = (state) => {
  return {
-  animals: state.storiesReducer,
+  animalsAll: state.allAnimalsReducer,
  };
 };
 
 const mapDispatchToProps = (dispatch) => {
  return {
-  postAllRequest: () => {
-   dispatch();
-  },
-  getAllStories: () => {
-   dispatch();
+  getAnimals: (page, size) => {
+   dispatch(getAllAnimals(page, size));
   },
  };
 };

@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux'
 import { postReducer } from './post/postReducer'
-import { authReducer } from './Auth/authReducer';
+import {
+    authReducer,
+    loginReducer,
+    registerReducer
+} from './Auth/authReducer';
 import {
     storyFriendReducer,
     storyReducer,
@@ -61,6 +65,8 @@ const rootReducer = combineReducers({
     getAnimalPhototsReducer,
     animalChangePictureReducer,
     animalProfileUpdateReducer,
-    allAnimalsReducer
+    allAnimalsReducer,
+    loginReducer,
+    registerReducer
 })
 export default rootReducer;
