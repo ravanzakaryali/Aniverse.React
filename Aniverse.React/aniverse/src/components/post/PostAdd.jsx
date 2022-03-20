@@ -75,7 +75,6 @@ function PostAdd(props) {
        <span className="fileSaveIndex image-select-text"></span>
        <span
         onClick={(e) => {
-         console.log(postState.postFile);
          document.querySelector('.fileUpload').value = '';
          e.currentTarget.parentElement.className = 'd-none image-select';
         }}

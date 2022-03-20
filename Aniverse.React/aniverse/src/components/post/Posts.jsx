@@ -14,7 +14,6 @@ function Posts(props) {
  const { setComRender } = props;
  const [currentPage, setCurrentPage] = useState(1);
  const [sizePost, setSizePost] = useState(20);
- console.log(props);
 
  useEffect(() => {
   loginUser();

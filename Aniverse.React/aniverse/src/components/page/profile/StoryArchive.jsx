@@ -7,7 +7,6 @@ function StoryArhcive(props) {
  useEffect(() => {
   storyArhiveRequest(1, 100);
  }, [storyArhiveRequest]);
- console.log(props);
  return (
   <>
    {props.stories.length > 0 ? (

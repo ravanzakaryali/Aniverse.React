@@ -5,13 +5,11 @@ import { Link } from 'react-router-dom';
 import { getPagePhotos } from '../../redux/actions/pageAction';
 
 function PhotoIntroPage(props) {
- console.log(useParams());
  const pagenameParams = useParams().pagename;
  const { getPagePhotosRequest } = props;
  useEffect(() => {
   getPagePhotosRequest(pagenameParams);
  }, [getPagePhotosRequest, pagenameParams]);
- console.log(props);
  return (
   <>
    <div className="photos-intro">

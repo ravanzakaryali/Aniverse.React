@@ -10,7 +10,6 @@ import { FaHome } from 'react-icons/fa';
 
 function CenterNavView(props) {
  const location = useLocation();
- console.log(props);
  return (
   <ul className="center-nav-ul ul-flex">
    <li>

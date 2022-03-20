@@ -9,7 +9,6 @@ import Posts from '../../post/Posts';
 function PostArchive(props) {
  const { postRecycleRequest } = props;
  const [comRender, setComRender] = useState(false);
- console.log(props);
  useEffect(() => {
   postRecycleRequest(1, 100);
  }, [postRecycleRequest, comRender]);

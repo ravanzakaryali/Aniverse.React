@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 function PageAbout(props) {
  const { followCount, about, website } = props.page;
- console.log(props);
  return (
   <div className="page-about">
    <div className="page-about-title">

@@ -12,7 +12,6 @@ function Animals(props) {
  useEffect(() => {
   getAnimals(1, 100);
  }, [getAnimals]);
- console.log(props);
  return (
   <div className="row animals-page">
    <div className="col-3 sidebar-animals-item">

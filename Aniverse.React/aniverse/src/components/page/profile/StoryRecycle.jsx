@@ -7,7 +7,6 @@ function StoryRecycle(props) {
  useEffect(() => {
   storyRecycleRequest(1, 100);
  }, [storyRecycleRequest]);
- console.log(props);
  return (
   <>
    {props.stories.length > 0 ? (

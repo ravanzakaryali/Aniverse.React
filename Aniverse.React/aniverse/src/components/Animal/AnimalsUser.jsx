@@ -32,7 +32,6 @@ function AnimalsUser(props) {
   const { name, value } = e.target;
   setAnimalState({ ...animalState, ...{ [name]: value } });
  };
- console.log(props);
  return (
   <div className="row animal-user-profile">
    <div className="user-profile-title">

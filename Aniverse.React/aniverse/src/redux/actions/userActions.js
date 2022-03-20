@@ -52,7 +52,7 @@ export function getUser(id) {
             .then((res) => {
                 dispatch(getUserSuccess(res.data));
             }).catch((error) => {
-                console.log(error);
+                dispatch(getUserError(error));
             })
     }
 }
