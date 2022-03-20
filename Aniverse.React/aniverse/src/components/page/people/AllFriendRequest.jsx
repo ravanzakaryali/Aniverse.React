@@ -4,15 +4,15 @@ import { getFriendRequest } from '../../../redux/actions/friendAction';
 import UserItem from './UserItem';
 
 function AllFriendRequest(props) {
+ const [comRender, setComRender] = useState({});
  const { getRequest } = props;
 
  useEffect(() => {
   getRequest();
- }, [getRequest]);
- console.log(props);
+ }, [getRequest, comRender]);
  return (
   <>
-   <UserItem users={props.request} />
+   <UserItem setComRender={setComRender} users={props.request} />
   </>
  );
 }

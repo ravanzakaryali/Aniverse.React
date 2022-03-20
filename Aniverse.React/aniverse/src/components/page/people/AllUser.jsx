@@ -4,14 +4,15 @@ import { getAllUsers } from '../../../redux/actions/userActions';
 import UserItem from './UserItem';
 
 function AllUser(props) {
+ const [comRender, setComRender] = useState({});
  const { getUsers } = props;
 
  useEffect(() => {
   getUsers();
- }, [getUsers]);
+ }, [getUsers, comRender]);
  return (
   <>
-   <UserItem users={props.users} />
+   <UserItem setComRender={setComRender} users={props.users} />
   </>
  );
 }

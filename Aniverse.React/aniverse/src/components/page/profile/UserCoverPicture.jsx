@@ -84,7 +84,7 @@ function UserCoverPicture(props) {
          Close
         </button>
         <button type="submit" className="btn btn-primary">
-         Save changes
+         Save
         </button>
        </form>
       </div>

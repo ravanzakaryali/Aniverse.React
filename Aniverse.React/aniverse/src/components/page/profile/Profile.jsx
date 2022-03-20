@@ -24,7 +24,7 @@ function Profile(props) {
     <FriendsIntro username={username} />
     <PhotosIntro />
    </div>
-   <div className="col-12 col-md-7">
+   <div className="center-sidebar col-12 col-md-7">
     <AnimalsUser />
     {window.location.pathname.includes('user') ? (
      props.user.id === userLogin.id ? (

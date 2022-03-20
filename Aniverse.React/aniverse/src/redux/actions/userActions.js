@@ -135,18 +135,13 @@ export function getUserFollowsAnimalError(error) {
 }
 export function getUserFollowsAnimal(username) {
     return async function (dispatch) {
-        let url = `${actionTypes.baseUrl}/user/${username}/follows/animal`
-        axios.get(url, {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem("token")}`,
-                'Accept': 'application/json, text/plain',
-                'Content-Type': 'application/json;charset=UTF-8'
-            },
-        }).then((res) => {
-            dispatch(getUserFollowsAnimalSuccess(res.data));
-        }).catch((error) => {
-            dispatch(getUserFollowsAnimalError(error));
-        })
+        let url = `${baseUrl}/user/${username}/follows/animal`
+        axios.get(url, header)
+            .then((res) => {
+                dispatch(getUserFollowsAnimalSuccess(res.data));
+            }).catch((error) => {
+                dispatch(getUserFollowsAnimalError(error));
+            })
     }
 }
 

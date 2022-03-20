@@ -22,7 +22,7 @@ function PostDeleteModal(props) {
         type="button"
         data-bs-dismiss="modal"
         aria-label="Close">
-        <FontAwesomeIcon icon="fa-solid fa-xmark" />
+        <FontAwesomeIcon className="icon" icon="fa-solid fa-xmark" />
        </button>
       </div>
       <div className="modal-body">

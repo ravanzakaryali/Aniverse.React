@@ -17,6 +17,9 @@
     }
     .static-page {
         margin: auto;
+        @media screen and (max-width: 768px) {
+            padding-bottom: $page-margin-top-bottom;
+        }
     }
     .fixed-sidebar-right {
         position: fixed;

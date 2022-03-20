@@ -17,9 +17,9 @@ function Stories(props) {
   } else if (width > 768) {
    sliderPerView = 3;
   } else if (width > 576) {
-   sliderPerView = 2;
+   sliderPerView = 3;
   } else {
-   sliderPerView = 1;
+   sliderPerView = 3;
   }
  } else if (props.stories.length >= 3) {
   sliderPerView = 3;

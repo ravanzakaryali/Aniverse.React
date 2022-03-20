@@ -9,7 +9,7 @@ function Follows(props) {
  const username = useParams().username;
  useEffect(() => {
   follows(username);
- }, []);
+ }, [follows, username]);
  return (
   <div className="">
    <div className="intro follow-user">

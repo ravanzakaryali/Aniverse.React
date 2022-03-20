@@ -42,6 +42,11 @@
             object-fit: cover;
             @include boxSize($box-size-img * 10, $box-size-img * 10, 50%);
         }
+        .profile-picture-modal {
+            display: flex;
+            justify-content: center;
+            border: none;
+        }
         .profile-picture-row {
             margin-bottom: $margin-normal;
             padding-bottom: $padding-normal;

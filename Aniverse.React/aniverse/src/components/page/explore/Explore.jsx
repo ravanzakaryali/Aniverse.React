@@ -1,3 +1,4 @@
+import { useWindowSize } from '@react-hook/window-size';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { getAllPage } from '../../../redux/actions/pageAction';
@@ -18,13 +19,15 @@ function Explore(props) {
   document.title = 'Explore | Aniverse';
  }, [comRender, getAllStories, postAllRequest]);
  console.log(props);
+ const [width] = useWindowSize();
+
  return (
   <>
    <div className="row explore main">
     <div className="col-3 fixed-sidebar">
-     <PageIntro pages={props.pages} />
+     {width > 769 ? <PageIntro pages={props.pages} /> : ''}
     </div>
-    <div className="col-6 static-page">
+    <div className="col-12 col-md-6 static-page">
      <div className="story-row">
       <Stories stories={props.stories} />
      </div>
@@ -35,7 +38,7 @@ function Explore(props) {
      />
     </div>
     <div className="col-3 fixed-sidebar-right ">
-     <Sponsored />
+     {width > 769 ? <Sponsored /> : ''}
     </div>
    </div>
   </>

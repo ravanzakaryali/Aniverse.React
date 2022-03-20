@@ -1,16 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import UserItem from './UserItem';
 import { getBlcokUsers } from '../../../redux/actions/userActions';
 import { connect } from 'react-redux';
 
 function BlockUsers(props) {
+ const [comRender, setComRender] = useState({});
  const { getBlockUsers } = props;
  useEffect(() => {
   getBlockUsers();
- }, []);
+ }, [comRender, getBlockUsers]);
+ console.log(comRender);
  return (
   <>
-   <UserItem users={props.users} />
+   <UserItem setComRender={setComRender} users={props.users} />
   </>
  );
 }

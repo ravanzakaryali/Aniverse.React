@@ -6,7 +6,6 @@ import Posts from './Posts';
 function PostSetting(props) {
  const [comRender, setComRender] = useState({});
  const { allPosts, comState } = props;
- console.log(comRender);
 
  useEffect(() => {
   allPosts(1, 20);

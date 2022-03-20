@@ -4,17 +4,18 @@ import { connect } from 'react-redux';
 import { unFriend } from '../../../../redux/actions/friendAction';
 
 export const FriendsButton = (props) => {
- const { unFriendRequest } = props;
+ const { unFriendRequest, setComRender } = props;
  return (
   <>
    <form
     onSubmit={(e) => {
      e.preventDefault();
      unFriendRequest(props.userId);
+     setComRender(props.userId);
     }}
     className="buttons">
     <button type="submmit" className="btn btn-light">
-     <FontAwesomeIcon icon="fa-solid fa-user-minus" />
+     <FontAwesomeIcon className="icon" icon="fa-solid fa-user-minus" />
      Unfriend
     </button>
    </form>

@@ -32,6 +32,10 @@
 .animal-container {
     position: relative;
     padding: 0 $padding-normal * 20;
+    @media screen and (max-width: 768px) {
+        padding: 0;
+        padding-bottom: $page-margin-top-bottom;
+    }
     .profile {
         padding: 0;
         .profile-img {

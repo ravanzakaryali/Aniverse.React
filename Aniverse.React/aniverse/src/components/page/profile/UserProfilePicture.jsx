@@ -75,7 +75,7 @@ function UserProfilePicture(props) {
         <img src={`${imageSrc}`}></img>
        </div>
        <form
-        className="modal-footer"
+        className="modal-footer profile-picture-modal"
         onSubmit={(e) => {
          e.preventDefault();
          formData.append('imageFile', profileState.postFile[0]);
@@ -93,7 +93,7 @@ function UserProfilePicture(props) {
          Close
         </button>
         <button type="submit" className="btn btn-primary">
-         Save changes
+         Save
         </button>
        </form>
       </div>

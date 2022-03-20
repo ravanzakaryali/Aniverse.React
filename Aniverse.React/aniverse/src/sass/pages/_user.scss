@@ -9,4 +9,9 @@
             position: static;
         }
     }
+    .center-sidebar {
+        @media screen and (max-width: 768px) {
+            padding-bottom: $page-margin-top-bottom;
+        }
+    }
 }

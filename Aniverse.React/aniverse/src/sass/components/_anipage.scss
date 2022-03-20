@@ -151,7 +151,9 @@
 }
 .ani-page-home {
     .col {
-        padding: 0px;
+        position: sticky;
+        top: $page-margin-top-bottom;
+        height: fit-content;
     }
     margin: $margin-normal 100px;
     .page-about {

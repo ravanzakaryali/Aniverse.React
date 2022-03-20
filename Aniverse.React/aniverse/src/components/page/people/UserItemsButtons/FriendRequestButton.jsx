@@ -29,7 +29,7 @@ const FriendRequestButton = (props) => {
      confirmRequest(userId);
     }}>
     <button type="submit" className="btn btn-primary">
-     <FontAwesomeIcon icon="fa-solid fa-user-check" />
+     <FontAwesomeIcon className="icon" icon="fa-solid fa-user-check" />
      Confirm
     </button>
    </form>
@@ -38,9 +38,10 @@ const FriendRequestButton = (props) => {
      e.preventDefault();
      setIsConfirm(!isConfirm);
      declinedRequest(userId);
+     props.setComRender(userId);
     }}>
     <button type="submit" className="btn btn-light">
-     <FontAwesomeIcon icon="fa-solid fa-user-xmark" />
+     <FontAwesomeIcon className="icon" icon="fa-solid fa-user-xmark" />
      Remove
     </button>
    </form>

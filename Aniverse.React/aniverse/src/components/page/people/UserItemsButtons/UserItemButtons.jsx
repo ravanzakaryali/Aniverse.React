@@ -10,22 +10,25 @@ function UserItemButtons(props) {
  return (
   <>
    {location.pathname === '/people' ? (
-    <AllPeopleButton userId={props.userId} />
+    <AllPeopleButton setComRender={props.setComRender} userId={props.userId} />
    ) : (
     ''
    )}
    {location.pathname === '/people/friends' ? (
-    <UnFriendButton userId={props.userId} />
+    <UnFriendButton setComRender={props.setComRender} userId={props.userId} />
    ) : (
     ''
    )}
    {location.pathname === '/people/request' ? (
-    <FriendRequestButton userId={props.userId} />
+    <FriendRequestButton
+     setComRender={props.setComRender}
+     userId={props.userId}
+    />
    ) : (
     ''
    )}
    {location.pathname === '/people/block' ? (
-    <BlockUsersButton userId={props.userId} />
+    <BlockUsersButton setComRender={props.setComRender} userId={props.userId} />
    ) : (
     ''
    )}

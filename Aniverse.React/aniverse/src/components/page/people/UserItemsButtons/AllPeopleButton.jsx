@@ -11,10 +11,11 @@ export const AllPeopleButton = (props) => {
     onClick={(e) => {
      e.preventDefault();
      addFriendRequest(userId);
+     props.setComRender(userId);
     }}
     className="buttons">
     <button type="submit" className="btn btn-primary">
-     <FontAwesomeIcon icon="fa-solid fa-user-plus" />
+     <FontAwesomeIcon className="icon" icon="fa-solid fa-user-plus" />
      Add Friends
     </button>
    </form>

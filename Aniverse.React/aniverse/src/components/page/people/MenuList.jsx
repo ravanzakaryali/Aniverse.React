@@ -39,7 +39,6 @@ function MenuList() {
      <Link
       to="request"
       className={location.pathname === '/people/request' ? 'active' : ''}>
-      {/* <FontAwesomeIcon className="icon" icon="fa-solid fa-user-check" /> */}
       <FontAwesomeIcon icon="fa-solid fa-user-plus" className="icon" />
       Friends request
       <FontAwesomeIcon
