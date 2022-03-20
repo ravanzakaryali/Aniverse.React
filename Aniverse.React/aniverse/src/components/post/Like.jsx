@@ -5,7 +5,7 @@ import { likePost } from '../../redux/actions/postAction';
 
 function Like(props) {
  const userId = JSON.parse(localStorage.getItem('loginUser')).id;
- const { likeRequest, comRender, setComRender } = props;
+ const { likeRequest, setComRender } = props;
 
  const [likeActive, setLikeActive] = useState(true);
  const [likeState, setLikeState] = useState({});
@@ -16,7 +16,7 @@ function Like(props) {
  };
 
  const likeClikc = (e) => {
-  setComRender(comRender + 1);
+  setComRender(likeState);
   setLikeState({
    postId: props.postId,
    likeType: 0,
@@ -39,12 +39,12 @@ function Like(props) {
     <button onClick={likeClikc} type="submit" className="btn btn-like">
      {likeActive ? (
       <>
-       <FontAwesomeIcon icon="fa-regular fa-heart" />
+       <FontAwesomeIcon className="icon" icon="fa-regular fa-heart" />
        Like
       </>
      ) : (
       <>
-       <FontAwesomeIcon icon="fa-solid fa-heart" />
+       <FontAwesomeIcon className="icon" icon="fa-solid fa-heart" />
        Like
       </>
      )}

@@ -16,11 +16,11 @@ function AllUser(props) {
  );
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
  return {
   users: state.usersAllReducer,
  };
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
  return {

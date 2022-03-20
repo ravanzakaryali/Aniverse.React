@@ -11,14 +11,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Posts(props) {
  const { loginUser } = props;
- const { comRender, setComRender } = props;
+ const { setComRender } = props;
  const [currentPage, setCurrentPage] = useState(1);
  const [sizePost, setSizePost] = useState(20);
  console.log(props);
 
  useEffect(() => {
   loginUser();
- }, [sizePost, currentPage, comRender]);
+ }, [sizePost, currentPage, loginUser]);
 
  const { posts } = props;
  return (
@@ -61,11 +61,9 @@ function Posts(props) {
           locale="az-AZ"
          />
         </p>
-        <p className="hasTag">{post.hasTag}</p>
        </div>
        <PostMenu
         setComRender={setComRender}
-        comRender={comRender}
         userId={post.user.id}
         postId={post.id}
         isSave={post.isSave}
@@ -103,11 +101,7 @@ function Posts(props) {
         </span>
        </div>
       </div>
-      <LikeCommentView
-       comRender={comRender}
-       setComRender={setComRender}
-       post={post}
-      />
+      <LikeCommentView setComRender={setComRender} post={post} />
      </div>
     ))}
    </div>

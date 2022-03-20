@@ -26,9 +26,9 @@ export function getAllPostSuccess(post) {
 export function getAllPostError(error) {
     return { type: actionTypes.GET_ALL_POSTS_ERROR, payload: error }
 }
-export function getAllPosts() {
+export function getAllPosts(page, size) {
     return async function (dispatch) {
-        let url = `${baseUrl}/post`;
+        let url = `${baseUrl}/post?page=${page}&size=${size}`;
         axios.get(url, header)
             .then((res) => {
                 dispatch(getAllPostSuccess(res.data));
@@ -144,7 +144,23 @@ export function postDelete(id) {
             })
     }
 }
-
+export function postArchiveSuccess(data) {
+    return { type: actionTypes.POST_ARCHIVE_SUCCESS, payload: data }
+}
+export function postArchiveError(error) {
+    return { type: actionTypes.POST_ARCHIVE_ERROR, payload: error }
+}
+export function postArchive(id) {
+    return function (dispatch) {
+        let url = `${baseUrl}/post/archive/${id}`;
+        axios.patch(url, {}, header)
+            .then((res) => {
+                dispatch(postArchiveSuccess(res));
+            }).catch((error) => {
+                dispatch(postArchiveError(error));
+            })
+    }
+}
 export function getArchivePostSuccess(data) {
     return { type: actionTypes.GET_POST_ARCHIVE_SUCCESS, payload: data }
 }
@@ -177,6 +193,24 @@ export function getRecyclePost(page, size) {
                 dispatch(getRecyclePostSuccess(res.data));
             }).catch((error) => {
                 dispatch(getRecyclePostError(error));
+            })
+    }
+}
+
+export function getSavePostSuccess(data) {
+    return { type: actionTypes.GET_POST_SAVE_SUCCESS, payload: data }
+}
+export function getSavePostError(error) {
+    return { type: actionTypes.GET_POST_SAVE_ERROR, payload: error }
+}
+export function getSavePost(page, size) {
+    return function (dispatch) {
+        let url = `${baseUrl}/post/save?page=${page}&size=${size}`;
+        axios.get(url, header)
+            .then((res) => {
+                dispatch(getSavePostSuccess(res.data));
+            }).catch((error) => {
+                dispatch(getSavePostError(error));
             })
     }
 }

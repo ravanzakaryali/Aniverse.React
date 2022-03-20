@@ -37,5 +37,10 @@ export default {
     postRecycle: [],
     storyArchive: [],
     storyRecycle: [],
+    pageAll: [],
+    pageGet: [],
+    postRequest: [],
+    postSave: [],
+    pagePhotos: [],
     loading: true
 }

@@ -60,7 +60,7 @@ function RightNavView(props) {
        </Link>
       </div>
       <div className="account-body">
-       <Link to="user/setting" className="setting">
+       {/* <Link to="user/setting" className="setting">
         <div className="content">
          <div className="icon">
           <FontAwesomeIcon icon="fa-solid fa-gear" />
@@ -70,7 +70,7 @@ function RightNavView(props) {
         <div className="left-icon">
          <FontAwesomeIcon icon="fa-solid fa-angle-right" />
         </div>
-       </Link>
+       </Link> */}
        <div className="content">
         <div className="icon">
          <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" />

@@ -29,6 +29,11 @@ import Setting from '../page/profile/Setting';
 import Archive from '../page/profile/Archive';
 import PostArchive from '../page/profile/PostArchive';
 import StoryArchive from '../page/profile/StoryArchive';
+import Recycle from '../page/profile/Recycle';
+import StoryRecycle from '../page/profile/StoryRecycle';
+import PostRecycle from '../page/profile/PostRecycle';
+import Page from '../aniPage/Page';
+import PostSave from '../page/profile/PostSave';
 
 function App() {
  const dispatch = useDispatch();
@@ -63,9 +68,14 @@ function App() {
      />
      <Route path="setting" element={<Setting />}>
       <Route path="archive" element={<Archive />}>
-       <Route index path="post" element={<PostArchive />} />
        <Route path="story" element={<StoryArchive />} />
+       <Route index element={<PostArchive />} />
       </Route>
+      <Route path="recycle" element={<Recycle />}>
+       <Route index element={<PostRecycle />} />
+       <Route path="story" element={<StoryRecycle />} />
+      </Route>
+      <Route path="save" element={<PostSave />} />
      </Route>
      <Route path="photos" element={<Photos />} />
      <Route path="pages" element={<Pages />} />
@@ -78,6 +88,7 @@ function App() {
      <Route path="login" element={<Login />} />
      <Route path="register" element={<Register />} />
     </Route>
+    <Route path="page/:pagename" element={<Page />} />
    </Routes>
   </BrowserRouter>
  );

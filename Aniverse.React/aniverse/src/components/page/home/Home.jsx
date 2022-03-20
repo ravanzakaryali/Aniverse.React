@@ -11,10 +11,12 @@ import SponsoredAdd from '../../Sponsored/SponsoredAdd';
 function Home(props) {
  const navigate = useNavigate();
  const [width] = useWindowSize();
+ const [comState, setComState] = useState({});
  useEffect(() => {
   document.title = 'Aniverse';
   if (token === null) return navigate('/authenticate/login');
- }, [navigate]);
+ }, [comState]);
+ console.log(comState);
  const token = localStorage.getItem('token');
  return (
   <>
@@ -29,8 +31,8 @@ function Home(props) {
      )}
      <div className="static-page col-12 col-md-6">
       <Story />
-      <PostAdd />
-      <PostSetting />
+      <PostAdd comState={comState} setComState={setComState} />
+      <PostSetting comState={comState} />
      </div>
      {width > 768 ? (
       <div className="fixed-sidebar-right col-3">

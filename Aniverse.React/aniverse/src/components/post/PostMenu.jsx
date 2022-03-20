@@ -6,12 +6,12 @@ import { IoMdArchive } from 'react-icons/io';
 
 import { postSave } from '../../redux/actions/postAction';
 import PostDeleteModal from './PostDeleteModal';
+import PostArchiveModal from './PostArchiveModal';
 
 function PostMenu(props) {
- const { postSaveRequest, comRender, setComRender } = props;
+ const { postSaveRequest, setComRender } = props;
  const [activeSave, setStateSave] = useState(true);
  const [activeMenu, setActiveMenu] = useState(false);
- const [deleteModalActive, setDeleteModalActive] = useState(false);
  const [postSave, setPostSave] = useState({});
 
  const postSaveSubmit = (e) => {
@@ -58,15 +58,19 @@ function PostMenu(props) {
          </button>
         </div>
         <div className="post-menu-item">
-         <button className="btn">
+         <button
+          data-bs-toggle="modal"
+          data-bs-target="#archivePostModal"
+          className="btn">
           Archive <IoMdArchive className="icon" />
          </button>
         </div>
         <div className="post-menu-item">
          <button
+          data-bs-toggle="modal"
+          data-bs-target="#deletePostModal"
           onClick={() => {
            setActiveMenu(false);
-           setDeleteModalActive(true);
           }}
           className="btn">
           Remove <FontAwesomeIcon className="icon" icon="fa-solid fa-trash" />
@@ -79,15 +83,8 @@ function PostMenu(props) {
      </>
     )}
    </div>
-   {deleteModalActive ? (
-    <PostDeleteModal
-     postId={props.postId}
-     setDeleteModalActive={setDeleteModalActive}
-     deleteModalActive={deleteModalActive}
-    />
-   ) : (
-    ''
-   )}
+   <PostArchiveModal setComRender={setComRender} postId={props.postId} />
+   <PostDeleteModal setComRender={setComRender} postId={props.postId} />
   </>
  );
 }

@@ -1,0 +1,186 @@
+.page-intro {
+    .page-title {
+        font-size: $fs-normal;
+        font-weight: $fs-weight-normal;
+        display: flex;
+        border-bottom: 1px solid $gray-20;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .page-item {
+        padding: $padding-normal 0;
+    }
+    .profile-img {
+        width: $box-size-img * 1.5;
+        height: $box-size-img * 1.5;
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 1px solid $gray-20;
+        }
+    }
+    .page-item {
+        display: flex;
+        border-radius: $border-radius-min;
+        padding: $padding-normal $padding-min;
+        object-fit: cover;
+        &:hover {
+            background-color: $gray-10;
+        }
+    }
+    .page-content {
+        margin: auto 0;
+        color: $gray-90;
+        padding-left: $padding-normal;
+        .name {
+            font-weight: $fs-weight-normal;
+            font-size: $fs-normal;
+            margin: 0;
+            padding: 0;
+            line-height: 0.8;
+            .circle {
+                font-size: $fs-min - 2;
+                color: $color-brand-primary;
+                margin: auto;
+                margin-left: $margin-normal;
+                display: inline-grid;
+            }
+        }
+        .follower-count {
+            font-size: $fs-min - 2;
+            color: $gray-80;
+        }
+    }
+}
+.ani_page {
+    .cover_picture {
+        top: $page-margin-top-bottom + 5;
+        position: relative;
+        width: 100%;
+        height: 300px;
+        border-radius: $border-radius-max;
+        overflow: hidden;
+        .default_bg_style {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, $gray-30, $white);
+        }
+        .btn-parent {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .btn_cover {
+            font-size: $fs-normal;
+            width: 60px;
+            height: 60px;
+            @extend %box-shadow-main;
+            background-color: $white;
+            border-radius: 50%;
+            margin: auto;
+            transition: $transition-min;
+            &:hover {
+                transform: scale(1.04);
+            }
+        }
+    }
+    .page_profile {
+        margin: 0px 100px;
+        position: relative;
+        background-color: $white;
+        z-index: 2;
+        border-radius: $border-radius-max;
+        @extend %box-shadow-main;
+        .page-menu {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid $gray-10;
+            margin-top: $margin-normal;
+            padding: $padding-normal;
+            ul {
+                display: flex;
+            }
+            ul li {
+            }
+            ul li a {
+                padding: $padding-normal $padding-normal * 2;
+                font-size: $fs-normal - 4;
+                border-radius: $border-radius-min;
+                color: $gray-90;
+                display: inline-block;
+                &.active {
+                    background-color: $gray-10;
+                }
+            }
+        }
+    }
+    .profile-title {
+        display: flex;
+        padding: $padding-normal;
+    }
+    .page-profile-img {
+        width: 150px;
+        height: 150px;
+        background-color: $white;
+        border-radius: 50%;
+        border: 1px solid $gray-20;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    .page-profile-contetn {
+        margin: auto 0;
+        margin-left: $margin-normal * 2;
+        .name {
+            font-size: $fs-max;
+            font-weight: $fs-weight-normal;
+            .circle {
+                font-size: $fs-normal;
+                color: $color-brand-primary;
+                margin: auto;
+                margin-left: $margin-normal;
+                display: inline-grid;
+            }
+        }
+    }
+}
+.ani-page-home {
+    .col {
+        padding: 0px;
+    }
+    margin: $margin-normal 100px;
+    .page-about {
+        @extend %box-shadow-main;
+        border-radius: $border-radius-max;
+        .page-about-title h3 {
+            padding: $padding-normal;
+            font-size: $fs-normal;
+            color: $gray-90;
+            font-weight: $fs-weight-normal + 100;
+            border-bottom: 1px solid $gray-20;
+        }
+    }
+    .page-about-list {
+        padding: $padding-normal;
+        li {
+            display: flex;
+            align-items: center;
+            padding: $padding-min - 2 0;
+            font-size: $fs-min;
+            .icon {
+                margin-bottom: auto;
+                color: $gray-80;
+                width: 10%;
+                font-size: $fs-normal;
+            }
+        }
+    }
+    .photos-intro {
+        border-radius: $border-radius-max;
+    }
+}

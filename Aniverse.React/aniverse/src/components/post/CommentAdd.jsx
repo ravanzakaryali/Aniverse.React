@@ -13,7 +13,7 @@ function CommentAdd(props) {
     e.preventDefault();
     commentUser(commentState);
     document.querySelector('.add-comment-input input').value = '';
-    setComRender(comRender + 1);
+    setComRender(commentState);
    }}>
    <div className="">
     <img

@@ -183,4 +183,19 @@
             }
         }
     }
+    .story-gallery-row {
+        margin: 0;
+        background-color: $white;
+        margin-top: $padding-normal;
+        @extend %box-shadow-main;
+    }
+    .story-gallery {
+        height: 200px;
+        padding: $padding-min;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
 }

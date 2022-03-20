@@ -1,12 +1,12 @@
 import LightGallery from 'lightgallery/react';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getArchiveStory } from '../../../redux/actions/storyAction';
-function StoryArhcive(props) {
- const { storyArhiveRequest, stories } = props;
+import { getRecycleStory } from '../../../redux/actions/storyAction';
+function StoryRecycle(props) {
+ const { storyRecycleRequest, stories } = props;
  useEffect(() => {
-  storyArhiveRequest(1, 100);
- }, [storyArhiveRequest]);
+  storyRecycleRequest(1, 100);
+ }, [storyRecycleRequest]);
  console.log(props);
  return (
   <>
@@ -29,16 +29,16 @@ function StoryArhcive(props) {
 }
 const mapStateToProps = (state) => {
  return {
-  stories: state.storyArchiveReducer,
+  stories: state.storyRecycleReducer,
  };
 };
 
 const mapDispatchToProps = (dispatch) => {
  return {
-  storyArhiveRequest: (page, size) => {
-   dispatch(getArchiveStory(page, size));
+  storyRecycleRequest: (page, size) => {
+   dispatch(getRecycleStory(page, size));
   },
  };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(StoryArhcive);
+export default connect(mapStateToProps, mapDispatchToProps)(StoryRecycle);

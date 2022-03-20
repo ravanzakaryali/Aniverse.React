@@ -37,7 +37,9 @@ import {
     faUsers,
     faVenusDouble,
     faWindowMaximize,
-    faXmark
+    faXmark,
+    faCircle,
+    faCircleCheck
 } from '@fortawesome/free-solid-svg-icons';
 library.add(faB,
     fas,
@@ -80,5 +82,6 @@ library.add(faB,
     faImages,
     faThumbsUp,
     faMagnifyingGlass,
+    faCircleCheck
 );
 export default function FontAwesome() { }

@@ -3,7 +3,8 @@ import {
     postReducer,
     postCreateReducer,
     postArchiveReducer,
-    postRecycleReducer
+    postRecycleReducer,
+    postSaveReducer,
 } from './post/postReducer'
 import {
     authReducer,
@@ -44,7 +45,11 @@ import {
     allAnimalsReducer
 } from './animal/aimalReducer';
 import { commentPostReducer } from './comment/commentReducer';
-
+import {
+    pageAllReducer,
+    pageGetReducer,
+    pageGetPhotosReducer
+} from './page/pageReducer';
 
 const rootReducer = combineReducers({
     userReducer,
@@ -79,6 +84,10 @@ const rootReducer = combineReducers({
     postArchiveReducer,
     postRecycleReducer,
     storyArchiveReducer,
-    storyRecycleReducer
+    storyRecycleReducer,
+    pageAllReducer,
+    pageGetReducer,
+    postSaveReducer,
+    pageGetPhotosReducer
 })
 export default rootReducer;

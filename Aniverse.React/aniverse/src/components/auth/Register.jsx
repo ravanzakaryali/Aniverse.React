@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { authRegister } from '../../redux/actions/authAction';
 
 function Register(props) {
@@ -9,6 +9,7 @@ function Register(props) {
  const [userState, setUserState] = useState({});
  const [formErrors, setFormErrors] = useState({});
  const [isSubmit, setIsSubmit] = useState(false);
+ const navigate = useNavigate();
 
  const [isActive, setIsActive] = useState(false);
  const handleSubmit = (e) => {
@@ -19,9 +20,13 @@ function Register(props) {
   const { name, value } = e.target;
   setUserState({ ...userState, ...{ [name]: value } });
  };
-
+ useEffect(() => {
+  if (props.registerRequest.status === 200)
+   return navigate('/authenticate/login');
+ }, [navigate, register]);
+ console.log(props);
  return (
-  <form className="form-horizontal" onSubmit={handleSubmit}>
+  <form className="form-horizontal" onSubmit={(e) => handleSubmit(e)}>
    <h1 className="auth-title">Register</h1>
    <div className={`row ${isActive ? 'd-none' : ''}`}>
     <div className="form-auth col-6">
@@ -134,21 +139,26 @@ function Register(props) {
     </div>
    </div>
    <div className="form-auth">
-    <button
-     className="btn btn-primary submit-btn"
+    {isActive ? (
+     <button type="submit" className="btn btn-primary submit-btn">
+      Register
+     </button>
+    ) : (
+     <a
+      onClick={() => {
+       setIsActive(true);
+      }}
+      type="button"
+      className="btn btn-primary submit-btn">
+      Next
+      <FontAwesomeIcon icon="fa-solid fa-arrow-right" className="icon" />
+     </a>
+    )}
+    {/* <button
      type="submit"
-     onClick={() => {
-      setIsActive(true);
-     }}>
-     {isActive ? (
-      'Register'
-     ) : (
-      <>
-       Next
-       <FontAwesomeIcon icon="fa-solid fa-arrow-right" className="icon" />
-      </>
-     )}
-    </button>
+    >
+     {isActive ? 'Register' : <>Next</>}
+    </button> */}
    </div>
    <div className="other-link">
     Are you have a account?
@@ -160,7 +170,7 @@ function Register(props) {
 
 const mapStateToProps = (state) => {
  return {
-  registerError: state.registerReducer,
+  registerRequest: state.registerReducer,
  };
 };
 const mapDispatchToProps = (dispatch) => {

@@ -48,9 +48,9 @@ export function storiesAllReducer(state = initialState.stories, action) {
 export function storyArchiveReducer(state = initialState.storyArchive, action) {
     switch (action.type) {
         case actionTypes.GET_STORY_ARCHIVE_SUCCESS:
-            return state.payload
+            return action.payload
         case actionTypes.GET_STORY_ARCHIVE_ERROR:
-            return state.payload
+            return action.payload
         default:
             return state;
     }
@@ -58,9 +58,9 @@ export function storyArchiveReducer(state = initialState.storyArchive, action) {
 export function storyRecycleReducer(state = initialState.storyRecycle, action) {
     switch (action.type) {
         case actionTypes.GET_STORY_RECYCLE_SUCCESS:
-            return state.payload
+            return action.payload
         case actionTypes.GET_STORY_RECYCLE_ERROR:
-            return state.payload
+            return action.payload
         default:
             return state;
     }

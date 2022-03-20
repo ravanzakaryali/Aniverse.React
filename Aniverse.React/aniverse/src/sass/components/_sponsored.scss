@@ -1,6 +1,7 @@
 .sponsored {
     padding: $padding-normal $padding-min;
     .sponsored-title-parent {
+        border-bottom: 1px solid $gray-20;
         display: flex;
         justify-content: space-between;
         align-items: center;

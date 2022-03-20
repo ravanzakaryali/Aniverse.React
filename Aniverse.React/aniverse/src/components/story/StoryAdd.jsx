@@ -6,13 +6,12 @@ import StoryModal from './StoryModal';
 
 function StoryAdd(props) {
  const { getUser } = props;
- const [modalActive, setModalActive] = useState(false);
 
  useEffect(() => {
   if (props.user) {
    getUser();
   }
- }, [modalActive]);
+ }, [getUser]);
  return (
   <div className="col-4 col-sm-3 col-lg-2">
    <button
@@ -33,11 +32,7 @@ function StoryAdd(props) {
      <p className="story-text">The story of the day</p>
     </div>
    </button>
-   <StoryModal
-    setModal={setModalActive}
-    addStory={props.addStory}
-    setStory={props.setStory}
-   />
+   <StoryModal addStory={props.addStory} setStory={props.setStory} />
   </div>
  );
 }

@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import Intro from './Intro';
 
 function Setting() {
  return (
@@ -24,6 +25,14 @@ function Setting() {
           <FontAwesomeIcon icon="fa-solid fa-trash" />{' '}
          </span>
          Recycle bin
+        </Link>
+       </li>
+       <li>
+        <Link to={`save`}>
+         <span className="icon">
+          <FontAwesomeIcon icon="fa-solid fa-trash" />{' '}
+         </span>
+         Save
         </Link>
        </li>
       </ul>

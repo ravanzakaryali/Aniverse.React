@@ -9,13 +9,13 @@ import { MdAddPhotoAlternate } from 'react-icons/md';
 import { VscAdd } from 'react-icons/vsc';
 
 function PostAdd(props) {
- const { post } = props;
+ const { post, comState, setComState } = props;
  const { selectAnimal } = props;
  const [postState, setPostState] = useState({});
 
  useEffect(() => {
   selectAnimal();
- }, [postState]);
+ }, [postState, selectAnimal]);
 
  const formData = new FormData();
 
@@ -24,6 +24,7 @@ function PostAdd(props) {
    <form
     onSubmit={(e) => {
      e.preventDefault();
+
      if (postState.postFile) {
       for (let i = 0; i < postState.postFile.length; i++) {
        formData.append('imageFile', postState.postFile[i]);
@@ -33,6 +34,7 @@ function PostAdd(props) {
      formData.append('animalId', postState.animalId);
      if (postState) {
       post(formData);
+      setComState(postState);
      }
     }}
     className="row post-add">
@@ -48,7 +50,6 @@ function PostAdd(props) {
       placeholder="What do you think about animals?"></textarea>
      <div className="animals">
       <Select
-       isSearchable
        placeholder="Animal"
        onChange={(e) => {
         setPostState({
@@ -114,7 +115,6 @@ function PostAdd(props) {
           }
          }
         });
-        // setPostState({ ...postState, ...{ fileValue } });
        }
       }}
       hidden

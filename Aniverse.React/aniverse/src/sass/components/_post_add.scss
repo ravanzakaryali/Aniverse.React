@@ -105,12 +105,16 @@
     }
 }
 .post-delete-modal {
+    background-color: $modal-active;
     .modal-header {
         padding: $padding-normal;
         border-bottom: 1px solid $gray-20;
     }
     .modal-body {
-        padding: $padding-normal;
+        padding: 0;
+        p {
+            padding: $padding-normal;
+        }
     }
     .modal-footer {
         justify-content: end;
@@ -123,7 +127,7 @@
         }
         .btn {
             border-radius: $border-radius-min;
-            padding: $padding-min;
+            padding: $padding-min $padding-normal;
             width: auto;
         }
     }

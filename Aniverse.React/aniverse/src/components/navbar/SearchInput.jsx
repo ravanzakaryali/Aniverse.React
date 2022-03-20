@@ -19,7 +19,12 @@ function SearchInput(props) {
      <input
       onChange={(e) => {
        setSearch(e.target.value);
-       if (e.target.value !== '') searchRequest(search);
+       searchRequest(search);
+       if (e.target.value === '') {
+        document.querySelector('.search-parent').classList.add('d-none');
+       } else {
+        document.querySelector('.search-parent').classList.remove('d-none');
+       }
       }}
       type="text"
       placeholder="Search Aniverse"

@@ -14,10 +14,8 @@ export function authRegister(registerState) {
         let url = `${baseUrl}/authenticate/register`;
         axios.post(url, registerState, headerRegister)
             .then((res) => {
-                console.log(res);
-                dispatch(registerSuccess(res.data));
+                dispatch(registerSuccess(res));
             }).catch((error) => {
-                console.log(error);
                 dispatch(registerError(error));
             })
     }
@@ -47,11 +45,12 @@ export function authLogin(loginState) {
     }
 }
 export function logOutSuccess() {
-    return { type: actionTypes.USER_LOGIN_SUCCESS }
+    return { type: actionTypes.USER_LOGOUT }
 }
 export const logOut = () => {
     return async function (dispatch) {
         localStorage.clear();
+        window.location.reload();
         dispatch(logOutSuccess())
     }
 }

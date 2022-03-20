@@ -1,19 +1,17 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
-function SponsoredAdd(props) {
- const { activeModal, setActiveModal } = props;
+function PageCreateModal() {
  return (
   <>
    <div
-    className="modal sponsored-modal fade"
-    id="sponsored-modal"
-    aria-labelledby="sponsored_modal_label"
+    className="modal fade"
+    id="pageCreate"
+    aria-labelledby="pageCreateLabel"
     aria-hidden="true">
     <div className="modal-dialog modal-dialog-centered">
-     <div className="modal-content vertical-center">
+     <div className="modal-content">
       <div className="modal-header">
-       <h5 className="modal-title" id="sponsored_modal_label">
+       <h5 className="modal-title" id="pageCreateLabel">
         Modal title
        </h5>
        <button
@@ -22,13 +20,19 @@ function SponsoredAdd(props) {
         data-bs-dismiss="modal"
         aria-label="Close"></button>
       </div>
-      <div className="modal-body">...</div>
+      <div className="modal-body">
+       <form className="form-page-create">
+        <div className="form-auth">
+         <input type="text" />
+        </div>
+       </form>
+      </div>
       <div className="modal-footer">
        <button type="button" className="btn btn-light" data-bs-dismiss="modal">
         Close
        </button>
        <button type="button" className="btn btn-primary">
-        Save
+        Create
        </button>
       </div>
      </div>
@@ -37,4 +41,4 @@ function SponsoredAdd(props) {
   </>
  );
 }
-export default SponsoredAdd;
+export default PageCreateModal;

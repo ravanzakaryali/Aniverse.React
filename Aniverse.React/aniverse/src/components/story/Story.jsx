@@ -11,11 +11,11 @@ function Story(props) {
  useEffect(() => {
   storiesRequest();
   setStory(addStory);
- }, addStory);
+ }, [addStory, storiesRequest]);
  return (
   <div className="story-row d-flex">
    <StoryAdd addStory={addStory} setStory={setStory} />
-   <Stories stories={props.stories} />
+   <Stories stories={props.stories} addStory={addStory} setStory={setStory} />
   </div>
  );
 }

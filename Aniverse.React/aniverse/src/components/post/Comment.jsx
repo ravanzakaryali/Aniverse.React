@@ -5,9 +5,6 @@ import { commentCreate } from '../../redux/actions/commentAction';
 import CommentAdd from './CommentAdd';
 
 function Comment(props) {
- const { commentUser } = props;
- const [commentState, setcommentState] = useState({});
-
  return (
   <>
    {props.comments.map((comment) => (

@@ -5,16 +5,13 @@ function SearchView(props) {
  const { users } = props;
  const [state, setState] = useState();
  return (
-  <>
+  <div className="search-parent">
    {users.length ? (
     <div className="row search-row">
      {users.map((user) => (
       <>
        <Link to={`user/${user.username}`}>
         <div className="user">
-         <div className="user-image">
-          <img alt="User profile" src="" />
-         </div>
          {user.firstname} {user.lastname}
         </div>
        </Link>
@@ -24,7 +21,7 @@ function SearchView(props) {
    ) : (
     ''
    )}
-  </>
+  </div>
  );
 }
 export default SearchView;

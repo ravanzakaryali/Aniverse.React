@@ -49,8 +49,8 @@
             display: inline-block;
             padding: 0;
             .btn {
+                margin-left: auto;
                 font-size: $fs-normal + 6;
-                padding: 0;
                 color: $color-brand-primary;
             }
             i {
@@ -59,6 +59,11 @@
             }
         }
         .save-post {
+        }
+    }
+    .post-menu-item {
+        .btn {
+            padding: 0;
         }
     }
     .post-footer {
@@ -101,7 +106,7 @@
                 box-shadow: none;
             }
         }
-        .event i {
+        .event .icon {
             margin-right: $margin-normal;
         }
     }
@@ -135,7 +140,7 @@
         }
     }
     .menu-controller-btn {
-        display: inline-block;
+        display: grid;
         color: $black;
         padding: $padding-min;
         background-color: $gray-05;

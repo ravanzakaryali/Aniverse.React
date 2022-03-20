@@ -4,20 +4,17 @@ import { connect } from 'react-redux';
 import Posts from './Posts';
 
 function PostSetting(props) {
- const [comRender, setComRender] = useState(1);
- const { allPosts } = props;
+ const [comRender, setComRender] = useState({});
+ const { allPosts, comState } = props;
+ console.log(comRender);
 
  useEffect(() => {
   allPosts(1, 20);
- }, [allPosts, comRender]);
+ }, [allPosts, comRender, comState]);
 
  return (
   <>
-   <Posts
-    posts={props.posts}
-    setComRender={setComRender}
-    comRender={comRender}
-   />
+   <Posts posts={props.posts} setComRender={setComRender} />
   </>
  );
 }
@@ -32,9 +29,6 @@ const mapDispatchToProps = (dispatch) => {
   allPosts: (page, size) => {
    dispatch(getFriendAllPost(page, size));
   },
-  // logout: (history) => {
-  //  dispatch(LogOutAuthAction(history));
-  // },
  };
 };
 

@@ -7,7 +7,6 @@ function StoryController(props) {
  const { deleteStoryRequest } = props;
  const { archive } = props;
  const [activeMenu, setActiveMenu] = useState(false);
- useEffect(() => {}, props.addStory);
  return (
   <>
    <button
@@ -28,7 +27,7 @@ function StoryController(props) {
         }}
         className="btn">
         Archive
-        <FontAwesomeIcon icon="fa-solid fa-box-open" />
+        <FontAwesomeIcon className="icon" icon="fa-solid fa-box-open" />
        </button>
       </li>
       <li>

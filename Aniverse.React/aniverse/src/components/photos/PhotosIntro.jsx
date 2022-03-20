@@ -14,7 +14,7 @@ function PhotosIntro(props) {
  useEffect(() => {
   setPhotosState(username);
   getPhotos(username, 1, 9);
- }, [photosState, username]);
+ }, [getPhotos, photosState, username]);
  return (
   <div className="photos-intro">
    <div className="photos-intro-title row">

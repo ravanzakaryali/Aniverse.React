@@ -7,5 +7,16 @@
     overflow-y: scroll;
     border-radius: $border-radius-min;
     @extend %box-shadow-main;
-    padding: $padding-normal;
+    border: 1px solid $gray-10;
+    a {
+        font-size: $fs-min + 2;
+        color: $gray-90;
+        padding: $padding-normal;
+        &:hover {
+            background-color: $gray-20;
+        }
+    }
+    .search-parent {
+        display: contents;
+    }
 }

@@ -38,12 +38,36 @@ export function postArchiveReducer(state = initialState.postArchive, action) {
             return state;
     }
 }
+export function postActionRequestReducer(state = initialState.postRequest, action) {
+    switch (action.type) {
+        case actionTypes.POST_ARCHIVE_SUCCESS:
+            return action.payload
+        case actionTypes.POST_ARCHIVE_ERROR:
+            return action.payload
+        case actionTypes.POST_DELETE_SUCCESS:
+            return action.payload
+        case actionTypes.POST_DELETE_ERROR:
+            return action.payload
+        default:
+            return state;
+    }
+}
 export function postRecycleReducer(state = initialState.postRecycle, action) {
     switch (action.type) {
         case actionTypes.GET_POST_RECYCLE_SUCCESS:
-            return state.payload
+            return action.payload
         case actionTypes.GET_POST_RECYCLE_ERROR:
-            return state.payload
+            return action.payload
+        default:
+            return state;
+    }
+}
+export function postSaveReducer(state = initialState.postSave, action) {
+    switch (action.type) {
+        case actionTypes.GET_POST_SAVE_SUCCESS:
+            return action.payload
+        case actionTypes.GET_POST_SAVE_ERROR:
+            return action.payload
         default:
             return state;
     }

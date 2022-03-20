@@ -35,7 +35,11 @@ function Stories(props) {
       <LightGallery speed={500}>
        <a href={story.imageSrc}>
         <div className="story-col">
-         <img alt={story.content} className="story-img" src={story.imageSrc} />
+         <img
+          alt={story.content ? story.content : ''}
+          className="story-img"
+          src={story.imageSrc}
+         />
          <div className="profile">
           <img
            alt="Profile"

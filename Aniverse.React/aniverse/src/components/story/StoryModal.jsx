@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { createPost } from '../../redux/actions/postAction';
+import { storyCreate } from '../../redux/actions/storyAction';
 
 function StoryModal(props) {
  const { story } = props;
@@ -16,7 +16,7 @@ function StoryModal(props) {
 
  return (
   <div
-   className="modal story-modal"
+   className="modal fade story-modal"
    id="storyModal"
    aria-labelledby="storyModal"
    aria-hidden="true">
@@ -28,8 +28,7 @@ function StoryModal(props) {
        type="button"
        className="btn-close"
        data-bs-dismiss="modal"
-       aria-label="Close"
-       onClick={() => props.setModal(false)}>
+       aria-label="Close">
        <FontAwesomeIcon icon="fa-solid fa-xmark" />
       </button>
      </div>
@@ -42,7 +41,7 @@ function StoryModal(props) {
         formData.append('content', storyState.name);
         props.setStory(storyState);
         story(formData);
-        props.setModal(false);
+        props.setModal(formData);
        }}>
        <div className="modal-img">
         <img
@@ -97,7 +96,11 @@ function StoryModal(props) {
        />
 
        <div className="modal-footer">
-        <button type="submit" className="btn btn-primary">
+        <button
+         data-bs-dismiss="modal"
+         aria-label="Close"
+         type="submit"
+         className="btn btn-primary">
          Add story
         </button>
        </div>
@@ -118,7 +121,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
  return {
   story: (formData) => {
-   dispatch(createPost(formData));
+   dispatch(storyCreate(formData));
   },
  };
 };

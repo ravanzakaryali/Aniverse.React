@@ -63,7 +63,7 @@ function User(props) {
         </h2>
         <span className="friend-count">
          {friends.length ? (
-          <Link to={id + '/friends'}>{friends.length} friends</Link>
+          <Link to={'friends'}>{friends.length} friends</Link>
          ) : (
           'Find new friends'
          )}
@@ -71,7 +71,7 @@ function User(props) {
         <div className="friends-pp d-none d-sm-flex">
          {friends.map((friend, index) => (
           <div key={index} className="ml-10">
-           <Link to={`${friend.username}`}>
+           <Link to={`/user/${friend.username}`}>
             <img
              alt={`${friend.firstname + friend.lastname + 's profile picture'}`}
              className="friend-img"

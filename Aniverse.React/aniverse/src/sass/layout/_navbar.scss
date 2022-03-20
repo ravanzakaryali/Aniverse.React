@@ -124,6 +124,7 @@
     display: inline-block;
 }
 .account {
+    @extend %box-shadow-main;
     @extend %active-right-menu;
     .account-header {
         justify-content: center;
@@ -158,6 +159,7 @@
             display: flex;
         }
         .text {
+            width: 100%;
             color: $black;
             @extend %display-flex-center-y;
         }
