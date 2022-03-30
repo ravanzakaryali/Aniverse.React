@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 function AccountView(props) {
  const { firstname, username, profilPicture } = props.userLogin;
- console.log(props);
  return (
   <Link to={`user/${username}`} className="account-profile">
    <img

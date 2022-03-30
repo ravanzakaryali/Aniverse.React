@@ -1,46 +1,126 @@
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
-    users: [],
-    user: [],
+    register: {
+        data: [],
+        loading: false,
+        error: ''
+    },
+    authUser: {
+        data: [],
+        loading: false,
+        error: ''
+    },
+    users: {
+        data: [],
+        loading: false,
+        error: '',
+        addFriend: false
+    },
+    user: {
+        data: [],
+        loading: false,
+        error: '',
+        bioLoading: false
+    },
+    posts: {
+        data: [],
+        loading: false,
+        error: ''
+    },
+    productCategory: {
+        data: [],
+        loading: false,
+        error: ''
+    },
+    products: {
+        data: [],
+        loading: false,
+        error: ''
+    },
+    allProducts: {
+        data: [],
+        loading: false,
+        error: ''
+    },
+    pageFollowers: {
+        data: [],
+        loading: false,
+        error: ''
+    },
+    userPages: {
+        data: [],
+        loading: false,
+        error: ''
+    },
+    pageAll: {
+        data: [],
+        loading: false,
+        error: ''
+    },
+    post: [],
     userNavbar: [],
     userFriend: [],
     userRequest: [],
-    post: [],
-    posts: [],
     animalPost: [],
     animals: [],
     selectAnimal: [],
-    animal: [],
+    animal: {
+        data: [],
+        loading: false,
+        error: ''
+    },
     storyFriend: [],
-    stories: [],
+    stories: {
+        data: [],
+        loading: false,
+        error: ''
+    },
+    postModal: [],
     userPhotos: [],
     animalCategory: [],
     animalPhotos: [],
     story: [],
-    authUser: [],
     comments: [],
     userLogin: [],
     animalFollows: [],
-    friendRequest: [],
-    friends: [],
+    friendRequest: {
+        data: [],
+        loading: false,
+        error: ''
+    },
+    friends: {
+        data: [],
+        loading: false,
+        error: ''
+    },
     friendsAnimal: [],
     searchUsers: [],
-    getFriendRequest: [],
     changePicture: [],
     animalUpdate: [],
     animalFollow: [],
     allAnimals: [],
     loginReducer: [],
-    registerReducer: [],
     profilePicture: [],
     storiesAll: [],
-    postArchive: [],
+    postArchive: {
+        data: [],
+        loading: false,
+        error: ''
+    },
     postRecycle: [],
     storyArchive: [],
     storyRecycle: [],
-    pageAll: [],
-    pageGet: [],
+    page: {
+        data: [],
+        loading: false,
+        error: ''
+    },
     postRequest: [],
     postSave: [],
-    pagePhotos: [],
+    pagePhotos: {
+        data: [],
+        loading: false,
+        error: ''
+    },
     loading: true
 }

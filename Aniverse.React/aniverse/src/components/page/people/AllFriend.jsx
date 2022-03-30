@@ -3,17 +3,19 @@ import UserItem from './UserItem';
 import { connect } from 'react-redux';
 import { getUserFriend } from '../../../redux/actions/userActions';
 import { getAllFriends } from '../../../redux/actions/friendAction';
+import Loading from '../../loading/Loading';
 
 function AllFriend(props) {
- const { getFriend } = props;
- const [comRender, setComRender] = useState({});
+ const { getFriend, users } = props;
  const loginUser = JSON.parse(localStorage.getItem('loginUser'));
  useEffect(() => {
-  getFriend(loginUser.username, 1, 100);
- }, [comRender, getFriend, loginUser.username]);
+  getFriend(loginUser.username, 1, 10);
+  document.title = 'Frineds | Aniverse';
+ }, [getFriend, loginUser.username]);
+ if (users.loading) return <Loading />;
  return (
   <>
-   <UserItem setComRender={setComRender} users={props.users} />
+   <UserItem users={users.data} />
   </>
  );
 }

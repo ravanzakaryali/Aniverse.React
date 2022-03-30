@@ -70,7 +70,6 @@ function Navbar(props) {
    ) : (
     ''
    )}
-   <PageCreateModal />
   </>
  );
 }

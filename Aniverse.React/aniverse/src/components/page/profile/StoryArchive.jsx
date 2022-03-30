@@ -5,7 +5,7 @@ import { getArchiveStory } from '../../../redux/actions/storyAction';
 function StoryArhcive(props) {
  const { storyArhiveRequest, stories } = props;
  useEffect(() => {
-  storyArhiveRequest(1, 100);
+  storyArhiveRequest(1, 10);
  }, [storyArhiveRequest]);
  return (
   <>

@@ -4,17 +4,14 @@ import { getFriendRequest } from '../../../redux/actions/friendAction';
 import UserItem from './UserItem';
 
 function AllFriendRequest(props) {
- const [comRender, setComRender] = useState({});
  const { getRequest } = props;
 
  useEffect(() => {
   getRequest();
- }, [getRequest, comRender]);
- return (
-  <>
-   <UserItem setComRender={setComRender} users={props.request} />
-  </>
- );
+  document.title = 'Frineds request | Aniverse';
+ }, [getRequest]);
+
+ return <>{<UserItem users={props.request.data} />}</>;
 }
 function mapStateToProps(state) {
  return {

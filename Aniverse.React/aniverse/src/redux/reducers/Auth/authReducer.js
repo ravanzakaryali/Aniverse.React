@@ -13,6 +13,7 @@ export function authReducer(state = initialState.authUser, action) {
 export function loginReducer(state = initialState.loginReducer, action) {
     switch (action.type) {
         case actionTypes.USER_LOGIN_SUCCESS:
+            window.location.reload();
             return action.payload
         case actionTypes.USER_LOGIN_ERROR:
             return action.payload
@@ -20,12 +21,31 @@ export function loginReducer(state = initialState.loginReducer, action) {
             return state;
     }
 }
-export function registerReducer(state = initialState.registerReducer, action) {
+export function registerReducer(state = initialState.register, action) {
     switch (action.type) {
+        case actionTypes.USER_REGISTER_LOADING:
+            return {
+                ...state,
+                loading: true
+            }
         case actionTypes.USER_REGISTER_SUCCESS:
-            return action.payload
+            return {
+                ...state,
+                loading: false,
+                data: action.payload
+            }
         case actionTypes.USER_REGISTER_ERROR:
-            return action.payload
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        case actionTypes.USER_LOGOUT:
+            state = "";
+            return {
+                ...state,
+                loading: false
+            }
         default:
             return state;
     }

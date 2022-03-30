@@ -5,7 +5,7 @@ import { postArchive, postDelete } from '../../redux/actions/postAction';
 
 function PostArchiveModal(props) {
  const { archiveRequest } = props;
- const { postId } = props;
+ const { post } = props;
  return (
   <div>
    <div
@@ -16,7 +16,7 @@ function PostArchiveModal(props) {
     <div className="modal-dialog modal-dialog-centered">
      <div className="modal-content">
       <div className="modal-header">
-       <h5 className="modal-title">Archive</h5>
+       <h5 className="modal-title">Archive post?</h5>
        <button
         className="btn"
         type="button"
@@ -26,13 +26,12 @@ function PostArchiveModal(props) {
        </button>
       </div>
       <div className="modal-body">
-       <p>Archive posts are stored here</p>
+       <p>Are you sure that you want to archive this post?</p>
        <form
         className="form-modal"
         onSubmit={(e) => {
          e.preventDefault();
-         archiveRequest(postId);
-         props.setComRender(postId + 'Success');
+         archiveRequest(post.id);
         }}>
         <div className="modal-footer">
          <button
@@ -45,7 +44,7 @@ function PostArchiveModal(props) {
           data-bs-dismiss="modal"
           type="submit"
           className="btn btn-primary">
-          Archive post
+          Archive
          </button>
         </div>
        </form>

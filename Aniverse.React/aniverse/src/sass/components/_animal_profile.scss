@@ -1,5 +1,6 @@
 .background-img {
-    width: 100%;
+    width: 95%;
+    margin: auto;
     position: relative;
     height: 250px;
     top: $page-margin-top-bottom;
@@ -36,6 +37,9 @@
         padding: 0;
         padding-bottom: $page-margin-top-bottom;
     }
+    .profile-right-title {
+        position: relative;
+    }
     .profile {
         padding: 0;
         .profile-img {
@@ -46,7 +50,31 @@
             border-radius: $border-radius-max;
         }
     }
+    .animal-setting {
+        background-color: $white;
+        @extend %box-shadow-main;
+        border-radius: $border-radius-min;
+        position: absolute;
+        width: 120px;
+        top: 45px;
+        .btn {
+            font-size: $fs-min;
 
+            border-radius: none;
+            &:first-of-type {
+                border-bottom: 1px solid $gray-20;
+            }
+            text-align: start;
+            width: 100%;
+            font-weight: $fs-weight-normal;
+            display: flex;
+            align-items: center;
+            span {
+                width: 25%;
+                height: 26px;
+            }
+        }
+    }
     .animal-edit-modal {
         background-color: rgba(0, 0, 0, 0.4);
         .modal-title {
@@ -94,16 +122,25 @@
         border-radius: $border-radius-max;
     }
     .profile-owner {
+        .owner {
+            font-weight: $fs-weight-normal;
+        }
         text-align: end;
     }
     .profile-right-title {
         display: flex;
+        .btn.icon-btn {
+            line-height: 1;
+        }
     }
     .profile-content {
+        border-radius: $border-radius-min;
         margin-top: 50px;
         flex-wrap: wrap;
         display: flex;
         background-color: $white;
+        border-top-left-radius: 0;
+        overflow: hidden;
         .title {
             align-items: center;
             margin: $margin-normal 0;
@@ -124,6 +161,9 @@
         .profile-counter {
             display: flex;
             align-items: center;
+            .count {
+                display: flex;
+            }
             .counter {
                 padding-right: $padding-normal;
                 font-size: $fs-normal;
@@ -138,6 +178,10 @@
             margin: $margin-normal 0;
             color: $gray-80;
             font-size: $fs-min;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100vh;
+            overflow: hidden;
         }
         .follow-button {
             text-align: end;
@@ -209,7 +253,7 @@
             overflow: hidden;
             overflow-y: scroll;
         }
-        .post-comment-contetn {
+        .post-comment-content {
             font-size: $fs-min - 1;
             width: 100%;
             display: flex;
@@ -264,6 +308,7 @@
 }
 .animal-profile {
     .modal-content {
+        border: none;
         position: relative;
         &.profile {
             margin: auto;
@@ -288,6 +333,7 @@
             }
         }
         .modal-footer.animal {
+            border: none;
             width: 100%;
             position: absolute;
             bottom: 0;

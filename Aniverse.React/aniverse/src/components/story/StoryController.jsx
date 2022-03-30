@@ -22,7 +22,6 @@ function StoryController(props) {
       <li>
        <button
         onClick={() => {
-         props.setStory('archive');
          archive(props.storyId);
         }}
         className="btn">
@@ -34,7 +33,6 @@ function StoryController(props) {
        <form
         onSubmit={(e) => {
          e.preventDefault();
-         props.setStory('delete');
          deleteStoryRequest(props.storyId);
         }}>
         <button type="submit" className="btn">
@@ -53,7 +51,7 @@ function StoryController(props) {
 }
 const mapStateToProps = (state) => {
  return {
-  stories: state.storyFriendReducer,
+  stories: state.storiesReducer,
  };
 };
 const mapDispatchToProps = (dispatch) => {

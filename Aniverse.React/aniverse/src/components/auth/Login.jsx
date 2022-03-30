@@ -8,6 +8,7 @@ function Login(props) {
  const [loginState, setLoginState] = useState({});
  const [isSubmit, setIsSubmit] = useState(false);
  const [formErrors, setFormErrors] = useState({});
+ const [disable, setDisable] = useState(true);
 
  const navigate = useNavigate();
  const handleChange = (e) => {
@@ -19,6 +20,15 @@ function Login(props) {
   setFormErrors(validate(loginState));
   e.preventDefault();
   setIsSubmit(true);
+ };
+ const hangleKeyPress = (e) => {
+  if (loginState) {
+   if (loginState.username && loginState.password) {
+    setDisable(false);
+   } else {
+    setDisable(true);
+   }
+  }
  };
  const validate = (values) => {
   const errors = {};
@@ -32,7 +42,7 @@ function Login(props) {
  };
  useEffect(() => {
   if (localStorage.getItem('token') !== null) return navigate('/');
-  if (Object.keys(formErrors).length === 0 && isSubmit) {
+  if (Object.keys(formErrors) && isSubmit) {
    login(loginState);
   }
  }, [formErrors, isSubmit, navigate, localStorage.getItem('token')]);
@@ -55,27 +65,32 @@ function Login(props) {
     <input
      name="username"
      onChange={handleChange}
+     onKeyUp={hangleKeyPress}
      type="text"
      className="form-control"
      placeholder="User name"
     />
-    <span className="validation">{formErrors.username}</span>
+    <span className="validation">{formErrors ? formErrors.username : ''}</span>
    </div>
    <div className="form-auth">
     <input
      name="password"
      onChange={handleChange}
+     onKeyUp={hangleKeyPress}
      type="password"
      className="form-control"
      placeholder="Password"
     />
-    <span className="validation">{formErrors.password}</span>
+    <span className="validation">{formErrors ? formErrors.password : ''}</span>
    </div>
    <div className="form-auth checkbox">
     <input name="check" onChange={handleChange} type="checkbox" /> Remember me
    </div>
    <div className="form-auth">
-    <button className="btn btn-primary submit-btn" type="submit">
+    <button
+     disabled={disable}
+     className="btn btn-primary submit-btn"
+     type="submit">
      Login
     </button>
    </div>

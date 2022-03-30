@@ -9,13 +9,14 @@ import AnimalProfileEdit from './AnimalProfileEdit';
 import AnimalPhotos from './AnimalPhotos';
 import AnimalCoverPicture from './AnimalCoverPicture';
 import AnimalProfilePicture from './AnimalProfilePicture';
+import { AiTwotoneLike, AiOutlineLike } from 'react-icons/ai';
 import { useWindowSize } from '@react-hook/window-size';
+import Loading from '../loading/Loading';
 
 function Animal(props) {
  const animalname = useParams().animalname;
  const ref = useRef(null);
  const [width, setWidth] = useState();
- const [comRender, setComRender] = useState(false);
  const { animalPosts } = props;
  const { animalGetRequest } = props;
 
@@ -34,24 +35,15 @@ function Animal(props) {
   coverPicture,
   profilPicture,
   animalFollow,
- } = props.animal;
- const [isFollowLocal, setIsFollowLocal] = useState(isFollow);
+ } = props.animal.data;
+ const [isFollowing, setIsFollowLocal] = useState(isFollow);
  useEffect(() => {
+  setIsFollowLocal(isFollow);
   setWidth(ref.current.offsetWidth);
-  if (name) document.title = `${name} | Aniverse`;
   animalGetRequest(animalname);
   animalPosts(animalname);
- }, [
-  animalGetRequest,
-  animalPosts,
-  bio,
-  breed,
-  isFollowLocal,
-  animalname,
-  name,
-  isFollow,
-  comRender,
- ]);
+  if (name) document.title = `${name} | Aniverse`;
+ }, [animalname, name]);
 
  return (
   <div className="animal-profile" ref={ref} id="animal_profile">
@@ -75,59 +67,60 @@ function Animal(props) {
       <div className="title">
        <h2 className="col-3 profile-name">{name}</h2>
        <div className="col-9 profile-right-title ">
-        {props.animal.user !== undefined ? (
-         props.animal.user.id === props.userAuth.id ? (
-          <AnimalProfileEdit
-           setComRender={setComRender}
-           comRender={comRender}
-          />
-         ) : (
-          ''
-         )
-        ) : (
-         ''
-        )}
         <div className="profile-owner">
          {user !== undefined ? (
-          <Link to={`/user/${user.username}`} className="owner btn btn-light">
+          <Link to={`/user/${user.username}`} className="owner btn">
            {user.firstname} {user.lastname}
           </Link>
          ) : (
           ''
          )}
         </div>
+        {props.animal.data.user !== undefined ? (
+         props.animal.data.user.id === props.userAuth.id ? (
+          <AnimalProfileEdit />
+         ) : (
+          ''
+         )
+        ) : (
+         ''
+        )}
        </div>
       </div>
       <div className="profile-counter col-12">
-       <p className="count-sts col-4">
-        <span className="counter">{postCount}</span>
-        <span className="counter-name">Posts</span>
-       </p>
-       <p className="posts-s col-4">
-        <span className="counter">
-         {animalFollow ? animalFollow.length : ''}
-        </span>
-        <span className="counter-name">Follow</span>
-       </p>
+       <div className="count col-8">
+        <p className="count-sts col-3">
+         <span className="counter">{postCount}</span>
+         <span className="counter-name">Posts</span>
+        </p>
+        <p className="posts-s col-3">
+         <span className="counter">
+          {animalFollow ? animalFollow.length : ''}
+         </span>
+         <span className="counter-name">Follow</span>
+        </p>
+       </div>
        <form
         onSubmit={(e) => {
          e.preventDefault();
+         setfollowState({
+          isFollowing: !isFollowing,
+         });
+         setIsFollowLocal(!isFollowing);
          follow(followState, id);
         }}
         className="follow-button col-4">
-        <button
-         onClick={(e) => {
-          const isFollowing = !isFollowLocal;
-          setfollowState({
-           ...followState,
-           ...{ isFollowing },
-          });
-          setIsFollowLocal(!isFollowLocal);
-         }}
-         type="submit"
-         className={`btn ${!isFollowLocal ? 'btn-primary' : 'btn-light'}`}>
-         {!isFollowLocal ? 'Follow' : 'UnFollow'}
-        </button>
+        {!isFollow ? (
+         <button type="submit" className="btn btn-opacity-primary">
+          <AiOutlineLike className="icon" />
+          Follow
+         </button>
+        ) : (
+         <button type="submit" className="btn btn-opacity-primary">
+          <AiTwotoneLike className="icon" />
+          Unfollow
+         </button>
+        )}
        </form>
       </div>
       <div className="bio">
@@ -175,15 +168,7 @@ function Animal(props) {
       </div>
      </div>
      <div className="row animal-posts">
-      {activeRow ? (
-       <Posts
-        setComRender={setComRender}
-        comRender={comRender}
-        posts={props.posts}
-       />
-      ) : (
-       <AnimalPhotos />
-      )}
+      {activeRow ? <Posts posts={props.posts} /> : <AnimalPhotos />}
      </div>
     </div>
    </div>
@@ -192,7 +177,7 @@ function Animal(props) {
 }
 const mapStateToProps = (state) => {
  return {
-  posts: state.postReducer,
+  posts: state.postsReducer,
   animal: state.getAnimalReducer,
   userAuth: state.userLoginReducer,
  };

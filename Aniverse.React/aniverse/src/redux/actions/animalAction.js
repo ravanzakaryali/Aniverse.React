@@ -45,12 +45,12 @@ export function animalChangePorfileSuccess(data) {
 export function animalChangeProfileError(error) {
     return { type: actionTypes.ANIMAL_CHANGE_PROFILE_ERROR, payload: error }
 }
-export function animalChangeProfile(id, picture) {
+export function animalChangeProfile(id, picture, imageSrc) {
     return async function (dispatch) {
         let url = `${baseUrl}/animal/profilePicture/${id}`;
         axios.post(url, picture, headerPicture)
             .then((res) => {
-                dispatch(animalChangePorfileSuccess(res.data));
+                dispatch(animalChangePorfileSuccess(imageSrc));
             }).catch((error) => {
                 dispatch(animalChangeProfileError(error));
             })
@@ -63,18 +63,21 @@ export function animalChangeCoverSuccess(data) {
 export function animalChangeCoverError(error) {
     return { type: actionTypes.ANIMAL_CHANGE_COVER_ERROR, payload: error }
 }
-export function animalChangeCover(id, picture) {
+export function animalChangeCover(id, picture, imgSrc) {
     return async function (dispatch) {
         let url = `${baseUrl}/animal/coverPicture/${id}`;
         axios.post(url, picture, headerPicture)
             .then((res) => {
-                dispatch(animalChangeCoverSuccess(res.data));
+                dispatch(animalChangeCoverSuccess(imgSrc));
             }).catch((error) => {
                 dispatch(animalChangeCoverError(error));
             })
     }
 }
 
+export function getAnimalLoading() {
+    return { type: actionTypes.GET_ANIMAL_LOADING }
+}
 export function getAnimalSuccess(data) {
     return { type: actionTypes.GET_ANIMAL_SUCCESS, payload: data }
 }
@@ -83,6 +86,7 @@ export function getAnimalError(error) {
 }
 export function getAnimal(animalname) {
     return async function (dispatch) {
+        dispatch(getAnimalLoading());
         let url = `${baseUrl}/animal/${animalname}`;
         axios.get(url, header)
             .then((res) => {
@@ -104,8 +108,9 @@ export function updateAnimalProfile(id, profileData) {
         let url = `${baseUrl}/animal/update/${id}`;
         axios.put(url, profileData, header)
             .then((res) => {
-                dispatch(updateAnimalProfileSuccess(res.data));
+                dispatch(updateAnimalProfileSuccess(profileData));
             }).catch((error) => {
+                console.log(error);
                 dispatch(updateAnimalProfileError(error));
             })
 
@@ -116,6 +121,9 @@ export function updateAnimalProfile(id, profileData) {
 export function animalFollowSuccess(data) {
     return { type: actionTypes.ANIMAL_FOLLOW_SUCCESS, payload: data }
 }
+export function animalUnFollowSuccess(data) {
+    return { type: actionTypes.ANIMAL_UNFOLLOW_SUCCESS, payload: data }
+}
 export function animalFollowError(error) {
     return { type: actionTypes.ANIMAL_FOLLOW_ERROR, payload: error }
 }
@@ -124,7 +132,11 @@ export function animalFollow(follow, id) {
         let url = `${actionTypes.baseUrl}/animal/follow/${id}`;
         axios.post(url, follow, header)
             .then((res) => {
-                dispatch(animalFollowSuccess(res.data));
+                if (follow.isFollowing) {
+                    dispatch(animalFollowSuccess(res.data));
+                } else {
+                    dispatch(animalUnFollowSuccess(res.data))
+                }
             }).catch((error) => {
                 dispatch(animalFollowError(error));
             });
@@ -185,7 +197,9 @@ export function getAnimalCategory() {
             })
     }
 }
-
+export function createAnimalLoading() {
+    return { type: actionTypes.CREATE_ANIMAL_LOADING }
+}
 export function createAnimalSuccess(animal) {
     return { type: actionTypes.CREATE_ANIMAL_SUCCESS, payload: animal }
 }
@@ -194,6 +208,7 @@ export function createAnimalError(error) {
 }
 export function createAnimal(animalCreate) {
     return async function (dispatch) {
+        dispatch(createAnimalLoading());
         let url = `${actionTypes.baseUrl}/animal/create`;
         axios.post(url, animalCreate, header)
             .then((res) => {
@@ -218,6 +233,24 @@ export function selectAnimal() {
                 dispatch(selectAnimalSuccess(res.data));
             }).catch((error) => {
                 dispatch(selectAnimalError(error));
+            })
+    }
+}
+
+export function deleteAnimalSuccess(data) {
+    return { type: actionTypes.DELETE_ANIMAL_SUCCESS, payload: data }
+}
+export function deleteAnimalError(error) {
+    return { type: actionTypes.DELETE_ANIMAL_ERROR, payload: error }
+}
+export function deleteAnimal(id) {
+    return async function (dispatch) {
+        let url = `${actionTypes.baseUrl}/animal/delete/${id}`
+        axios.delete(url, header)
+            .then((res) => {
+                dispatch(deleteAnimalSuccess(id));
+            }).catch((error) => {
+                dispatch(deleteAnimalError(error));
             })
     }
 }

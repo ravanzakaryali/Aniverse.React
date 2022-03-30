@@ -1,20 +1,29 @@
 .intro {
     width: 100%;
     @extend %box-shadow-main;
-    padding: $padding-normal;
     margin: $margin-normal 0;
     border-radius: $border-radius-min;
     background-color: $white;
     display: inline-block;
     .intro-title {
+        padding: $padding-normal;
+        border-bottom: 1px solid $gray-20;
         font-size: $fs-normal;
         font-weight: $fs-weight-normal + 100;
+        display: flex;
+        .btn {
+            margin-left: auto;
+            display: inline;
+            width: auto;
+            padding: $padding-min $padding-normal * 2;
+        }
     }
     .bio-content {
         text-align: center;
-        font-size: $fs-min;
+        font-size: $fs-min + 2;
         color: $gray-80;
         padding: $padding-normal;
+        font-weight: $fs-weight-normal;
     }
     .edit-form {
         width: 100%;

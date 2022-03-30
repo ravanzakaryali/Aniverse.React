@@ -32,7 +32,7 @@ function StoryAdd(props) {
      <p className="story-text">The story of the day</p>
     </div>
    </button>
-   <StoryModal addStory={props.addStory} setStory={props.setStory} />
+   <StoryModal />
   </div>
  );
 }
@@ -40,7 +40,7 @@ function StoryAdd(props) {
 const mapStateToProps = (state) => {
  return {
   user: state.userLoginReducer,
-  stories: state.storyFriendReducer,
+  stories: state.storiesReducer,
  };
 };
 

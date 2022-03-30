@@ -10,7 +10,8 @@ function Animals(props) {
  const [activeAnimal, setActiveAnimal] = useState(false);
  const [animalname, setAnimalname] = useState();
  useEffect(() => {
-  getAnimals(1, 100);
+  document.title = 'Animals | Aniverse';
+  getAnimals(1, 10);
  }, [getAnimals]);
  return (
   <div className="row animals-page">

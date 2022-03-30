@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router';
 import { getAnimalPhotos } from '../../redux/actions/animalAction';
 import LightGallery from 'lightgallery/react';
+import Nothing from '../common/Nothing';
 
 function AnimalPhotos(props) {
  const animalname = useParams().animalname;
  const { getPhotos, photos } = props;
  useEffect(() => {
-  getPhotos(animalname, 1, 100);
+  getPhotos(animalname, 1, 10);
  }, [animalname]);
+ if (photos.length === 0) return <Nothing />;
  return (
   <>
    {photos.length > 0 ? (

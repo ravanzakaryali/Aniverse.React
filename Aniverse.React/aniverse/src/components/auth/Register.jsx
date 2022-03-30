@@ -1,30 +1,78 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { connect } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { authRegister } from '../../redux/actions/authAction';
+import { authRegister, registerError } from '../../redux/actions/authAction';
+import Loading from '../loading/Loading';
+import Select from 'react-select';
+import countryList from 'react-select-country-list';
 
 function Register(props) {
- const { register, registerError } = props;
+ const [register, setRegisterError] = useState();
+ const { registerAuth } = props;
  const [userState, setUserState] = useState({});
  const [formErrors, setFormErrors] = useState({});
+ const [disableNext, setDisableNext] = useState(true);
+ const [disableRegister, setDisableRegister] = useState(true);
  const [isSubmit, setIsSubmit] = useState(false);
+ const [submit, setSubmit] = useState(false);
  const navigate = useNavigate();
-
  const [isActive, setIsActive] = useState(false);
+ const options = useMemo(() => countryList().getData(), []);
  const handleSubmit = (e) => {
   e.preventDefault();
-  register(userState);
+  if (isSubmit) {
+   setIsActive(true);
+   registerAuth(userState);
+  }
  };
+
  const handleChange = (e) => {
   const { name, value } = e.target;
   setUserState({ ...userState, ...{ [name]: value } });
  };
+ const hangleKeyPress = (e) => {
+  console.log(userState);
+  if (userState) {
+   if (
+    userState.firstname &&
+    userState.lastname &&
+    userState.username &&
+    userState.email &&
+    userState.password &&
+    userState.confirmPassword
+   ) {
+    setDisableNext(false);
+   } else {
+    setDisableNext(true);
+   }
+   if (userState) {
+    if (userState.birthday && userState.gender) {
+     setDisableRegister(false);
+    } else {
+     setIsSubmit(true);
+     setDisableRegister(true);
+    }
+   }
+  }
+ };
+
  useEffect(() => {
-  if (props.registerRequest.status === 200)
+  if (props.registerRequest.data.includes('Success'))
    return navigate('/authenticate/login');
- }, [navigate, register]);
- console.log(props);
+  if (props.registerRequest.error) {
+   setRegisterError(props.registerRequest.error);
+   //  setIsActive(false);
+  }
+  if (register)
+   if (register.response) {
+    setFormErrors(register.response.data.errors);
+    console.log(register.response.data.errors);
+   }
+ }, [submit]);
+
+ if (props.registerRequest.loading) return <Loading />;
+ console.log(props.registerReducer);
  return (
   <form className="form-horizontal" onSubmit={(e) => handleSubmit(e)}>
    <h1 className="auth-title">Register</h1>
@@ -33,64 +81,83 @@ function Register(props) {
      <input
       name="firstname"
       onChange={handleChange}
+      onKeyUp={hangleKeyPress}
       type="text"
       className="form-control col-6"
       placeholder="First name"
      />
-     <span className="validation">{formErrors.firstname}</span>
+     <span className="validation">
+      {formErrors ? formErrors.Firstname : ''}
+     </span>
     </div>
     <div className="form-auth col-6">
      <input
       name="lastname"
       onChange={handleChange}
+      onKeyUp={hangleKeyPress}
       type="text"
       className="form-control col-6"
       placeholder="Last name"
      />
-     <span className="validation">{formErrors.lastname}</span>
+     <span className="validation">{formErrors ? formErrors.Lastname : ''}</span>
     </div>
     <div className="form-auth">
      <input
       name="username"
       onChange={handleChange}
+      onKeyUp={hangleKeyPress}
       type="text"
       className="form-control"
       placeholder="User name"
      />
-     <span className="validation">{formErrors.username}</span>
+     <span className="validation">{formErrors ? formErrors.Username : ''}</span>
     </div>
     <div className="form-auth">
      <input
       name="email"
       onChange={handleChange}
+      onKeyUp={hangleKeyPress}
       type="email"
       className="form-control"
       placeholder="Email"
      />
-     <span className="validation">{formErrors.email}</span>
+     <span className="validation">{formErrors ? formErrors.Email : ''}</span>
     </div>
     <div className="form-auth">
      <input
       name="password"
       onChange={handleChange}
+      onKeyUp={hangleKeyPress}
       type="password"
       className="form-control"
       placeholder="Password"
      />
-     <span className="validation">{formErrors.password}</span>
+     <span className="validation">{formErrors ? formErrors.Password : ''}</span>
     </div>
     <div className="form-auth">
      <input
       name="confirmPassword"
       onChange={handleChange}
+      onKeyUp={hangleKeyPress}
       type="password"
       className="form-control"
       placeholder="Confirm Password"
      />
-     <span className="validation">{formErrors.confirmPassword}</span>
+     <span className="validation">
+      {formErrors ? formErrors.ConfirmPassword : ''}
+     </span>
     </div>
    </div>
    <div className={`row ${!isActive ? 'd-none' : ''}`}>
+    <div className="form-auth">
+     <Select
+      options={options}
+      onChange={(value) => {
+       setUserState({ ...userState, ...{ address: value.label } });
+      }}
+     />
+     <span className="validation">{formErrors ? formErrors.Address : ''}</span>
+    </div>
     <div className="form-auth">
      <label className="label-input" htmlFor="birthday">
       Birthday
@@ -98,10 +165,11 @@ function Register(props) {
      <input
       name="birthday"
       onChange={handleChange}
+      onKeyUp={hangleKeyPress}
       type="date"
       className="form-control"
      />
-     <span className="validation">{formErrors.birthday}</span>
+     <span className="validation">{formErrors ? formErrors.Birthday : ''}</span>
     </div>
     <label className="label-input col-12">Gender</label>
     <div className="form-gender">
@@ -109,7 +177,10 @@ function Register(props) {
       <input
        name="gender"
        id="genderMale"
-       onChange={handleChange}
+       onChange={(e) => {
+        handleChange(e);
+        hangleKeyPress(e);
+       }}
        type="radio"
        value="0"
       />
@@ -119,40 +190,40 @@ function Register(props) {
       <input
        name="gender"
        id="genderFemale"
-       onChange={handleChange}
+       onChange={(e) => {
+        handleChange(e);
+        hangleKeyPress(e);
+       }}
        type="radio"
        value="1"
       />
       <label htmlFor="genderFemale">Female</label>
      </div>
-     <div className="form-auth">
-      <input
-       name="gender"
-       id="genderOther"
-       onChange={handleChange}
-       type="radio"
-       value="Other"
-      />
-      <label htmlFor="genderOther">Other</label>
-     </div>
-     <span className="validation">{formErrors.gender}</span>
+     <span className="validation">{formErrors ? formErrors.Gender : ''}</span>
     </div>
    </div>
    <div className="form-auth">
     {isActive ? (
-     <button type="submit" className="btn btn-primary submit-btn">
+     <button
+      onClick={() => {
+       setSubmit(true);
+      }}
+      disabled={disableRegister}
+      type="submit"
+      className="btn btn-primary submit-btn">
       Register
      </button>
     ) : (
-     <a
+     <button
       onClick={() => {
        setIsActive(true);
       }}
+      disabled={disableNext}
       type="button"
       className="btn btn-primary submit-btn">
       Next
       <FontAwesomeIcon icon="fa-solid fa-arrow-right" className="icon" />
-     </a>
+     </button>
     )}
     {/* <button
      type="submit"
@@ -175,7 +246,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
  return {
-  register: (userState) => {
+  registerAuth: (userState) => {
    dispatch(authRegister(userState));
   },
  };

@@ -2,17 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getAllUsers } from '../../../redux/actions/userActions';
 import UserItem from './UserItem';
+import Loading from './../../loading/Loading';
 
 function AllUser(props) {
- const [comRender, setComRender] = useState({});
- const { getUsers } = props;
+ const { getUsers, users } = props;
 
  useEffect(() => {
   getUsers();
- }, [getUsers, comRender]);
+  document.title = 'People | Aniverse';
+ }, [getUsers]);
+
+ if (users.loading) return <Loading />;
  return (
   <>
-   <UserItem setComRender={setComRender} users={props.users} />
+   <UserItem users={props.users.data} />
   </>
  );
 }

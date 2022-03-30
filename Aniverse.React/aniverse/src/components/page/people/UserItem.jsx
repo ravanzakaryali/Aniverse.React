@@ -4,12 +4,11 @@ import { connect } from 'react-redux';
 import UserItemButtons from './UserItemsButtons/UserItemButtons';
 
 function UserItem(props) {
- console.log(props);
  return (
   <>
    <div className="container user-all">
     <div className="row users-row">
-     {props.users.length ? (
+     {props.users ? (
       props.users.map((user) =>
        props.userAuth.username !== user.username ? (
         <div className="col-6 col-sm-4 col-lg-3" key={user.id}>
@@ -31,10 +30,7 @@ function UserItem(props) {
            </div>
           </Link>
           <div className="user-card-footer">
-           <UserItemButtons
-            setComRender={props.setComRender}
-            userId={user.id}
-           />
+           <UserItemButtons userId={user.id} />
           </div>
          </div>
         </div>

@@ -9,15 +9,15 @@ function Intro(props) {
  const { bioChange } = props;
  const [active, setStateActive] = useState(true);
  const [bioState, bioSetState] = useState();
- const { address, birthday, gender, bio } = props.user;
+ const { address, birthday, gender, bio } = props.user.data;
  return (
   <div className="intro col-12">
    <h3 className="intro-title">Intro</h3>
    <div className="col-12">
+    <p className="bio-content">{bio}</p>
     {active ? (
-     props.user.id === props.userAuth.id ? (
+     props.user.data.id === props.userAuth.id ? (
       <>
-       <p className="bio-content">{bio}</p>
        <button
         onClick={(e) => {
          setStateActive(!active);
@@ -61,8 +61,8 @@ function Intro(props) {
          }}>
          Cancel
         </button>
-
         <button
+         disabled={props.user.bioLoading}
          className="btn btn-primary"
          onClick={() => {
           props.user.bio = bioState;

@@ -8,7 +8,6 @@ import SearchView from './SearchView';
 function SearchInput(props) {
  const { searchRequest } = props;
  const [search, setSearch] = useState({});
- console.log(props);
  return (
   <>
    <div className="search col-6 col-md-2">

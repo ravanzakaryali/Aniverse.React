@@ -8,67 +8,68 @@ import ReactTimeAgo from 'react-time-ago';
 import PostMenu from './PostMenu';
 import LikeCommentView from './LikeCommentView';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Loading from '../loading/Loading';
+import PostModal from './PostModal';
+import ProfilePictureStyle from '../user/ProfilePictureStyle';
+import Restore from './Restore';
+import Nothing from '../common/Nothing';
+import { Parallax } from 'swiper';
 
 function Posts(props) {
  const { loginUser } = props;
- const { setComRender } = props;
- const [currentPage, setCurrentPage] = useState(1);
- const [sizePost, setSizePost] = useState(20);
 
  useEffect(() => {
   loginUser();
- }, [sizePost, currentPage, loginUser]);
+ }, [loginUser]);
 
  const { posts } = props;
+ if (posts.loading) return <Loading />;
+ if (posts.data.length === 0) return <Nothing />;
+ console.log(posts.data.length === 0);
  return (
   <>
-   <div className="col-12">
-    {posts.map((post) => (
+   <div className="col-12 posts-col">
+    {posts.data.map((post) => (
      <div className="post" key={post.id}>
-      <div className="post-title row">
-       <div className="profile-img-parent">
-        <img
-         alt={`${post.user.firstname} profile`}
-         className="post-profile-img"
-         src={
-          post.user.profilPicture == null
-           ? `../../img/user.png`
-           : `${post.user.profilPicture}`
-         }
-        />
-       </div>
-       <div className="col-8  ">
-        <p className="user-name">
-         {post.animal ? (
-          <>
-           <Link to={`/animal/${post.animal.animalname}`}>
-            {post.animal.name}
-           </Link>
-           <span>with</span>
-          </>
-         ) : (
-          ''
-         )}
-         <Link to={`/user/${post.user.username}`}>
-          {post.user.firstname} {post.user.lastname}
-         </Link>
-        </p>
-        <p className="create-date">
-         <ReactTimeAgo
-          date={Date.parse(post.creationDate)}
-          timeStyle="twitter"
-          locale="az-AZ"
+      {post.user ? (
+       <div className="post-title row">
+        <div className="profile-img-parent">
+         <ProfilePictureStyle
+          profilPicture={post.user.profilPicture}
+          className="post-profile-img"
+          alt={`${post.user.firstname} profile`}
          />
-        </p>
+        </div>
+        <div className="col-8  ">
+         <p className="user-name">
+          {post.animal ? (
+           <>
+            <Link to={`/animal/${post.animal.animalname}`}>
+             {post.animal.name}
+            </Link>
+            <span>with</span>
+           </>
+          ) : (
+           ''
+          )}
+          <Link to={`/user/${post.user.username}`}>
+           {post.user.firstname} {post.user.lastname}
+          </Link>
+         </p>
+         <p className="create-date">
+          <ReactTimeAgo
+           date={Date.parse(post.creationDate)}
+           timeStyle="twitter"
+           locale="az-AZ"
+          />
+         </p>
+        </div>
+        <PostMenu userId={post.user.id} post={post} />
+        <div className="post-content col-12">{post.content}</div>
        </div>
-       <PostMenu
-        setComRender={setComRender}
-        userId={post.user.id}
-        postId={post.id}
-        isSave={post.isSave}
-       />
-       <div className="post-content col-12">{post.content}</div>
-      </div>
+      ) : (
+       ''
+      )}
       <div className="post-body item">
        {post.pictures ? (
         <Swiper slidesPerView={1}>
@@ -100,10 +101,11 @@ function Posts(props) {
         </span>
        </div>
       </div>
-      <LikeCommentView setComRender={setComRender} post={post} />
+      <LikeCommentView post={post} />
      </div>
     ))}
    </div>
+   <PostModal />
   </>
  );
 }

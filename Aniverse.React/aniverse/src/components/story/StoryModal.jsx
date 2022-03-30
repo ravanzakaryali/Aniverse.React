@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { storyCreate } from '../../redux/actions/storyAction';
 
 function StoryModal(props) {
@@ -8,7 +8,7 @@ function StoryModal(props) {
  const [storyState, setStoryState] = useState({});
  const [imageState, setStateImage] = useState();
 
- const formData = new FormData();
+ const fileUploadClick = () => document.getElementById('fileUpload').click();
 
  useEffect(() => {
   setStateImage(imageState);
@@ -37,17 +37,11 @@ function StoryModal(props) {
        className="form-modal"
        onSubmit={(e) => {
         e.preventDefault();
-        formData.append('storyFile', storyState.storyFile);
-        formData.append('content', storyState.name);
-        props.setStory(storyState);
-        story(formData);
-        props.setModal(formData);
+        story(storyState);
        }}>
        <div className="modal-img">
         <img
-         onClick={() => {
-          document.getElementById('fileUpload').click();
-         }}
+         onClick={fileUploadClick}
          alt="Story add"
          className="story-add-image"
          id="storyAdd"
@@ -59,8 +53,8 @@ function StoryModal(props) {
            : `${imageState}`
          }
         />
-        <span className="add-story-plus">
-         <FontAwesomeIcon icon="fa-solid fa-cloud-arrow-up" />
+        <span onClick={fileUploadClick} className="add-story-plus">
+         <FontAwesomeIcon className="icon" icon="fa-solid fa-cloud-arrow-up" />
          Upload image
         </span>
         <textarea
@@ -83,6 +77,7 @@ function StoryModal(props) {
             setStoryState({
              ...storyState,
              storyFile: uploadFile,
+             imageSrc: URL.createObjectURL(e.target.files[0]),
             });
             setStateImage(f.target.result);
            };
@@ -115,7 +110,6 @@ const mapStateToProps = (state) => {
  return {
   story: state.storyModal,
   user: state.userLoginReducer,
-  stories: state.storyFriendReducer,
  };
 };
 const mapDispatchToProps = (dispatch) => {

@@ -6,31 +6,26 @@ import {
  confirmFriend,
  getFriendRequest,
 } from '../../redux/actions/friendAction';
+import ProfilPictureStyle from './../user/ProfilePictureStyle';
 
 function UserRequest(props) {
  const { confirm } = props;
  const { friendRequest } = props;
  const [confirmState, setConfirmState] = useState({});
-
  useEffect(() => {
-  friendRequest();
+  friendRequest(1, 100);
  }, [friendRequest]);
  return (
   <>
-   {props.request.length ? (
+   {props.request.data.length ? (
     <div className="users-section">
      <h3 className="section-title">Friends Request</h3>
-     {props.request.map((user) => (
+     {props.request.data.map((user) => (
       <div className="sidebar-user col-12" key={user.id}>
        <Link to={`user/${user.username}`} className="account-profile">
-        <img
+        <ProfilPictureStyle
          className="users-profile"
-         src={
-          user.profilPicture == null
-           ? `../../img/user.png`
-           : `${user.friend.profilPicture}`
-         }
-         alt=""
+         profilPicture={user.profilPicture}
         />
         <p className="users-name">
          {user.firstname} {user.lastname}
@@ -41,7 +36,7 @@ function UserRequest(props) {
          className="col-12 request-btns"
          onSubmit={(e) => {
           e.preventDefault();
-          confirm(confirmState);
+          confirm(confirmState.friendId);
           e.currentTarget.children[0].disabled = true;
          }}>
          <button
@@ -101,8 +96,8 @@ const mapDispatchToProps = (dispatch) => {
   confirm: (friendId) => {
    dispatch(confirmFriend(friendId));
   },
-  friendRequest: () => {
-   dispatch(getFriendRequest());
+  friendRequest: (page, size) => {
+   dispatch(getFriendRequest(page, size));
   },
  };
 };

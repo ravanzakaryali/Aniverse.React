@@ -1,10 +1,7 @@
 import { combineReducers } from 'redux'
 import {
-    postReducer,
-    postCreateReducer,
-    postArchiveReducer,
-    postRecycleReducer,
-    postSaveReducer,
+    postsReducer,
+    postModalReducer
 } from './post/postReducer'
 import {
     authReducer,
@@ -12,10 +9,8 @@ import {
     registerReducer
 } from './Auth/authReducer';
 import {
-    storyFriendReducer,
     storyReducer,
     storiesReducer,
-    storiesAllReducer,
     storyArchiveReducer,
     storyRecycleReducer
 } from './story/storyReducer';
@@ -30,7 +25,8 @@ import {
     userOnlyPhotosReducer,
     userLoginReducer,
     seachUsersReducer,
-    usersAllReducer
+    usersAllReducer,
+    userPagesReducer
 } from './user/userReducer';
 import {
     animalPostReducer,
@@ -44,28 +40,32 @@ import {
     animalProfileUpdateReducer,
     allAnimalsReducer
 } from './animal/aimalReducer';
-import { commentPostReducer } from './comment/commentReducer';
+// import { commentPostReducer } from './comment/commentReducer';
 import {
     pageAllReducer,
-    pageGetReducer,
-    pageGetPhotosReducer
+    pageReducer,
+    pageGetPhotosReducer,
+    pageFollowersReducer
 } from './page/pageReducer';
 
+import {
+    productCategoryReducer,
+    productsReducer,
+    allProductReducer
+} from './product/productReducer';
 const rootReducer = combineReducers({
     userReducer,
     friendReducer,
     animalReducer,
-    postReducer,
+    postsReducer,
     storyReducer,
     authReducer,
-    storyFriendReducer,
     friendRequestReducer,
     getAnimalReducer,
     animalPostReducer,
     userOnlyPhotosReducer,
     animalCategoryReducer,
     selectAnimalReducer,
-    commentPostReducer,
     userLoginReducer,
     animalFollowsReducer,
     storiesReducer,
@@ -78,16 +78,17 @@ const rootReducer = combineReducers({
     allAnimalsReducer,
     loginReducer,
     registerReducer,
-    postCreateReducer,
     usersAllReducer,
-    storiesAllReducer,
-    postArchiveReducer,
-    postRecycleReducer,
     storyArchiveReducer,
     storyRecycleReducer,
     pageAllReducer,
-    pageGetReducer,
-    postSaveReducer,
-    pageGetPhotosReducer
+    postModalReducer,
+    pageReducer,
+    pageGetPhotosReducer,
+    productCategoryReducer,
+    productsReducer,
+    pageFollowersReducer,
+    userPagesReducer,
+    allProductReducer
 })
 export default rootReducer;

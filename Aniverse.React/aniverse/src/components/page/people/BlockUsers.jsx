@@ -4,15 +4,14 @@ import { getBlcokUsers } from '../../../redux/actions/userActions';
 import { connect } from 'react-redux';
 
 function BlockUsers(props) {
- const [comRender, setComRender] = useState({});
  const { getBlockUsers } = props;
  useEffect(() => {
   getBlockUsers();
- }, [comRender, getBlockUsers]);
- console.log(comRender);
+  document.title = 'Block users | Aniverse';
+ }, [getBlockUsers]);
  return (
   <>
-   <UserItem setComRender={setComRender} users={props.users} />
+   <UserItem users={props.users.data} />
   </>
  );
 }

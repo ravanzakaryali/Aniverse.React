@@ -20,7 +20,7 @@ const Users = (props) => {
  return (
   <div className="users-section">
    <h3 className="section-title">Friends</h3>
-   {users.map((user) =>
+   {users.data.map((user) =>
     username !== user.username ? (
      <div className="sidebar-user col-12" key={user.id}>
       <Link to={`user/${user.username}`} className="account-profile col-12">

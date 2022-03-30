@@ -2,6 +2,9 @@ import axios from 'axios'
 import * as actionTypes from './actionTypes'
 import { header, baseUrl, headerRegister } from './axiosConfiguration';
 
+export function registerLoading() {
+    return { type: actionTypes.USER_REGISTER_LOADING }
+}
 export function registerSuccess(data) {
     return { type: actionTypes.USER_REGISTER_SUCCESS, payload: data }
 }
@@ -11,11 +14,13 @@ export function registerError(error) {
 
 export function authRegister(registerState) {
     return async function (dispatch) {
+        dispatch(registerLoading());
         let url = `${baseUrl}/authenticate/register`;
         axios.post(url, registerState, headerRegister)
             .then((res) => {
-                dispatch(registerSuccess(res));
+                dispatch(registerSuccess(res.data));
             }).catch((error) => {
+                console.log(error);
                 dispatch(registerError(error));
             })
     }

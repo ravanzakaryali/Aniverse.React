@@ -6,18 +6,18 @@ import PostAdd from '../../post/PostAdd';
 import SiderbarRight from '../../sidebar/SiderbarRight';
 import { useWindowSize } from '@react-hook/window-size';
 import PostSetting from '../../post/PostSetting';
+import Footer from '../../navbar/Footer';
 import SponsoredAdd from '../../Sponsored/SponsoredAdd';
 
 function Home(props) {
  const navigate = useNavigate();
  const [width] = useWindowSize();
- const [comState, setComState] = useState({});
+ const token = localStorage.getItem('token');
+
  useEffect(() => {
   document.title = 'Aniverse';
-  if (token === null) return navigate('/authenticate/login');
- }, [comState]);
- console.log(comState);
- const token = localStorage.getItem('token');
+ }, [token]);
+ if (token === null) return <>{navigate('/authenticate/login')}</>;
  return (
   <>
    <div className="main row">
@@ -25,14 +25,15 @@ function Home(props) {
      {width > 768 ? (
       <div className="fixed-sidebar col-3">
        <Sidebar />
+       <Footer />
       </div>
      ) : (
       ''
      )}
      <div className="static-page col-12 col-md-6">
       <Story />
-      <PostAdd comState={comState} setComState={setComState} />
-      <PostSetting comState={comState} />
+      <PostAdd />
+      <PostSetting />
      </div>
      {width > 768 ? (
       <div className="fixed-sidebar-right col-3">
@@ -43,7 +44,6 @@ function Home(props) {
      )}
     </React.Fragment>
    </div>
-   <SponsoredAdd />
   </>
  );
 }

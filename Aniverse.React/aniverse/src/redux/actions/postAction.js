@@ -8,8 +8,12 @@ export function getFriendAllPostSuccess(animals) {
 export function getFriendAllPostError(error) {
     return { type: actionTypes.GET_FRIEND_ALL_POSTS_ERROR, payload: error }
 }
+export function getFriendAllPostLoading() {
+    return { type: actionTypes.GET_FRIEND_ALL_POSTS_LOADING }
+}
 export function getFriendAllPost(page, size) {
     return async function (dispatch) {
+        dispatch(getFriendAllPostLoading())
         let url = `${baseUrl}/post/friend?page=${page}&size=${size}`;
         axios.get(url, header)
             .then((res) => {
@@ -20,6 +24,9 @@ export function getFriendAllPost(page, size) {
     }
 }
 
+export function getAllPostLoading() {
+    return { type: actionTypes.GET_ALL_POSTS_LOADING }
+}
 export function getAllPostSuccess(post) {
     return { type: actionTypes.GET_ALL_POSTS_SUCCESS, payload: post }
 }
@@ -28,6 +35,7 @@ export function getAllPostError(error) {
 }
 export function getAllPosts(page, size) {
     return async function (dispatch) {
+        dispatch(getAllPostLoading())
         let url = `${baseUrl}/post?page=${page}&size=${size}`;
         axios.get(url, header)
             .then((res) => {
@@ -38,6 +46,9 @@ export function getAllPosts(page, size) {
     }
 }
 
+export function getAnimalPostLoading() {
+    return { type: actionTypes.GET_ANIMAL_POST_LOADING }
+}
 export function getAnimalPostSuccess(animalPost) {
     return { type: actionTypes.GET_ANIMAL_POST_SUCCESS, payload: animalPost }
 }
@@ -46,6 +57,7 @@ export function getAnimalPostError(error) {
 }
 export function getAnimalPosts(animalname) {
     return function (dispatch) {
+        dispatch(getAnimalPostLoading());
         let url = `${baseUrl}/animal/post/${animalname}`;
         axios.get(url, header)
             .then((res) => {
@@ -56,15 +68,19 @@ export function getAnimalPosts(animalname) {
     }
 }
 
+export function getUserPostsLoading() {
+    return { type: actionTypes.GET_USER_POST_LOADING }
+}
 export function getUserPostsSuccess(data) {
     return { type: actionTypes.GET_USER_POST_SUCCESS, payload: data }
 }
 export function getUserPostsError(error) {
     return { type: actionTypes.GET_USER_POST_ERROR, payload: error }
 }
-export function getPost(username) {
+export function getPost(page, size, username) {
     return async function (dispatch) {
-        let url = `${baseUrl}/post/${username}`;
+        dispatch(getUserPostsLoading());
+        let url = `${baseUrl}/post/${username}?page=${page}&size=${size}`;
         axios.get(url, header).then((res) => {
             dispatch(getUserPostsSuccess(res.data));
         }).catch((error) => {
@@ -79,12 +95,16 @@ export function postCreateSuccess(data) {
 export function postCreateError(error) {
     return { type: actionTypes.POST_CERATE_ERROR, payload: error }
 }
+export function postCreateLoading() {
+    return { type: actionTypes.POST_CERATE_LOADING }
+}
 export function createPost(postData) {
     return async function (dispatch) {
+        dispatch(postCreateLoading());
         let url = `${baseUrl}/post`;
         axios.post(url, postData, headerPicture)
             .then((res) => {
-                dispatch(postCreateSuccess(res));
+                dispatch(postCreateSuccess(res.data));
             }).catch((error) => {
                 dispatch(postCreateError(error));
             })
@@ -94,6 +114,9 @@ export function createPost(postData) {
 export function likePostSuccess(data) {
     return { type: actionTypes.LIKE_POST_SUCCESS, payload: data }
 }
+export function likeDeleteSuccess(data) {
+    return { type: actionTypes.LIKE_DELETE_SUCCES, payload: data }
+}
 export function likePostError(error) {
     return { type: actionTypes.LIKE_POST_SUCCESS, payload: error }
 }
@@ -102,7 +125,11 @@ export function likePost(likeData) {
         let url = `${baseUrl}/post/like`;
         axios.post(url, likeData, header)
             .then((res) => {
-                dispatch(likePostSuccess(res));
+                if (likeData.isLike) {
+                    dispatch(likePostSuccess({ userId: res.data, postId: likeData.postId }))
+                } else {
+                    dispatch(likeDeleteSuccess({ userId: res.data, postId: likeData.postId }))
+                }
             }).catch((error) => {
                 dispatch(likePostError(error));
             })
@@ -138,7 +165,7 @@ export function postDelete(id) {
         let url = `${baseUrl}/post/delete/${id}`;
         axios.patch(url, {}, header)
             .then((res) => {
-                dispatch(postDeleteSuccess(res));
+                dispatch(postDeleteSuccess(id));
             }).catch((error) => {
                 dispatch(postDeleteError(error));
             })
@@ -155,11 +182,15 @@ export function postArchive(id) {
         let url = `${baseUrl}/post/archive/${id}`;
         axios.patch(url, {}, header)
             .then((res) => {
-                dispatch(postArchiveSuccess(res));
+                dispatch(postArchiveSuccess(id));
             }).catch((error) => {
                 dispatch(postArchiveError(error));
             })
     }
+}
+
+export function getArchivePostLoading() {
+    return { type: actionTypes.GET_POST_ARCHIVE_LOADING }
 }
 export function getArchivePostSuccess(data) {
     return { type: actionTypes.GET_POST_ARCHIVE_SUCCESS, payload: data }
@@ -169,6 +200,7 @@ export function getArchivePostError(error) {
 }
 export function getArchivePost(page, size) {
     return function (dispatch) {
+        dispatch(getAllPostLoading());
         let url = `${baseUrl}/post/archive?page=${page}&size=${size}`;
         axios.get(url, header)
             .then((res) => {
@@ -179,6 +211,9 @@ export function getArchivePost(page, size) {
     }
 }
 
+export function getRecyclePostLoading() {
+    return { type: actionTypes.GET_POST_RECYCLE_LOADING }
+}
 export function getRecyclePostSuccess(data) {
     return { type: actionTypes.GET_POST_RECYCLE_SUCCESS, payload: data }
 }
@@ -187,6 +222,7 @@ export function getRecyclePostError(error) {
 }
 export function getRecyclePost(page, size) {
     return function (dispatch) {
+        dispatch(getRecyclePostLoading());
         let url = `${baseUrl}/post/recycle?page=${page}&size=${size}`;
         axios.get(url, header)
             .then((res) => {
@@ -197,6 +233,9 @@ export function getRecyclePost(page, size) {
     }
 }
 
+export function getSavePostLoading() {
+    return { type: actionTypes.GET_POST_SAVE_LOADING }
+}
 export function getSavePostSuccess(data) {
     return { type: actionTypes.GET_POST_SAVE_SUCCESS, payload: data }
 }
@@ -205,12 +244,58 @@ export function getSavePostError(error) {
 }
 export function getSavePost(page, size) {
     return function (dispatch) {
+        dispatch(getSavePostLoading())
         let url = `${baseUrl}/post/save?page=${page}&size=${size}`;
         axios.get(url, header)
             .then((res) => {
                 dispatch(getSavePostSuccess(res.data));
             }).catch((error) => {
                 dispatch(getSavePostError(error));
+            })
+    }
+}
+
+export function postEditSuccess(data) {
+    return { type: actionTypes.POST_EDIT_SUCCESS, payload: data }
+}
+export function postEditError(error) {
+    return { type: actionTypes.POST_EDIT_ERROR, payload: error }
+}
+export function postEdit(postId, postData) {
+    return function (dispatch) {
+        let url = `${baseUrl}/post/update/${postId}`;
+        axios.put(url, postData, header)
+            .then((res) => {
+                dispatch(postEditSuccess({ content: postData.content, postId: postId }));
+            }).catch((error) => {
+                dispatch(postEditError(error));
+            })
+    }
+}
+
+export function postModalAction(post) {
+    return { type: actionTypes.POST_MODAL, payload: post }
+}
+export function postModal(post) {
+    return function (dispatch) {
+        dispatch(postModalAction(post))
+    }
+}
+
+export function postRestoreSuccess(id) {
+    return { type: actionTypes.POST_RESTORE_SUCCESS, payload: id }
+}
+export function postRestoreError(error) {
+    return { type: actionTypes.POST_RESTORE_ERROR, payload: error }
+}
+export function postRestore(id) {
+    return function (dispatch) {
+        let url = `${baseUrl}/post/restore/${id}`;
+        axios.patch(url, {}, header)
+            .then((res) => {
+                dispatch(postRestoreSuccess(id));
+            }).catch((error) => {
+                dispatch(postRestoreError(error));
             })
     }
 }

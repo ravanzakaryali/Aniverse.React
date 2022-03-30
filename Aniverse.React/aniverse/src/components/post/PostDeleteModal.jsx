@@ -5,7 +5,7 @@ import { postDelete } from '../../redux/actions/postAction';
 
 function PostDeleteModal(props) {
  const { deleteRequest } = props;
- const { postId } = props;
+ const { post } = props;
  return (
   <div>
    <div
@@ -16,7 +16,7 @@ function PostDeleteModal(props) {
     <div className="modal-dialog modal-dialog-centered">
      <div className="modal-content">
       <div className="modal-header">
-       <h5 className="modal-title">Delete</h5>
+       <h5 className="modal-title">Delete post?</h5>
        <button
         className="btn"
         type="button"
@@ -26,13 +26,12 @@ function PostDeleteModal(props) {
        </button>
       </div>
       <div className="modal-body">
-       <p>Deleted posts are stored here</p>
+       <p>Are you sure that you want to delete this post?</p>
        <form
         className="form-modal"
         onSubmit={(e) => {
          e.preventDefault();
-         deleteRequest(postId);
-         props.setComRender(postId + 'Success');
+         deleteRequest(post.id);
         }}>
         <div className="modal-footer">
          <button
@@ -45,7 +44,7 @@ function PostDeleteModal(props) {
           data-bs-dismiss="modal"
           type="submit"
           className="btn btn-primary">
-          Delete post
+          Delete
          </button>
         </div>
        </form>

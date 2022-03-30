@@ -44,7 +44,7 @@ function Comment(props) {
 }
 const mapStateToProps = (state) => {
  return {
-  commentsCreate: state.commentReducer,
+  // commentsCreate: state.commentReducer,
  };
 };
 const mapDispatchToProps = (dispatch) => {

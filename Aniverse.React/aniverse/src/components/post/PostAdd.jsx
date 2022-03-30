@@ -6,86 +6,108 @@ import { selectAnimal } from '../../redux/actions/animalAction';
 import Select from 'react-select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { MdAddPhotoAlternate } from 'react-icons/md';
-import { VscAdd } from 'react-icons/vsc';
 
 function PostAdd(props) {
- const { post, comState, setComState } = props;
+ const formData = new FormData();
+ const [disable, setDisable] = useState(true);
+
+ const { post } = props;
  const { selectAnimal } = props;
- const [postState, setPostState] = useState({});
+ const [
+  postState = {
+   animalId: '',
+   content: '',
+   imageFile: '',
+  },
+  setPostState,
+ ] = useState({});
 
  useEffect(() => {
   selectAnimal();
- }, [postState, selectAnimal]);
+ }, []);
 
- const formData = new FormData();
+ const postSubmit = (e) => {
+  e.preventDefault();
+  if (postState.postFile) {
+   for (let i = 0; i < postState.postFile.length; i++) {
+    formData.append('imageFile', postState.postFile[i]);
+   }
+  }
+  formData.append('content', postState.content);
+  if (postState.animalId) formData.append('animalId', postState.animalId);
+  if (postState) {
+   post(formData);
+  }
+  document.getElementById('form').reset();
+ };
+
+ const customStyles = {
+  option: (provided, state) => ({
+   ...provided,
+   color: state.isSelected ? 'white' : 'black',
+   backgroundColor: state.isSelected ? '#2f26c8' : 'white',
+  }),
+ };
 
  return (
-  <div className="col-12">
-   <form
-    onSubmit={(e) => {
-     e.preventDefault();
-
-     if (postState.postFile) {
-      for (let i = 0; i < postState.postFile.length; i++) {
-       formData.append('imageFile', postState.postFile[i]);
-      }
-     }
-     formData.append('content', postState.content);
-     formData.append('animalId', postState.animalId);
-     if (postState) {
-      post(formData);
-      setComState(postState);
-     }
-    }}
-    className="row post-add">
+  <div className="col-12 posts-col">
+   <form onSubmit={postSubmit} className="row post-add" id="form">
     <div className="content col-12">
      <textarea
       name="content"
       onChange={(e) => {
        const content = e.target.value;
        setPostState({ ...postState, ...{ content } });
+       if (e.target.value) {
+        setDisable(false);
+       } else {
+        setDisable(true);
+       }
       }}
       className="col-12"
       type="text"
       placeholder="What do you think about animals?"></textarea>
-     <div className="animals">
-      <Select
-       placeholder="Animal"
-       onChange={(e) => {
-        setPostState({
-         ...postState,
-         ...{ animalId: e.id },
-        });
-       }}
-       options={props.select}
-       getOptionLabel={(options) => options['name']}
-       getOptionValue={(options) => options['id']}
-      />
-     </div>
-     <div
-      onClick={(e) => {
-       document.querySelector('.fileUpload').click();
-      }}
-      className="image col-1">
-      <MdAddPhotoAlternate />
-     </div>
-     <div>
-      <div className="image-select d-none">
-       <FontAwesomeIcon icon="fa-solid fa-images" />
-       <span className="fileSaveIndex image-select-text"></span>
-       <span
-        onClick={(e) => {
-         document.querySelector('.fileUpload').value = '';
-         e.currentTarget.parentElement.className = 'd-none image-select';
+     <div className="post-add-footer">
+      <div className="animals">
+       <Select
+        styles={customStyles}
+        placeholder="Animal"
+        onChange={(e) => {
+         setPostState({
+          ...postState,
+          ...{ animalId: e.id },
+         });
         }}
-        className="clear-select-files">
-        <FontAwesomeIcon icon="fa-solid fa-xmark" />
-       </span>
+        options={props.select}
+        getOptionLabel={(options) => options['name']}
+        getOptionValue={(options) => options['id']}
+       />
       </div>
+      <div
+       onClick={(e) => {
+        document.querySelector('.fileUpload').click();
+       }}
+       className="image col-1">
+       <MdAddPhotoAlternate />
+      </div>
+      <div>
+       <div className="image-select d-none">
+        <FontAwesomeIcon icon="fa-solid fa-images" />
+        <span className="fileSaveIndex image-select-text"></span>
+        <span
+         onClick={(e) => {
+          document.querySelector('.fileUpload').value = '';
+          e.currentTarget.parentElement.className = 'd-none image-select';
+         }}
+         className="clear-select-files">
+         <FontAwesomeIcon icon="fa-solid fa-xmark" />
+        </span>
+       </div>
+      </div>
+      <button disabled={disable} type="submit" className=" btn btn-primary">
+       Add post <FontAwesomeIcon className="icon" icon="fa-solid fa-plus" />
+      </button>
      </div>
-     <button type="submit" className=" btn btn-primary">
-      Add post <VscAdd />
-     </button>
     </div>
     <div className="image-content col-3">
      <input

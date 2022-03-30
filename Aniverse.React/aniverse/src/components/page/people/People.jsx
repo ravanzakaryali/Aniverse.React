@@ -8,7 +8,8 @@ function People() {
  const navigate = useNavigate();
  const token = localStorage.getItem('token');
  useEffect(() => {
-  if (token == null) return navigate('/auth/login');
+  document.title = 'People | Aniverse';
+  if (token == null) return navigate('/authenticate/login');
  }, []);
  const [width] = useWindowSize();
  return (
@@ -24,9 +25,7 @@ function People() {
     <Outlet />
    </div>
    {width > 768 ? (
-    <div className="people-right col-3">
-     <Sponsored />
-    </div>
+    <div className="people-right col-3">{/* <Sponsored /> */}</div>
    ) : (
     ''
    )}

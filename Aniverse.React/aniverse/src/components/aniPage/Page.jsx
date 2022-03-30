@@ -1,86 +1,94 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router';
+import { Outlet, useParams } from 'react-router';
 import { getPage } from '../../redux/actions/pageAction';
+import { getLoginUser } from '../../redux/actions/userActions';
+import Loading from '../loading/Loading';
+import ProfilePictureStyle from '../user/ProfilePictureStyle';
+import EditPageModal from './EditPageModal';
 import HomePage from './HomePage';
-import DefaultPageProfile from './img/page_default.png';
+import PageCoverPicture from './PageCoverPicture';
 import PageMenuList from './PageMenuList';
+import PageProfilePicture from './PageProfilePicture';
+import ProfilePPStyle from './ProfilePPStyle';
 
 function Page(props) {
  const paramsPagename = useParams().pagename;
- const { getPageRequest } = props;
+ const { getPageRequest, loginUser } = props;
  const {
   name,
   pagename,
-  followCount,
   about,
   category,
   isOfficial,
-  profilePicture,
+  profilPicture,
   coverPicture,
- } = props.page;
+ } = props.page.data;
+
  useEffect(() => {
   getPageRequest(paramsPagename);
- }, [getPageRequest, paramsPagename]);
- console.log(props);
+  loginUser();
+  if (name) document.title = `${name} | Aniverse`;
+ }, [getPageRequest, paramsPagename, name]);
+ if (props.page.loading)
+  return (
+   <div className="loading_user">
+    <Loading />
+   </div>
+  );
  return (
-  <div className="container">
-   <div className="ani_page">
-    <div className="cover_picture">
-     {coverPicture ? (
-      <img alt={name} src={coverPicture} />
-     ) : (
-      <div className="default_bg_style"></div>
-     )}
-     <form className="btn-parent">
-      <button className="btn btn_cover">
-       <FontAwesomeIcon icon="fa-solid fa-camera" />
-      </button>
-     </form>
-    </div>
-    <div className="page_profile">
-     <div className="profile-title">
-      <div className="page-profile-img">
-       <img
-        alt={name}
-        src={profilePicture ? profilePicture : DefaultPageProfile}
-       />
+  <div className="page container">
+   <div className="cover_picture">
+    <PageCoverPicture coverPicture={coverPicture} />
+   </div>
+   <div className="page-container">
+    <div className="ani_page">
+     <div className="page_profile">
+      <div className="profile-title">
+       <div className="page-profile-img">
+        <PageProfilePicture profilPicture={profilPicture} />
+       </div>
+       <div className="page-profile-content">
+        <p className="name">
+         {name}
+         {isOfficial ? (
+          <>
+           <span className="circle">
+            <FontAwesomeIcon icon="fa-solid fa-circle-check" />
+           </span>
+          </>
+         ) : (
+          ''
+         )}
+        </p>
+        <p className="follower"> {category}</p>
+       </div>
       </div>
-      <div className="page-profile-contetn">
-       <p className="name">
-        {name}
-        {isOfficial ? (
-         <>
-          <span className="circle">
-           <FontAwesomeIcon icon="fa-solid fa-circle-check" />
-          </span>
-         </>
-        ) : (
-         ''
-        )}{' '}
-       </p>
-       <p className="follower"> {category}</p>
-      </div>
+      <PageMenuList />
      </div>
-     <PageMenuList />
+    </div>
+    <div className="row ani-page-home">
+     <Outlet />
     </div>
    </div>
-   <div className="row ani-page-home">
-    <HomePage />
-   </div>
+   <EditPageModal />
   </div>
  );
 }
+
 const mapStateToProps = (state) => {
  return {
-  page: state.pageGetReducer,
+  page: state.pageReducer,
  };
 };
 const mapDispatchToProps = (dispatch) => {
  return {
   getPageRequest: (pagename) => {
    dispatch(getPage(pagename));
+  },
+  loginUser: () => {
+   dispatch(getLoginUser());
   },
  };
 };

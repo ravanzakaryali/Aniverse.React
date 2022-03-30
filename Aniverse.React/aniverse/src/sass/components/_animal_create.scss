@@ -1,0 +1,43 @@
+.form-create {
+    .animal-create-form {
+        // background-color: $white;
+        // margin: $margin-normal 0;
+        // @extend %box-shadow-main;
+    }
+    .form-item {
+        padding: $padding-normal;
+        input {
+            width: 100%;
+            padding: $padding-normal;
+            border-radius: $border-radius-min;
+            border: 1px solid $gray-20;
+            &:focus-visible,
+            &:focus {
+                outline: 0;
+                box-shadow: none;
+                border: 1px solid $color-brand-primary-7;
+            }
+        }
+    }
+    .create-label {
+        display: inline-block;
+        width: 100%;
+        font-weight: $fs-weight-normal;
+        font-size: $fs-min;
+        padding: $padding-min 0;
+    }
+    .buttons {
+        padding: $padding-normal;
+        .btn {
+            display: block;
+            padding: $padding-min $padding-normal + 10;
+            margin-left: auto;
+            width: 100%;
+        }
+    }
+    .form-item-row {
+        margin: 0;
+        padding: $padding-normal;
+        justify-content: space-between;
+    }
+}

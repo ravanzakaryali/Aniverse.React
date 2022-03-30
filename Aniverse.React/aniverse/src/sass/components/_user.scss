@@ -3,7 +3,8 @@
     border-radius: $border-radius-min;
     padding: $padding-normal 0;
     padding: 0;
-    background-color: white;
+    background-color: $white;
+    border: 1px solid $gray-20;
     @extend %box-shadow-main;
     .section-title {
         border-bottom: 1px solid $gray-20;
@@ -22,6 +23,7 @@
             }
         }
         .users-profile {
+            object-fit: cover;
             @include boxSize($box-size-img, $box-size-img, 50%);
         }
     }
@@ -59,5 +61,38 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+    }
+}
+.user-pages {
+    .circle {
+        font-size: $fs-min;
+        color: $color-brand-primary;
+        margin: auto;
+        margin-left: $margin-min;
+        display: inline-block;
+    }
+    .pages-row {
+        padding: $padding-normal;
+    }
+    .page-item {
+        text-align: center;
+    }
+    .page-header {
+        margin: 0 auto;
+        @include boxSize($box-size-img * 4, $box-size-img * 4, 50%);
+        img {
+            @include boxSize($box-size-img * 4, $box-size-img * 4, 50%);
+            object-fit: cover;
+        }
+    }
+    .page-footer {
+        padding: $padding-min;
+        h3 {
+            color: $black;
+            font-size: $fs-normal + 2;
+        }
+        p {
+            color: $gray-80;
+        }
     }
 }

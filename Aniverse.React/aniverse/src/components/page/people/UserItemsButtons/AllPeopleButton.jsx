@@ -11,12 +11,11 @@ export const AllPeopleButton = (props) => {
     onClick={(e) => {
      e.preventDefault();
      addFriendRequest(userId);
-     props.setComRender(userId);
     }}
     className="buttons">
     <button type="submit" className="btn btn-primary">
      <FontAwesomeIcon className="icon" icon="fa-solid fa-user-plus" />
-     Add Friends
+     {props.users.addFriend ? 'Loading' : 'Add Friend'}
     </button>
    </form>
   </>
@@ -26,6 +25,7 @@ export const AllPeopleButton = (props) => {
 function mapStateToProps(state) {
  return {
   usersRequest: state.friendReducer,
+  users: state.usersAllReducer,
  };
 }
 

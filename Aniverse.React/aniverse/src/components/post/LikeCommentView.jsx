@@ -7,12 +7,12 @@ import Like from './Like';
 
 function LikeCommentView(props) {
  const [commentView, setCommentView] = useState(false);
- const { post, setComRender } = props;
+ const { post } = props;
  return (
   <>
    <div className="post-event">
     <div className="col-6 event like">
-     <Like postId={post.id} likes={post.likes} setComRender={setComRender} />
+     <Like postId={post.id} likes={post.likes} />
     </div>
     <div className="col-6 event comment">
      <button
@@ -28,11 +28,7 @@ function LikeCommentView(props) {
    {commentView ? (
     <div className="comments">
      <div className="add-comment">
-      <CommentAdd
-       setComRender={setComRender}
-       postId={post.id}
-       user={props.user}
-      />
+      <CommentAdd postId={post.id} user={props.user} />
      </div>
      <Comment comments={post.comments} />
     </div>

@@ -2,10 +2,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import DefaultPageProfile from './img/page_default.png';
+import ProfilePPStyle from '../aniPage/ProfilePPStyle';
 
 function PageIntro(props) {
  const { pages } = props;
- console.log(pages);
  return (
   <>
    <div className="page-intro">
@@ -23,14 +23,11 @@ function PageIntro(props) {
      </div>
     </div>
     <div className="pages-row">
-     {pages.map((page) => (
+     {pages.data.map((page, index) => (
       <>
-       <Link to={`/page/${page.pagename}`} className="page-item">
+       <Link to={`/page/${page.pagename}`} key={index} className="page-item">
         <div className="profile-img">
-         <img
-          alt={page.name}
-          src={page.profilePicture ? page.profilePicture : DefaultPageProfile}
-         />
+         <ProfilePPStyle alt={page.name} profilPicture={page.profilPicture} />
         </div>
         <div className="page-content">
          <p className="name">
@@ -45,7 +42,9 @@ function PageIntro(props) {
            ''
           )}
          </p>
-         <p className="follower-count">{page.followCount} followers</p>
+         <p className="follower-count">
+          {page.pageFollow ? page.pageFollow.length : 0} followers
+         </p>
         </div>
        </Link>
       </>

@@ -6,6 +6,7 @@
         margin: $margin-normal 0;
         border-radius: $border-radius-min;
         @extend %box-shadow-main;
+        border: 1px solid $gray-20;
         text-align: center;
     }
     .user-profile-img {

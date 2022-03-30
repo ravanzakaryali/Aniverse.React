@@ -2,13 +2,27 @@
     background: $color-brand-secondary;
     background: linear-gradient(45deg, $color-brand-secondary, $color-brand-primary);
 }
+.btn-opacity-primary {
+    background: $color-brand-primary-2;
+    color: $color-brand-primary;
+    font-weight: $fs-weight-normal;
+    .icon {
+        font-size: $fs-normal;
+        margin-right: $margin-min;
+    }
+    &:hover {
+        color: $color-brand-primary;
+        background-color: $color-brand-primary-3;
+    }
+}
+
 .btn-primary:hover {
     background: $color-brand-secondary;
     background: linear-gradient(45deg, $color-brand-secondary, $color-brand-primary-hover);
 }
-.btn-light{
+.btn-light {
     background-color: $gray-20;
 }
-.btn-light:hover{
+.btn-light:hover {
     background-color: $gray-10;
 }

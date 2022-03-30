@@ -22,9 +22,8 @@
         top: 10px;
         right: 10px;
         background-color: $white;
-        width: 30px;
-        height: 30px;
-        line-height: 30px;
+        width: 25px;
+        height: 25px;
         border-radius: 50%;
         text-align: center;
         padding: 0;
@@ -32,6 +31,9 @@
         &:hover {
             background-color: $gray-10;
             transform: scale(1.1);
+        }
+        .icon {
+            font-size: $fs-normal;
         }
     }
 }

@@ -15,7 +15,7 @@ function About(props) {
   id,
   profilPicture,
   coverPicture,
- } = props.user;
+ } = props.user.data;
 
  return (
   <>

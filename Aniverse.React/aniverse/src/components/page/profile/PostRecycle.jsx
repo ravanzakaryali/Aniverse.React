@@ -8,24 +8,19 @@ import Posts from '../../post/Posts';
 
 function PostArchive(props) {
  const { postRecycleRequest } = props;
- const [comRender, setComRender] = useState(false);
  useEffect(() => {
-  postRecycleRequest(1, 100);
- }, [postRecycleRequest, comRender]);
+  postRecycleRequest(1, 10);
+ }, [postRecycleRequest]);
 
  return (
   <>
-   <Posts
-    comRender={comRender}
-    setComRender={setComRender}
-    posts={props.posts}
-   />
+   <Posts posts={props.posts} />
   </>
  );
 }
 const mapStateToProps = (state) => {
  return {
-  posts: state.postRecycleReducer,
+  posts: state.postsReducer,
  };
 };
 

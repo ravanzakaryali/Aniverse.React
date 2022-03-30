@@ -6,28 +6,25 @@ import { getFriendStory } from '../../redux/actions/storyAction';
 
 function Story(props) {
  const { storiesRequest } = props;
-
- const [addStory, setStory] = useState({});
  useEffect(() => {
-  storiesRequest();
-  setStory(addStory);
- }, [addStory, storiesRequest]);
+  storiesRequest(1, 10);
+ }, [storiesRequest]);
  return (
   <div className="story-row d-flex">
-   <StoryAdd addStory={addStory} setStory={setStory} />
-   <Stories stories={props.stories} addStory={addStory} setStory={setStory} />
+   <StoryAdd />
+   <Stories stories={props.stories} />
   </div>
  );
 }
 const mapStateToProps = (state) => {
  return {
-  stories: state.storyFriendReducer,
+  stories: state.storiesReducer,
  };
 };
 const mapDispatchToProps = (dispatch) => {
  return {
-  storiesRequest: () => {
-   dispatch(getFriendStory());
+  storiesRequest: (page, size) => {
+   dispatch(getFriendStory(page, size));
   },
  };
 };

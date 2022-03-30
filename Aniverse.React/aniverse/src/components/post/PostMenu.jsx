@@ -2,14 +2,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { BsBookmark, BsFillBookmarkFill } from 'react-icons/bs';
-import { IoMdArchive } from 'react-icons/io';
+import { FiEdit } from 'react-icons/fi';
+import { RiInboxArchiveLine } from 'react-icons/ri';
+import { MdOutlineAutoDelete } from 'react-icons/md';
 
-import { postSave } from '../../redux/actions/postAction';
+import {
+ postModal,
+ postModalAction,
+ postSave,
+} from '../../redux/actions/postAction';
 import PostDeleteModal from './PostDeleteModal';
 import PostArchiveModal from './PostArchiveModal';
+import PostEditModal from './PostEditModal';
+import Restore from './Restore';
 
-function PostMenu(props) {
- const { postSaveRequest, setComRender } = props;
+const PostMenu = (props) => {
+ const { postSaveRequest, postModalRequest, post } = props;
  const [activeSave, setStateSave] = useState(true);
  const [activeMenu, setActiveMenu] = useState(false);
  const [postSave, setPostSave] = useState({});
@@ -19,21 +27,27 @@ function PostMenu(props) {
   postSaveRequest(postSave);
  };
 
+ const postModalClick = () => {
+  postModalRequest(post);
+ };
+
  useEffect(() => {
-  if (props.isSave) {
+  if (post.isSave) {
    setStateSave(!activeSave);
   }
  }, []);
-
  return (
   <>
    <div className="post-menu col-1">
-    {props.userId !== props.userAuth.id ? (
+    {window.location.pathname.includes('recycle') ||
+    window.location.pathname.includes('archive') ? (
+     <Restore post={post} />
+    ) : props.userId !== props.userAuth.id ? (
      <>
       <form onSubmit={postSaveSubmit}>
        <button
         onClick={() => {
-         setPostSave({ postId: props.postId, isSave: activeSave });
+         setPostSave({ postId: post.id, isSave: activeSave });
          setStateSave(!activeSave);
         }}
         className="btn save-post">
@@ -53,16 +67,21 @@ function PostMenu(props) {
       {activeMenu ? (
        <div className="post-menu-active">
         <div className="post-menu-item">
-         <button className="btn">
-          Modified <FontAwesomeIcon className="icon" icon="fa-solid fa-pen" />
+         <button
+          onClick={postModalClick}
+          className="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#editPostModal">
+          <FiEdit className="icon" /> Modified
          </button>
         </div>
         <div className="post-menu-item">
          <button
+          onClick={postModalClick}
           data-bs-toggle="modal"
           data-bs-target="#archivePostModal"
           className="btn">
-          Archive <IoMdArchive className="icon" />
+          <RiInboxArchiveLine className="icon" /> Archive
          </button>
         </div>
         <div className="post-menu-item">
@@ -71,9 +90,10 @@ function PostMenu(props) {
           data-bs-target="#deletePostModal"
           onClick={() => {
            setActiveMenu(false);
+           postModalClick();
           }}
           className="btn">
-          Remove <FontAwesomeIcon className="icon" icon="fa-solid fa-trash" />
+          <MdOutlineAutoDelete className="icon" /> Remove
          </button>
         </div>
        </div>
@@ -83,11 +103,9 @@ function PostMenu(props) {
      </>
     )}
    </div>
-   <PostArchiveModal setComRender={setComRender} postId={props.postId} />
-   <PostDeleteModal setComRender={setComRender} postId={props.postId} />
   </>
  );
-}
+};
 
 const mapStateToProps = (state) => {
  return {
@@ -98,6 +116,9 @@ const mapDispatchToProps = (dispatch) => {
  return {
   postSaveRequest: (postData) => {
    dispatch(postSave(postData));
+  },
+  postModalRequest: (post) => {
+   dispatch(postModal(post));
   },
  };
 };

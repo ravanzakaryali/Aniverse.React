@@ -21,6 +21,9 @@ export function getUsersSearch(search) {
     }
 }
 
+export function getAllUsersLoading(users) {
+    return { type: actionTypes.GET_All_USERS_LOADING, payload: users }
+}
 export function getAllUsersSuccess(users) {
     return { type: actionTypes.GET_All_USERS_SUCCESS, payload: users }
 }
@@ -29,6 +32,7 @@ export function getAllUsersError(error) {
 }
 export function getAllUsers() {
     return async function (dispatch) {
+        dispatch(getAllUsersLoading())
         let url = `${baseUrl}/user`;
         axios.get(url, header)
             .then((res) => {
@@ -39,6 +43,9 @@ export function getAllUsers() {
     }
 }
 
+export function getUserLoading() {
+    return { type: actionTypes.GET_USER_LOADING }
+}
 export function getUserSuccess(user) {
     return { type: actionTypes.GET_USER_SUCCESS, payload: user }
 }
@@ -47,6 +54,7 @@ export function getUserError(error) {
 }
 export function getUser(id) {
     return async function (dispatch) {
+        dispatch(getUserLoading());
         let url = `${baseUrl}/user/${id}`;
         axios.get(url, header)
             .then((res) => {
@@ -151,14 +159,14 @@ export function changeProfileSuccess(data) {
 export function changeProfileError(error) {
     return { type: actionTypes.PROFILE_CREATE_ERROR, payload: error }
 }
-export function chagePorfile(imageData) {
+export function chagePorfile(imageData, imageSrc) {
     return async function (dispatch) {
         let url = `${baseUrl}/user/profile`;
         axios.post(url, imageData, headerPicture)
             .then((res) => {
-                changeProfileSuccess(res);
+                dispatch(changeProfileSuccess(imageSrc));
             }).catch((error) => {
-                changeProfileError(error);
+                dispatch(changeProfileError(error));
             })
     }
 }
@@ -169,18 +177,21 @@ export function changeCoverSuccess(data) {
 export function changeCoverError(error) {
     return { type: actionTypes.COVER_CREATE_ERROR, payload: error }
 }
-export function chageCover(imageData) {
+export function chageCover(imageData, imageSrc) {
     return async function (dispatch) {
         let url = `${baseUrl}/user/cover`;
         axios.post(url, imageData, header)
             .then((res) => {
-                dispatch(changeCoverSuccess(res.data));
+                dispatch(changeCoverSuccess(imageSrc));
             }).catch((error) => {
                 dispatch(changeCoverError(error));
             })
     }
 }
 
+export function changeBioLoading() {
+    return { type: actionTypes.BIO_CHANGE_LOADING }
+}
 export function changeBioSuccess(data) {
     return { type: actionTypes.BIO_CHANGE_SUCCESS, payload: data }
 }
@@ -189,12 +200,36 @@ export function changeBioError(error) {
 }
 export function changeBio(bio) {
     return async function (dispatch) {
+        dispatch(changeBioLoading());
         let url = `${actionTypes.baseUrl}/user/bio`;
         axios.patch(url, bio, header)
             .then((res) => {
-                dispatch(changeBioSuccess(res.data));
+                dispatch(changeBioSuccess(bio[0].value));
             }).catch((error) => {
                 dispatch(changeBioError(error));
+            })
+    }
+}
+
+export function getUserPagesLoading() {
+    return { type: actionTypes.GET_USER_PAGES_LOADING }
+}
+export function getUserPagesSuccess(data) {
+    return { type: actionTypes.GET_USER_PAGES_SUCCESS, payload: data }
+}
+export function getUserPagesError(error) {
+    return { type: actionTypes.GET_USER_PAGES_ERROR, payload: error }
+}
+
+export function getUserPages(id) {
+    return async function (dispatch) {
+        dispatch(changeBioLoading());
+        let url = `${actionTypes.baseUrl}/user/${id}/pages`;
+        axios.get(url, header)
+            .then((res) => {
+                dispatch(getUserPagesSuccess(res.data));
+            }).catch((error) => {
+                dispatch(getUserPagesError(error));
             })
     }
 }

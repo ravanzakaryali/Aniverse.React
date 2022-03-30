@@ -9,11 +9,15 @@ export function addFriendSuccess(data) {
 export function addFriendError(error) {
     return { type: actionTypes.ADD_FRIEND_ERROR, payload: error }
 }
+export function addFriendLoading(error) {
+    return { type: actionTypes.ADD_FRIEND_LOADING, payload: error }
+}
 export function addFriend(id) {
     return async function (dispatch) {
+        dispatch(addFriendLoading())
         let url = `${baseUrl}/friend/add/${id}`;
         axios.post(url, {}, header).then((res) => {
-            dispatch(addFriendSuccess(res.data));
+            dispatch(addFriendSuccess(id));
         }).catch((error) => {
             dispatch(addFriendError(error));
         })
@@ -31,7 +35,7 @@ export function unFriend(id) {
         let url = `${baseUrl}/friend/delete/${id}`;
         axios.post(url, {}, header)
             .then((res) => {
-                dispatch(unFriendSuccess(res.data));
+                dispatch(unFriendSuccess(id));
             }).catch((error) => {
                 dispatch(unFriendError(error));
             })
@@ -49,7 +53,7 @@ export function declinedFriend(id) {
         let url = `${baseUrl}/friend/delete/${id}`;
         axios.post(url, {}, header)
             .then((res) => {
-                dispatch(declinedFriendSuccess(res.data));
+                dispatch(declinedFriendSuccess(id));
             }).catch((error) => {
                 dispatch(declinedFriendError(error));
             })
@@ -66,9 +70,9 @@ export function blockFriend(id) {
     return async function (dispatch) {
         let url = `${baseUrl}/friend/block/${id}`;
         axios.post(url, {}, header).then((res) => {
-            dispatch(declinedFriendSuccess(res.data));
+            dispatch(blockFriendSuccess(id));
         }).catch((error) => {
-            dispatch(declinedFriendError(error));
+            dispatch(blockFriendError(error));
         })
     }
 }
@@ -83,13 +87,16 @@ export function confirmFriend(id) {
     return async function (dispatch) {
         let url = `${baseUrl}/friend/confirm/${id}`;
         axios.post(url, {}, header).then((res) => {
-            dispatch(confirmFriendSuccess(res.data));
+            dispatch(confirmFriendSuccess(id));
         }).catch((error) => {
             dispatch(confirmFriendError(error));
         })
     }
 }
 
+export function getAllFriendLoading() {
+    return { type: actionTypes.GET_ALL_FRIENDS_LOADING }
+}
 export function getAllFriendSuccess(data) {
     return { type: actionTypes.GET_ALL_FRIENDS_SUCCESS, payload: data }
 }
@@ -98,6 +105,7 @@ export function getAllFriendError(error) {
 }
 export function getAllFriends(username, page, size) {
     return async function (dispatch) {
+        dispatch(getAllFriendLoading())
         let url = `${baseUrl}/friend/${username}?page=${page}&size=${size}`;
         axios.get(url, header)
             .then((res) => {
@@ -113,9 +121,9 @@ export function getFriendRequestSuccess(data) {
 export function getFriendRequestError(data) {
     return { type: actionTypes.GET_FRIEND_REQUEST_ERROR, payload: data }
 }
-export function getFriendRequest() {
+export function getFriendRequest(page, size) {
     return async function (dispatch) {
-        let url = `${baseUrl}/friend/request`;
+        let url = `${baseUrl}/friend/request?page=${page}&size=${size}`;
         axios.get(url, header)
             .then((res) => {
                 dispatch(getFriendRequestSuccess(res.data));

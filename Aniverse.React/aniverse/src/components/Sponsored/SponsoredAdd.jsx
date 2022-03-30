@@ -5,7 +5,7 @@ function SponsoredAdd(props) {
  const { activeModal, setActiveModal } = props;
  return (
   <>
-   <div
+   {/* <div
     className="modal sponsored-modal fade"
     id="sponsored-modal"
     aria-labelledby="sponsored_modal_label"
@@ -33,7 +33,7 @@ function SponsoredAdd(props) {
       </div>
      </div>
     </div>
-   </div>
+   </div> */}
   </>
  );
 }

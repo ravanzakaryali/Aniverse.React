@@ -1,8 +1,19 @@
+.posts-row {
+    position: relative;
+}
+.posts-col {
+    padding: 0px 80px;
+    @media screen and (max-width: 768px) {
+        padding: 0;
+    }
+}
+
 .post {
     background-color: $white;
     @extend %box-shadow-main;
     margin: $margin-normal 0;
     padding: 0;
+    border: 1px solid $gray-20;
     border-radius: $border-radius-min;
     .profile-img-parent {
         display: contents;
@@ -131,11 +142,12 @@
         }
         .btn {
             display: flex;
+            width: 120px;
             align-items: center;
-            justify-content: space-between;
             font-size: $fs-min + 1 !important;
             .icon {
-                margin-left: $margin-min;
+                margin-right: $margin-normal;
+                font-size: $fs-normal;
             }
         }
     }

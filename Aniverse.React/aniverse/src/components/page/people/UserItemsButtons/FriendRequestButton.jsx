@@ -38,7 +38,6 @@ const FriendRequestButton = (props) => {
      e.preventDefault();
      setIsConfirm(!isConfirm);
      declinedRequest(userId);
-     props.setComRender(userId);
     }}>
     <button type="submit" className="btn btn-light">
      <FontAwesomeIcon className="icon" icon="fa-solid fa-user-xmark" />

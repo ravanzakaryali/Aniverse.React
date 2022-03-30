@@ -5,7 +5,7 @@ import { getRecycleStory } from '../../../redux/actions/storyAction';
 function StoryRecycle(props) {
  const { storyRecycleRequest, stories } = props;
  useEffect(() => {
-  storyRecycleRequest(1, 100);
+  storyRecycleRequest(1, 10);
  }, [storyRecycleRequest]);
  return (
   <>

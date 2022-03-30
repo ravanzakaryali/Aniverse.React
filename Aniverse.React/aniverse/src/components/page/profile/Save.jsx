@@ -2,11 +2,11 @@ import React from 'react';
 import { Outlet } from 'react-router';
 import { Link } from 'react-router-dom';
 
-function Archive(props) {
+function Save(props) {
  return (
   <>
    <div className="archive">
-    <div className="archive-title">Archive</div>
+    <div className="archive-title">Save</div>
     <div className="archive-list">
      <ul className="archive-list-menu">
       <li>
@@ -24,4 +24,4 @@ function Archive(props) {
   </>
  );
 }
-export default Archive;
+export default Save;

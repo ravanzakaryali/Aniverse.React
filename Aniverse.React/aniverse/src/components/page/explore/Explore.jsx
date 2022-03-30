@@ -1,8 +1,10 @@
 import { useWindowSize } from '@react-hook/window-size';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { getAllPage } from '../../../redux/actions/pageAction';
 import { getAllPosts } from '../../../redux/actions/postAction';
+import { getAllProdct } from '../../../redux/actions/productAction';
 import { getStories } from '../../../redux/actions/storyAction';
 import PageIntro from '../../aniPage/PageIntro';
 import Posts from '../../post/Posts';
@@ -10,16 +12,21 @@ import Sponsored from '../../Sponsored/Sponsored';
 import Stories from '../../story/Stories';
 
 function Explore(props) {
- const { postAllRequest, getAllStories, getAllPageRequest } = props;
- const [comRender, setComRender] = useState(1);
+ const { postAllRequest, getAllStories, getAllPageRequest, getAllProductReq } =
+  props;
+ const token = localStorage.getItem('token');
+ const navigate = useNavigate();
+
  useEffect(() => {
   getAllStories();
-  postAllRequest(1, 100);
-  getAllPageRequest(1, 100);
+  postAllRequest(1, 10);
+  getAllPageRequest(1, 10);
+  getAllProductReq(1, 10);
   document.title = 'Explore | Aniverse';
- }, [comRender, getAllStories, postAllRequest]);
- console.log(props);
+ }, [getAllStories, postAllRequest, token]);
+ console.log(props.products);
  const [width] = useWindowSize();
+ if (token === null) return <>{navigate('/authenticate/login')}</>;
 
  return (
   <>
@@ -31,14 +38,10 @@ function Explore(props) {
      <div className="story-row">
       <Stories stories={props.stories} />
      </div>
-     <Posts
-      setComRender={setComRender}
-      comRender={comRender}
-      posts={props.posts}
-     />
+     <Posts posts={props.posts} />
     </div>
     <div className="col-3 fixed-sidebar-right ">
-     {width > 769 ? <Sponsored /> : ''}
+     {width > 769 ? <Sponsored products={props.products} /> : ''}
     </div>
    </div>
   </>
@@ -46,9 +49,10 @@ function Explore(props) {
 }
 const mapStateToProps = (state) => {
  return {
-  posts: state.postReducer,
-  stories: state.storiesAllReducer,
+  posts: state.postsReducer,
+  stories: state.storiesReducer,
   pages: state.pageAllReducer,
+  products: state.allProductReducer,
  };
 };
 
@@ -62,6 +66,9 @@ const mapDispatchToProps = (dispatch) => {
   },
   getAllPageRequest: (page, size) => {
    dispatch(getAllPage(page, size));
+  },
+  getAllProductReq: (page, size) => {
+   dispatch(getAllProdct(page, size));
   },
  };
 };

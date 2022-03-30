@@ -24,9 +24,13 @@
         transform: translate(-50%, -50%);
         font-size: $fs-min - 1;
         color: $gray-80;
-        padding: $padding-normal $padding-normal + 10;
+        padding: 0;
         background-color: $gray-10;
-        border-radius: $border-radius-min;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
     }
     .modal-content {
         position: relative;

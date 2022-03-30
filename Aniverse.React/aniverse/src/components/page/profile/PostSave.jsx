@@ -5,25 +5,19 @@ import Posts from '../../post/Posts';
 
 function PostSave(props) {
  const { postSaveRequest } = props;
- const [comRender, setComRender] = useState(false);
  useEffect(() => {
-  postSaveRequest(1, 100);
- }, [postSaveRequest, comRender]);
+  postSaveRequest(1, 10);
+ }, [postSaveRequest]);
 
- console.log(props);
  return (
   <>
-   <Posts
-    comRender={comRender}
-    setComRender={setComRender}
-    posts={props.posts}
-   />
+   <Posts posts={props.posts} />
   </>
  );
 }
 const mapStateToProps = (state) => {
  return {
-  posts: state.postSaveReducer,
+  posts: state.postsReducer,
  };
 };
 

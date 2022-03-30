@@ -5,35 +5,44 @@ import { connect } from 'react-redux';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import { getAllFriends } from '../../../redux/actions/friendAction';
 import { getLoginUser, getUser } from '../../../redux/actions/userActions';
+import Loading from '../../loading/Loading';
+import ProfilePictureStyle from '../../user/ProfilePictureStyle';
 import UserCoverPicture from './UserCoverPicture';
 import UserProfilePicture from './UserProfilePicture';
+import { AiFillSetting } from 'react-icons/ai';
 
 function User(props) {
  const { loginUserRequest, userMethod, userFriendMethod } = props;
  const [width] = useWindowSize();
  const location = useLocation();
- const [comRender, setComRender] = useState(1);
- const params = useParams().username;
- const { firstname, lastname, username, id, profilPicture, coverPicture } =
-   props.user,
+ const usernameParams = useParams().username;
+ const {
+   firstname,
+   lastname,
+   friendCount,
+   username,
+   id,
+   profilPicture,
+   coverPicture,
+  } = props.user.data,
   friends = props.userFriend;
 
  useEffect(() => {
-  userMethod(params);
-  userFriendMethod(params, 1, 100);
+  if (username) document.title = `${firstname} ${lastname} | Aniverse`;
+  userMethod(usernameParams);
+  userFriendMethod(usernameParams, 1, 9);
   loginUserRequest();
   if (props.user.firstname) {
    document.title = `${firstname} ${lastname} | Aniverse`;
   }
- }, [
-  firstname,
-  lastname,
-  loginUserRequest,
-  params,
-  props.user.firstname,
-  userFriendMethod,
-  userMethod,
- ]);
+ }, [usernameParams]);
+
+ if (props.user.loading)
+  return (
+   <div className="loading_user">
+    <Loading />
+   </div>
+  );
 
  return (
   <>
@@ -42,47 +51,41 @@ function User(props) {
      width > 992 ? ' container' : ' container-lg'
     } user-profile-parent`}>
     <div className="cover-picture">
-     <UserCoverPicture
-      userId={id}
-      setComRender={setComRender}
-      comRender={comRender}
-      coverPicture={coverPicture}
-     />
+     <UserCoverPicture userId={id} coverPicture={coverPicture} />
     </div>
     <div className={`${width > 992 ? 'container-min' : ''}`}>
      <div className="profile-row row">
       <div className="profile-picture-row col-8 d-flex">
-       <UserProfilePicture
-        setComRender={setComRender}
-        comRender={comRender}
-        profilPicture={profilPicture}
-       />
+       <UserProfilePicture profilPicture={profilPicture} />
        <div className="profil-content col-6">
         <h2 className="profile-name-surname">
          {firstname} {lastname}
         </h2>
         <span className="friend-count">
-         {friends.length ? (
-          <Link to={'friends'}>{friends.length} friends</Link>
+         {friends.data.length ? (
+          <Link to={'friends'}>{friendCount} friends</Link>
          ) : (
           'Find new friends'
          )}
         </span>
         <div className="friends-pp d-none d-sm-flex">
-         {friends.map((friend, index) => (
-          <div key={index} className="ml-10">
-           <Link to={`/user/${friend.username}`}>
-            <img
-             alt={`${friend.firstname + friend.lastname + 's profile picture'}`}
-             className="friend-img"
-             src={
-              friend.profilPicture == null
-               ? `../../img/user.png`
-               : `${friend.profilPicture}`
-             }></img>
-           </Link>
-          </div>
-         ))}
+         {friends.data.map((friend, index) =>
+          username !== friend.username && index <= 9 ? (
+           <div key={index} className="ml-10">
+            <Link to={`/user/${friend.username}`}>
+             <ProfilePictureStyle
+              className={'friend-img'}
+              alt={`${
+               friend.firstname + friend.lastname + 's profile picture'
+              }`}
+              profilPicture={friend.profilPicture}
+             />
+            </Link>
+           </div>
+          ) : (
+           ''
+          ),
+         )}
         </div>
        </div>
       </div>
@@ -125,7 +128,7 @@ function User(props) {
            Photos
           </Link>
          </li>
-         {/* <li>
+         <li>
           <Link
            to={`/user/${username}/pages`}
            className={
@@ -133,20 +136,22 @@ function User(props) {
            }>
            Pages
           </Link>
-         </li> */}
+         </li>
         </ul>
        </div>
        <div className="col-3">
         <ul className="profile-menu justify-content-end">
          <li className="setting">
-          {props.userAuth.id === props.user.id ? (
+          {props.userAuth.id === props.user.data.id ? (
            <>
             <Link
-             to={`/user/${username}/setting`}
+             to={`/user/${username}/setting/archive`}
              className={
-              location.pathname === `/user/${username}/setting` ? 'active' : ''
+              location.pathname.includes(`/user/${username}/setting`)
+               ? 'active'
+               : ''
              }>
-             <FontAwesomeIcon icon="fa-solid fa-gear" />
+             <AiFillSetting className="icon" />
             </Link>
            </>
           ) : (

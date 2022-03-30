@@ -26,14 +26,18 @@ export function getFriendStoriesSuccess(stories) {
 export function getFriendStoriesError(error) {
     return { type: actionTypes.GET_FRIEND_STORIES_ERROR, payload: error }
 }
-export function getFriendStory() {
+export function getFriendStoriesLoading() {
+    return { type: actionTypes.GET_FRIEND_STORIES_LOADING }
+}
+export function getFriendStory(page = 1, size = 3) {
     return async function (dispatch) {
-        let url = `${baseUrl}/story/friend`;
+        dispatch(getFriendStoriesLoading());
+        let url = `${baseUrl}/story/friend?page=${page}&size=${size}`;
         axios.get(url, header)
             .then((res) => {
                 dispatch(getFriendStoriesSuccess(res.data));
             }).catch((error) => {
-                dispatch(getFriendStoriesError(error));
+                dispatch(getFriendStoriesError(error.response.data));
             });
     }
 }
@@ -63,14 +67,18 @@ export function storyCreateError(error) {
     return { type: actionTypes.STORY_CREATE_ERROR, payload: error }
 }
 
-export function storyCreate(formData) {
+export function storyCreate(storyData) {
+    const formData = new FormData();
+    formData.append('storyFile', storyData.storyFile);
+    formData.append('content', storyData.name);
     return async function (dispatch) {
         let url = `${baseUrl}/story`;
         axios.post(url, formData, headerPicture)
             .then((res) => {
-                dispatch(storyCreateSuccess(res));
+                res.data.imageSrc = storyData.imageSrc
+                dispatch(storyCreateSuccess(res.data));
             }).catch((error) => {
-                dispatch(storyCreateError(error));
+                dispatch(storyCreateError(error.response.data.message));
             });
     }
 }
@@ -87,25 +95,25 @@ export function deleteStory(id) {
         let url = `${actionTypes.baseUrl}/story/delete/${id}`;
         axios.patch(url, {}, header)
             .then((res) => {
-                dispatch(deleteStorySuccess(res));
+                dispatch(deleteStorySuccess(id));
             }).catch((error) => {
                 dispatch(deleteStoryError(error));
             });
     }
 }
 
-export function archiveStorySuccess() {
-    return { type: actionTypes.ARCHIVE_STORY_SUCCESS }
+export function archiveStorySuccess(id) {
+    return { type: actionTypes.ARCHIVE_STORY_SUCCESS, payload: id }
 }
-export function archiveStoryError() {
-    return { type: actionTypes.ARCHIVE_STORY_ERROR }
+export function archiveStoryError(error) {
+    return { type: actionTypes.ARCHIVE_STORY_ERROR, payload: error }
 }
 export function archiveStory(id) {
     return async function (dispatch) {
         let url = `${actionTypes.baseUrl}/story/archive/${id}`;
         axios.patch(url, {}, header)
             .then((res) => {
-                dispatch(archiveStorySuccess(res));
+                dispatch(archiveStorySuccess(id));
             }).then((error) => {
                 dispatch(archiveStoryError(error));
             })

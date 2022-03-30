@@ -1,5 +1,4 @@
 .sponsored {
-    padding: $padding-normal $padding-min;
     .sponsored-title-parent {
         border-bottom: 1px solid $gray-20;
         display: flex;
@@ -9,29 +8,75 @@
             font-size: $fs-normal;
         }
     }
+    .overlay {
+        z-index: 2;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 50px;
+        transition: 0.3s;
+        background: rgb(0, 0, 0);
+        background: linear-gradient(0deg, transparent, rgba(0, 0, 0, 0.1) 100%);
+        .btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: $white;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid $gray-20;
+            padding: 0;
+        }
+        .icon {
+            font-size: $fs-normal;
+            color: $color-brand-primary;
+        }
+    }
     .sponsored-title {
         font-size: $fs-normal;
     }
+    .sponsored-img {
+        border-radius: $border-radius-min;
+        height: 150px;
+        overflow: hidden;
+    }
     .sponsored-img img {
+        border: 1px solid $gray-20;
         width: 100%;
+        height: 150px;
         object-fit: cover;
         border-radius: $border-radius-min;
     }
-    .sponsored-contetn {
-        padding: $padding-normal 0;
+    .sponsored-content {
+        border-radius: $border-radius-min;
+        overflow: hidden;
+        position: relative;
+        padding: $padding-normal;
         display: flex;
         align-items: center;
+        &:hover {
+            background-color: $gray-05;
+            .overlay {
+                opacity: 1;
+            }
+        }
     }
     .sponsored-text {
         padding-left: $padding-normal;
     }
     .sponsored-content-main {
         width: 100%;
-        font-size: $fs-min;
+        font-size: $fs-min + 2;
         font-weight: $fs-weight-normal;
     }
     .compony-name {
-        font-size: $fs-min - 2;
+        font-size: $fs-min + 1;
     }
 }
 .modal.sponsored-modal {

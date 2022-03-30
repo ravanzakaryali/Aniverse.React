@@ -17,36 +17,7 @@
             @include boxSize($box-size-img * 4, $box-size-img * 4, 50%);
             border: 2px solid $white;
         }
-        .profile-picture-parent {
-            position: relative;
-            .profile-img-btn {
-                right: 0;
-                top: 15px;
-                background-color: $gray-20;
-                padding: $padding-min $padding-normal;
-                border-radius: 50%;
-                position: absolute;
-            }
-        }
-        .profile-img-modal {
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-        .profile-img-modal .modal-content {
-            background-color: transparent;
-        }
-        .profile-img-modal .modal-body {
-            text-align: center;
-            padding: 0;
-        }
-        .profile-img-modal .modal-body img {
-            object-fit: cover;
-            @include boxSize($box-size-img * 10, $box-size-img * 10, 50%);
-        }
-        .profile-picture-modal {
-            display: flex;
-            justify-content: center;
-            border: none;
-        }
+
         .profile-picture-row {
             margin-bottom: $margin-normal;
             padding-bottom: $padding-normal;
@@ -89,49 +60,28 @@
             margin: $margin-min;
         }
     }
-    .menu-row {
-        display: flex;
-        flex-wrap: wrap;
-        border-top: 1px solid $gray-30;
-        margin-top: $margin-normal;
-        padding-top: $padding-normal;
-        .profile-menu {
-            display: flex;
-        }
-        .profile-menu a {
-            padding: $padding-normal;
-            margin: 0 $margin-min;
-            border-radius: $border-radius-min;
-            display: inline-block;
-        }
-        .profile-menu a {
-            &:hover {
-                @extend %navbar-link-active;
-            }
-            &::before {
-                bottom: -15px !important;
-            }
-        }
-        .profile-menu a.active {
-            @extend %navbar-link-active;
-            &::before {
-                bottom: -15px !important;
-            }
-        }
-        .profile-menu a {
-            display: inline-block;
-            color: $gray-80;
-            font-weight: $fs-weight-normal;
-        }
-    }
+
     .new-friend-text {
         text-align: center;
     }
-    .setting-menu {
+    .setting-fixed {
+        height: fit-content;
         position: sticky;
         top: $page-margin-top-bottom;
+    }
+    .setting-row {
+        .posts-col {
+            padding: 0;
+        }
+    }
+    .setting-menu {
+        border-radius: $border-radius-min;
+        margin: $margin-normal 0;
         background-color: $white;
         @extend %box-shadow-main;
+        &:first-of-type {
+            margin-top: 0;
+        }
         .title {
             padding: $padding-normal;
             font-size: $fs-normal;
@@ -147,17 +97,22 @@
                 width: 100%;
                 display: inline-block;
                 border-radius: $border-radius-min;
+                padding-left: 0;
                 &:hover {
                     background-color: $gray-10;
                 }
             }
             ul li a .icon {
-                width: 7%;
+                color: $black;
+                font-size: $fs-normal + 1;
+                text-align: center;
+                width: 9%;
                 display: inline-block;
             }
         }
     }
     .archive {
+        border-radius: $border-radius-min;
         background-color: $white;
         @extend %box-shadow-main;
         .archive-title {
@@ -201,6 +156,130 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+    }
+    .animal-create-profile {
+        .post-add {
+            box-shadow: none;
+        }
+        .content textarea {
+            border-radius: $border-radius-min;
+        }
+    }
+    .form-header {
+        position: relative;
+        cursor: pointer;
+        .add-story-plus {
+            border-radius: $border-radius-min;
+            background-color: $white;
+            font-weight: $fs-weight-normal;
+            border: 1px solid $gray-20;
+            .icon {
+                margin-right: $margin-min;
+            }
+        }
+    }
+    .form-item img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        border: 1px solid $gray-20;
+    }
+    .story-create-style {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        border: 1px solid $gray-20;
+        background: linear-gradient(180deg, $gray-10 60%, $gray-30 100%);
+    }
+    .add-story-plus {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .form-item textarea {
+        width: 100%;
+        border: $border-radius-min;
+        padding: $padding-min $padding-normal;
+        border: 1px solid $gray-20;
+        height: 80px;
+        resize: none;
+        &:focus,
+        &:focus-visible {
+            outline: none;
+            box-shadow: none;
+            border: 1px solid $color-brand-primary-3;
+        }
+    }
+}
+.profile-picture-modal {
+    display: flex;
+    justify-content: center;
+    border: none;
+}
+.profile-picture-parent {
+    position: relative;
+    .profile-img-btn {
+        right: 0;
+        top: 15px;
+        background-color: $gray-20;
+        padding: $padding-min $padding-normal;
+        border-radius: 50%;
+        position: absolute;
+    }
+}
+.profile-img-modal {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.profile-img-modal .modal-content {
+    background-color: transparent;
+}
+.profile-img-modal .modal-body {
+    text-align: center;
+    padding: 0;
+}
+.profile-img-modal .modal-body img {
+    object-fit: cover;
+    @include boxSize($box-size-img * 10, $box-size-img * 10, 50%);
+}
+.menu-row {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid $gray-20;
+    margin-top: $margin-normal;
+    padding-top: $padding-normal;
+    background-color: $white;
+    .profile-menu {
+        display: flex;
+    }
+    .profile-menu a {
+        padding: $padding-normal;
+        margin: 0 $margin-min;
+        border-radius: $border-radius-min;
+        display: inline-block;
+    }
+    .profile-menu a {
+        &:hover {
+            @extend %navbar-link-active;
+        }
+        &::before {
+            bottom: -15px !important;
+        }
+    }
+    .profile-menu a.active {
+        @extend %navbar-link-active;
+        &::before {
+            bottom: -15px !important;
+        }
+    }
+
+    .profile-menu a {
+        display: inline-block;
+        color: $gray-80;
+        font-weight: $fs-weight-normal;
+        .icon {
+            font-size: $fs-normal;
         }
     }
 }

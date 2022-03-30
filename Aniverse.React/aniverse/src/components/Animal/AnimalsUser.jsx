@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import {
  createAnimal,
@@ -10,6 +10,7 @@ import {
 import Select from 'react-select';
 
 function AnimalsUser(props) {
+ const navigate = useNavigate();
  const { animalCreate } = props;
  const { animalCategory } = props;
  const { animalsUser } = props;
@@ -21,12 +22,14 @@ function AnimalsUser(props) {
   animalCategory();
   setAnimalState(animalState);
   animalsUser(username);
- }, [animalCategory, animalState, animalsUser, username, visibleModal]);
+ }, []);
 
  const handleSubmit = (e) => {
   e.preventDefault();
   animalCreate(animalState);
   setVisibleModal(!visibleModal);
+  document.getElementById('form').reset();
+  return navigate(`/animal/${animalState.animalname}`);
  };
  const handleChange = (e) => {
   const { name, value } = e.target;
@@ -36,13 +39,13 @@ function AnimalsUser(props) {
   <div className="row animal-user-profile">
    <div className="user-profile-title">
     <h3 className="animal-title">Animals</h3>
-    {props.userProfile.id === props.user.id ? (
+    {props.userProfile.data.id === props.user.id ? (
      <button
       onClick={() => {
        setVisibleModal(!visibleModal);
       }}
       className="btn btn-primary">
-      Add Animal
+      Add Pets
      </button>
     ) : (
      ''
@@ -75,10 +78,10 @@ function AnimalsUser(props) {
      aria-labelledby="exampleModalLabel"
      aria-hidden="true">
      <div className="modal-dialog">
-      <form onSubmit={handleSubmit} className="modal-content">
+      <form onSubmit={handleSubmit} className="modal-content" id="form">
        <div className="modal-header">
         <h5 className="modal-title" id="exampleModalLabel">
-         Add a Animal
+         Add Pets
         </h5>
        </div>
        <div className="modal-body">

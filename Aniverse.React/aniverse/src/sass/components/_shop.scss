@@ -1,0 +1,97 @@
+.shop-header {
+    padding: 0 $padding-normal;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: none;
+}
+.shop {
+    .shop-parent {
+        @extend %box-shadow-main;
+    }
+    .modal-body {
+        padding: 0 $padding-normal;
+    }
+    .buttons {
+        display: flex;
+    }
+    .shop-header {
+        padding: $padding-min $padding-normal;
+        border-bottom: 1px solid $gray-20;
+        .shop-title {
+            border: none;
+        }
+    }
+    .shop-list {
+        padding: 0 $padding-normal;
+        .shop-card {
+            .shop-card-img {
+                position: relative;
+            }
+            margin: $margin-normal 0;
+            &:hover {
+                .overlay {
+                    opacity: 1;
+                }
+            }
+        }
+        .overlay {
+            z-index: 2;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            transition: 0.3s;
+            background: rgb(0, 0, 0);
+            background: linear-gradient(0deg, transparent, rgba(0, 0, 0, 0.5) 100%);
+            .btn {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background-color: $white;
+                border-radius: 50%;
+                width: 35px;
+                height: 35px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid $gray-20;
+                padding: 0;
+            }
+            .icon {
+                font-size: $fs-normal;
+                color: $color-brand-primary;
+            }
+        }
+        .shop-img {
+            position: relative;
+            height: 240px;
+            border: 1px solid $gray-20;
+            width: 100%;
+            border-radius: $border-radius-min;
+            overflow: hidden;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        .shop-card-footer {
+            background-color: $white;
+            padding: $padding-min $padding-normal;
+            border-bottom-right-radius: $border-radius-min;
+            border-bottom-left-radius: $border-radius-min;
+            h3 {
+                font-size: $fs-normal - 2;
+                font-weight: $fs-weight-normal;
+                color: $gray-90;
+            }
+            h4 {
+                color: $gray-70;
+                font-size: $fs-normal - 2;
+            }
+        }
+    }
+}

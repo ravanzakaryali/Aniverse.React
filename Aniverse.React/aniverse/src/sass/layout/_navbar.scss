@@ -101,7 +101,7 @@
     align-items: center;
     justify-content: end;
 }
-.account-nav ul {
+.account-nav > ul {
     justify-content: space-between;
 }
 .account-nav .right-nav li.right-nav-item > a {
@@ -142,7 +142,7 @@
             @extend %display-flex-between-x-center-y;
             font-size: $fs-min;
             transition: $transition-min;
-            padding: $padding-normal 0;
+            padding: $padding-normal $padding-min;
             &:hover {
                 background-color: $gray-10;
             }
@@ -156,10 +156,11 @@
             color: $black;
         }
         .content {
+            flex: auto;
             display: flex;
         }
         .text {
-            width: 100%;
+            padding: 0 $padding-normal;
             color: $black;
             @extend %display-flex-center-y;
         }
@@ -167,19 +168,28 @@
             color: $black;
             @extend %display-flex-center-y;
         }
+        .btn {
+            flex: auto;
+        }
     }
-    .account-footer {
-        padding: $padding-normal 0px;
-        .account-footer-ul {
-            flex-wrap: wrap;
-            width: 100%;
-            display: flex;
-        }
-        .account-footer-ul a {
-            color: $gray-45;
-            display: inline-block;
-            font-size: $fs-min - 3;
-        }
+}
+.account-footer {
+    padding: $padding-normal 0px;
+    .account-footer-ul {
+        flex-wrap: wrap;
+        width: 100%;
+        display: flex;
+    }
+    .account-footer-ul li {
+        padding: $padding-min;
+        color: $gray-70;
+        display: inline-block;
+        font-size: $fs-min - 3;
+    }
+    .account-footer-ul a {
+        color: $gray-70;
+        display: inline-block;
+        font-size: $fs-min - 3;
     }
 }
 
@@ -195,6 +205,9 @@
     }
     .user-profile {
         padding: 0;
+        img {
+            object-fit: cover;
+        }
     }
 }
 .notfication {

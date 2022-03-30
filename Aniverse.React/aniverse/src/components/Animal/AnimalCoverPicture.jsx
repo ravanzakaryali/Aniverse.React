@@ -1,13 +1,18 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { animalChangeCover } from '../../redux/actions/animalAction';
 
 function AnimalCoverPicture(props) {
  const { changeCover, coverPicture, animalId } = props;
- const [imageSrc, setImageUrl] = useState('');
+ const [imageSrc, setImageUrl] = useState(coverPicture);
  const [cover, setCover] = useState({});
- const [activeMenu, setActiveMenu] = useState(false);
+
+ useEffect(() => {
+  setImageUrl(coverPicture);
+ }, [coverPicture]);
+ console.log(imageSrc);
+
  const formData = new FormData();
  return (
   <>
@@ -23,7 +28,6 @@ function AnimalCoverPicture(props) {
    <div className="cover-change-button">
     <input
      onChange={(e) => {
-      setActiveMenu(true);
       setImageUrl(URL.createObjectURL(e.target.files[0]));
       if (e.currentTarget.files) {
        let uploadFile = e.target.files;
@@ -44,6 +48,8 @@ function AnimalCoverPicture(props) {
      className="d-none"
     />
     <button
+     data-bs-toggle="modal"
+     data-bs-target="#coverPicture"
      onClick={(e) => {
       e.currentTarget.previousElementSibling.click();
      }}
@@ -51,45 +57,36 @@ function AnimalCoverPicture(props) {
      <FontAwesomeIcon icon="fa-solid fa-camera" />
     </button>
    </div>
-   {activeMenu ? (
-    <div
-     className="modal modal-animal-cover fade show"
-     id="exampleModal"
-     tabIndex="-1"
-     aria-labelledby="exampleModalLabel"
-     aria-hidden="true"
-     style={{ display: 'block' }}>
-     <div className="modal-dialog modal-xl">
-      <div className="modal-content">
-       <div className="modal-body">
-        <img className="cover" src={`${imageSrc}`}></img>
-       </div>
-       <form
-        className="modal-footer.animal"
-        onSubmit={(e) => {
-         e.preventDefault();
-         formData.append('imageFile', cover.postFile[0]);
-         changeCover(animalId, formData);
-        }}>
-        <button
-         onClick={() => {
-          setActiveMenu(false);
-         }}
-         type="button"
-         className="btn btn-light"
-         data-bs-dismiss="modal">
-         Close
-        </button>
-        <button type="submit" className="btn btn-primary">
-         Save changes
-        </button>
-       </form>
+   <div
+    className="modal modal-animal-cover fade"
+    id="coverPicture"
+    aria-labelledby="coverPictureLabel"
+    aria-hidden="true">
+    <div className="modal-dialog modal-xl">
+     <div className="modal-content">
+      <div className="modal-body">
+       <img alt="Cover" className="cover" src={imageSrc}></img>
       </div>
+      <form
+       className="modal-footer animal"
+       onSubmit={(e) => {
+        e.preventDefault();
+        formData.append('imageFile', cover.postFile[0]);
+        changeCover(animalId, formData, imageSrc);
+       }}>
+       <button type="button" className="btn btn-light" data-bs-dismiss="modal">
+        Close
+       </button>
+       <button
+        type="submit"
+        data-bs-dismiss="modal"
+        className="btn btn-primary">
+        Save
+       </button>
+      </form>
      </div>
     </div>
-   ) : (
-    ''
-   )}
+   </div>
   </>
  );
 }
@@ -100,8 +97,8 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
  return {
-  changeCover: (id, picture) => {
-   dispatch(animalChangeCover(id, picture));
+  changeCover: (id, picture, imageSrc) => {
+   dispatch(animalChangeCover(id, picture, imageSrc));
   },
  };
 };

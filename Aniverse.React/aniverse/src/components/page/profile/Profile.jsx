@@ -8,26 +8,32 @@ import AnimalsUser from '../../Animal/AnimalsUser';
 import PhotosIntro from '../../photos/PhotosIntro';
 import { connect } from 'react-redux';
 import { getPost } from '../../../redux/actions/postAction';
+import Footer from '../../navbar/Footer';
 
 function Profile(props) {
- const [comRender, setComRender] = useState(1);
  const username = useParams().username;
  const userLogin = JSON.parse(localStorage.getItem('loginUser'));
+ const token = localStorage.getItem('token');
+ const navigate = useNavigate();
+
  const { userPost } = props;
  useEffect(() => {
-  userPost(username);
- }, [userPost, username, comRender]);
+  userPost(1, 10, username);
+ }, [userPost, username]);
+ if (token === null) return <>{navigate('/authenticate/login')}</>;
+
  return (
   <>
    <div className="right-sidebar col-12 col-md-5">
     <Intro />
     <FriendsIntro username={username} />
     <PhotosIntro />
+    <Footer />
    </div>
    <div className="center-sidebar col-12 col-md-7">
     <AnimalsUser />
     {window.location.pathname.includes('user') ? (
-     props.user.id === userLogin.id ? (
+     props.user.data.id === userLogin.id ? (
       <PostAdd />
      ) : (
       ''
@@ -35,11 +41,7 @@ function Profile(props) {
     ) : (
      ''
     )}
-    <Posts
-     setComRender={setComRender}
-     comRender={comRender}
-     posts={props.posts}
-    />
+    <Posts posts={props.posts} />
    </div>
   </>
  );
@@ -47,13 +49,13 @@ function Profile(props) {
 const mapStateToProps = (state) => {
  return {
   user: state.userReducer,
-  posts: state.postReducer,
+  posts: state.postsReducer,
  };
 };
 const mapDispatchToProps = (dispatch) => {
  return {
-  userPost: (username) => {
-   dispatch(getPost(username));
+  userPost: (page, size, username) => {
+   dispatch(getPost(page, size, username));
   },
  };
 };

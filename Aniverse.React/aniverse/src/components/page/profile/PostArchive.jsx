@@ -5,24 +5,15 @@ import Posts from '../../post/Posts';
 
 function PostArchive(props) {
  const { postArhiveRequest } = props;
- const [comRender, setComRender] = useState(false);
  useEffect(() => {
-  postArhiveRequest(1, 100);
- }, [postArhiveRequest, comRender]);
+  postArhiveRequest(1, 10);
+ }, [postArhiveRequest]);
 
- return (
-  <>
-   <Posts
-    comRender={comRender}
-    setComRender={setComRender}
-    posts={props.posts}
-   />
-  </>
- );
+ return <Posts posts={props.posts} />;
 }
 const mapStateToProps = (state) => {
  return {
-  posts: state.postArchiveReducer,
+  posts: state.postsReducer,
  };
 };
 

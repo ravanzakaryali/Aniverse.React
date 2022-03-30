@@ -4,7 +4,6 @@ import { commentCreate } from '../../redux/actions/commentAction';
 
 function CommentAdd(props) {
  const { commentUser } = props;
- const { comRender, setComRender } = props;
  const [commentState, setcommentState] = useState({});
 
  return (
@@ -13,7 +12,6 @@ function CommentAdd(props) {
     e.preventDefault();
     commentUser(commentState);
     document.querySelector('.add-comment-input input').value = '';
-    setComRender(commentState);
    }}>
    <div className="">
     <img
@@ -49,7 +47,7 @@ function CommentAdd(props) {
 
 const mapStateToProps = (state) => {
  return {
-  commentsCreate: state.commentReducer,
+  // commentsCreate: state.commentReducer,
  };
 };
 const mapDispatchToProps = (dispatch) => {

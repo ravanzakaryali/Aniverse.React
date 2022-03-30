@@ -1,9 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import ProfilePictureStyle from '../user/ProfilePictureStyle';
+import { getAllFriends } from '../../redux/actions/friendAction';
 
 function FriendsIntro(props) {
- const { userFriend } = props;
+ const { userFriend, getFriends } = props;
+ useEffect(() => {
+  getFriends(props.username, 1, 9);
+ }, [getFriends]);
  return (
   <div className="col-12">
    <div className="friends-intro">
@@ -11,40 +16,45 @@ function FriendsIntro(props) {
      <div className="friends-title col-6">Friends</div>
 
      <div className="col-6 all-friends-btn">
-      <Link to={`/user/ ${props.username}/friends`}>See All Friends</Link>
+      <Link to={`/user/${props.username}/friends`}>See All Friends</Link>
      </div>
     </div>
-    <p className="count">{userFriend.length} friends</p>
+    <p className="count"> friends</p>
     <div className="row friends-parent">
-     {userFriend.map((user, index) => (
-      <div className="col-4" key={index}>
-       <Link to={`/user/${user.username}`}>
-        <div className="friend-card">
-         <img
-          alt="Profile"
-          className="friends-profile"
-          src={
-           user.profilPicture == null
-            ? `../../img/user.png`
-            : `${user.profilPicture}`
-          }
-         />
-         <p className="friend-name">{user.firstname}</p>
-        </div>
-       </Link>
-      </div>
-     ))}
+     {userFriend.data.map((user, index) =>
+      props.username !== user.username ? (
+       <div className="col-4" key={index}>
+        <Link to={`/user/${user.username}`}>
+         <div className="friend-card">
+          <ProfilePictureStyle
+           className={'friends-profile'}
+           profilPicture={user.profilPicture}
+          />
+          <p className="friend-name">{user.firstname}</p>
+         </div>
+        </Link>
+       </div>
+      ) : (
+       ''
+      ),
+     )}
     </div>
    </div>
   </div>
  );
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
  return {
   userFriend: state.friendReducer,
-  userAuth: state.userNavbarReducer,
+  userAuth: state.userLoginReducer,
  };
-}
-
-export default connect(mapStateToProps)(FriendsIntro);
+};
+const mapDispatchToProps = (dispatch) => {
+ return {
+  getFriends: (username, page, size) => {
+   dispatch(getAllFriends(username, page, size));
+  },
+ };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(FriendsIntro);

@@ -10,6 +10,9 @@
         }
     }
     .center-sidebar {
+        .posts-col {
+            padding: 0;
+        }
         @media screen and (max-width: 768px) {
             padding-bottom: $page-margin-top-bottom;
         }
