@@ -124,24 +124,24 @@ function AnimalProfileEdit(props) {
     </div>
    </div>
    <div
-    class="modal fade post-delete-modal"
+    className="modal fade post-delete-modal"
     id="deleteAnimal"
     tabindex="-1"
     aria-labelledby="deleteAnimalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-     <div class="modal-content">
-      <div class="modal-header">
-       <h5 class="modal-title" id="deleteAnimalLabel">
+    <div className="modal-dialog modal-dialog-centered">
+     <div className="modal-content">
+      <div className="modal-header">
+       <h5 className="modal-title" id="deleteAnimalLabel">
         Delete Animal?
        </h5>
        <button
         type="button"
-        class="btn-close"
+        className="btn-close"
         data-bs-dismiss="modal"
         aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div className="modal-body">
        <p>Are you sure that you want to archive this post?</p>
        <form
         className="form-modal"

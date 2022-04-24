@@ -8,12 +8,13 @@ import ReactTimeAgo from 'react-time-ago';
 import PostMenu from './PostMenu';
 import LikeCommentView from './LikeCommentView';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Loading from '../loading/Loading';
+import Loading from '../common/Loading';
 import PostModal from './PostModal';
 import ProfilePictureStyle from '../user/ProfilePictureStyle';
-import Restore from './Restore';
 import Nothing from '../common/Nothing';
 import { Parallax } from 'swiper';
+import { IoPawSharp } from 'react-icons/io5';
+import { FaCommentAlt } from 'react-icons/fa';
 
 function Posts(props) {
  const { loginUser } = props;
@@ -25,7 +26,6 @@ function Posts(props) {
  const { posts } = props;
  if (posts.loading) return <Loading />;
  if (posts.data.length === 0) return <Nothing />;
- console.log(posts.data.length === 0);
  return (
   <>
    <div className="col-12 posts-col">
@@ -40,7 +40,7 @@ function Posts(props) {
           alt={`${post.user.firstname} profile`}
          />
         </div>
-        <div className="col-8  ">
+        <div className="col-8 ps-2 ">
          <p className="user-name">
           {post.animal ? (
            <>
@@ -73,10 +73,11 @@ function Posts(props) {
       <div className="post-body item">
        {post.pictures ? (
         <Swiper slidesPerView={1}>
-         {post.pictures.map((picture) => (
+         {post.pictures.map((picture, index) => (
           <SwiperSlide key={picture.id}>
            <div className="item">
             <img className="post-img" src={picture.imageName} />
+            <span className="post-picture-length">{++index}</span>
            </div>
           </SwiperSlide>
          ))}
@@ -89,13 +90,14 @@ function Posts(props) {
        <div className="post-result">
         <span className="index like">
          <Link to="/">
-          <FontAwesomeIcon icon="fa-solid fa-thumbs-up" />
+          <IoPawSharp className="icon" />
           <span className="count">{post.likes.length}</span>
          </Link>
         </span>
         <span className="index comment">
          <Link to="/sds">
-          <FontAwesomeIcon icon="fa-solid fa-comment" />
+          <FaCommentAlt className="icon" />
+          {/* <FontAwesomeIcon icon="fa-solid fa-comment" /> */}
           <span className="count">{post.comments.length}</span>
          </Link>
         </span>

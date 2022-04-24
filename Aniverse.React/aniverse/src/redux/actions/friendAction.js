@@ -115,6 +115,10 @@ export function getAllFriends(username, page, size) {
             });
     }
 }
+
+export function getFriendRequestLoading() {
+    return { type: actionTypes.GET_FRIEND_REQUEST_LOADING }
+}
 export function getFriendRequestSuccess(data) {
     return { type: actionTypes.GET_FRIEND_REQUEST_SUCCESS, payload: data }
 }
@@ -123,6 +127,7 @@ export function getFriendRequestError(data) {
 }
 export function getFriendRequest(page, size) {
     return async function (dispatch) {
+        dispatch(getFriendRequestLoading())
         let url = `${baseUrl}/friend/request?page=${page}&size=${size}`;
         axios.get(url, header)
             .then((res) => {

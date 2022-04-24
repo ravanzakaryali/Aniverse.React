@@ -21,7 +21,7 @@ function People() {
    ) : (
     ''
    )}
-   <div className="people-center col-12 col-md-6">
+   <div className="people-center col-12 col-md-9">
     <Outlet />
    </div>
    {width > 768 ? (

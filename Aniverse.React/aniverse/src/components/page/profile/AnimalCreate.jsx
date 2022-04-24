@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 import Select from 'react-select';
 import { getAnimalCategory } from '../../../redux/actions/animalAction';
 import { createAnimal } from '../../../redux/actions/animalAction';
-import Loading from './../../loading/Loading';
+import Loading from '../../common/Loading';
 
 function AnimalCreate(props) {
  const navigate = useNavigate();

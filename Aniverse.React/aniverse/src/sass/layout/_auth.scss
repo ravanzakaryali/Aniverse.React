@@ -29,6 +29,7 @@
             margin-right: $margin-min * 2;
         }
     }
+
     .auth-wrap {
         @extend %display-flex-center;
         background-color: $white;
@@ -47,6 +48,12 @@
                 width: 30%;
                 height: 2px;
                 background-color: $color-brand-primary;
+            }
+        }
+        .form-auth {
+            padding: $padding-min 0;
+            &.col-6.second {
+                padding-left: $padding-normal;
             }
         }
         .form-auth input {
@@ -104,6 +111,6 @@
         color: $color-brand-danger;
         font-size: $fs-min - 1;
         padding: $padding-min - 4 $padding-min;
-        display: inline-block;
+        display: block;
     }
 }

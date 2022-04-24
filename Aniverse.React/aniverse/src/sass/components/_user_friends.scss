@@ -25,6 +25,7 @@
     .friends-profile {
         @include boxSize($box-size-img * 2, $box-size-img * 2, 50%);
         border: 1px solid $white;
+        object-fit: cover;
     }
     .all-friends-btn {
         display: flex;

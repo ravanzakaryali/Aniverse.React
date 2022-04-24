@@ -6,7 +6,7 @@ import { getAllPage } from '../../../redux/actions/pageAction';
 import { getAllPosts } from '../../../redux/actions/postAction';
 import { getAllProdct } from '../../../redux/actions/productAction';
 import { getStories } from '../../../redux/actions/storyAction';
-import PageIntro from '../../aniPage/PageIntro';
+import PageIntro from '../aniPage/PageIntro';
 import Posts from '../../post/Posts';
 import Sponsored from '../../Sponsored/Sponsored';
 import Stories from '../../story/Stories';
@@ -24,7 +24,6 @@ function Explore(props) {
   getAllProductReq(1, 10);
   document.title = 'Explore | Aniverse';
  }, [getAllStories, postAllRequest, token]);
- console.log(props.products);
  const [width] = useWindowSize();
  if (token === null) return <>{navigate('/authenticate/login')}</>;
 

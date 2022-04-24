@@ -35,7 +35,8 @@ function CenterNavView(props) {
     <Link
      to="/animals"
      className={location.pathname.includes('/animals') ? 'active' : ''}>
-     <FaPaw />
+     {/* <FaPaw /> */}
+     <FontAwesomeIcon icon="fa-solid fa-dog" />
     </Link>
    </li>
   </ul>

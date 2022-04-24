@@ -1,4 +1,5 @@
 .menu-list {
+    overflow: hidden;
     li a {
         font-size: $fs-normal - 2;
         color: $black;
@@ -7,12 +8,13 @@
         $transition-min: 0.3s;
         display: flex;
         align-items: center;
+        transform: scale(1);
+        transition: 0.2s;
         .icon {
-            @include boxSize(30px, 30px, 50%);
-            padding: $padding-normal - 2;
+            @include boxSize(25px, 25px, 50%);
+            padding: $padding-min + 5;
             text-align: center;
-            font-size: $fs-normal;
-            color: $gray-80;
+            font-size: $fs-min - 2;
             background-color: $gray-20;
             margin-right: $margin-normal;
         }
@@ -21,7 +23,7 @@
         }
         &:hover {
             background-color: $gray-10;
-            transform: scale(1.02);
+            transform: scale(1.01);
         }
         &.active {
             background-color: $gray-10;
@@ -34,4 +36,5 @@
 }
 .title {
     padding: $padding-normal $padding-normal * 2;
+    border-bottom: 1px solid $gray-30;
 }

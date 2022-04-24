@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import LightGallery from 'lightgallery/react';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { chagePorfile } from '../../../redux/actions/userActions';
@@ -36,10 +37,14 @@ function UserProfilePicture(props) {
  return (
   <>
    <div className="profile-picture-parent">
-    <ProfilePictureStyle
-     className={'profil-img'}
-     profilPicture={profilPicture}
-    />
+    <LightGallery>
+     <a href={profilPicture}>
+      <ProfilePictureStyle
+       className={'profil-img'}
+       profilPicture={profilPicture}
+      />
+     </a>
+    </LightGallery>
     {props.userAuth.id === props.user.data.id ? (
      <button
       onClick={(e) => {

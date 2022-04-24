@@ -5,11 +5,12 @@ import { connect } from 'react-redux';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import { getAllFriends } from '../../../redux/actions/friendAction';
 import { getLoginUser, getUser } from '../../../redux/actions/userActions';
-import Loading from '../../loading/Loading';
+import Loading from '../../common/Loading';
 import ProfilePictureStyle from '../../user/ProfilePictureStyle';
 import UserCoverPicture from './UserCoverPicture';
 import UserProfilePicture from './UserProfilePicture';
 import { AiFillSetting } from 'react-icons/ai';
+import LightGallery from 'lightgallery/react';
 
 function User(props) {
  const { loginUserRequest, userMethod, userFriendMethod } = props;
@@ -28,14 +29,12 @@ function User(props) {
   friends = props.userFriend;
 
  useEffect(() => {
-  if (username) document.title = `${firstname} ${lastname} | Aniverse`;
   userMethod(usernameParams);
   userFriendMethod(usernameParams, 1, 9);
   loginUserRequest();
-  if (props.user.firstname) {
-   document.title = `${firstname} ${lastname} | Aniverse`;
-  }
- }, [usernameParams]);
+
+  if (props.userFriend) document.title = `${firstname} ${lastname} | Aniverse`;
+ }, [usernameParams, username]);
 
  if (props.user.loading)
   return (

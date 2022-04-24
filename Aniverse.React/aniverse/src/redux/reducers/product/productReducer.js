@@ -44,6 +44,17 @@ export function productsReducer(state = initialState.products, action) {
                 loading: false,
                 error: action.payload
             }
+        case actionTypes.GET_SAVE_PRODUCTS_LOADING:
+            return {
+                ...state,
+                loading: true,
+            }
+        case actionTypes.GET_SAVE_PRODUCTS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                data: action.payload
+            }
         default:
             return state;
     }

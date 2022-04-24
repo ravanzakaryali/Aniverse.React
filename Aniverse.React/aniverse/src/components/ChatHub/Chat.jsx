@@ -19,17 +19,13 @@ function Chat() {
    await connection.start();
    await connection.invoke('JoinRoom', { user, room });
    setConnection(connection);
-  } catch (error) {
-   console.log(error);
-  }
+  } catch (error) {}
  };
 
  const sendMessage = async (message) => {
   try {
    await connection.invoke('SendMessage', message);
-  } catch (error) {
-   console.log(error);
-  }
+  } catch (error) {}
  };
  return (
   <div className="chat">

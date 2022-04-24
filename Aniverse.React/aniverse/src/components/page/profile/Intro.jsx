@@ -14,7 +14,7 @@ function Intro(props) {
   <div className="intro col-12">
    <h3 className="intro-title">Intro</h3>
    <div className="col-12">
-    <p className="bio-content">{bio}</p>
+    {active ? <p className="bio-content">{bio}</p> : ''}
     {active ? (
      props.user.data.id === props.userAuth.id ? (
       <>
@@ -22,7 +22,7 @@ function Intro(props) {
         onClick={(e) => {
          setStateActive(!active);
         }}
-        className="btn btn-light">
+        className="btn btn-opacity-primary">
         Edit Bio
        </button>
       </>
@@ -91,7 +91,7 @@ function Intro(props) {
       {gender === 'Male' ? (
        <FontAwesomeIcon icon="fa-solid fa-person" className="icon" />
       ) : (
-       <FontAwesomeIcon icon="fa-solid fa-person-dress" />
+       <FontAwesomeIcon icon="fa-solid fa-person-dress" className="icon" />
       )}
       Gender
       <p>{gender}</p>

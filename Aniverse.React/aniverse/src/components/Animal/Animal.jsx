@@ -11,7 +11,7 @@ import AnimalCoverPicture from './AnimalCoverPicture';
 import AnimalProfilePicture from './AnimalProfilePicture';
 import { AiTwotoneLike, AiOutlineLike } from 'react-icons/ai';
 import { useWindowSize } from '@react-hook/window-size';
-import Loading from '../loading/Loading';
+import Loading from '../common/Loading';
 
 function Animal(props) {
  const animalname = useParams().animalname;
@@ -150,7 +150,7 @@ function Animal(props) {
      <div className="row posts-title">
       <div className="col-6">
        <button
-        className="btn btn-light"
+        className="btn btn-opacity-primary"
         onClick={() => {
          setActiveRow(true);
         }}>

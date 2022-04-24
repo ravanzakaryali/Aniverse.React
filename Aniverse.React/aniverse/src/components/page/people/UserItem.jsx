@@ -11,7 +11,7 @@ function UserItem(props) {
      {props.users ? (
       props.users.map((user) =>
        props.userAuth.username !== user.username ? (
-        <div className="col-6 col-sm-4 col-lg-3" key={user.id}>
+        <div className="col-6 col-sm-4 col-lg-2" key={user.id}>
          <div className="user-card">
           <Link to={`/user/${user.username}`}>
            <img

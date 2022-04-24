@@ -58,17 +58,17 @@
             height: 88vh;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-content: center;
             flex-wrap: wrap;
             .paw-img {
                 width: 100%;
                 height: 100%;
                 object-fit: contain;
                 opacity: 0.6;
+                image-rendering: auto;
             }
             p {
-                position: absolute;
-                bottom: 15%;
+                width: 100%;
                 text-align: center;
                 font-weight: $fs-weight-normal;
                 font-size: $fs-normal;

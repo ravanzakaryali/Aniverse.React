@@ -25,7 +25,6 @@ function PageCreate(props) {
  };
 
  const formState = (pageState) => {
-  console.log(pageState);
   if (
    pageState.name &&
    pageState.pagename &&

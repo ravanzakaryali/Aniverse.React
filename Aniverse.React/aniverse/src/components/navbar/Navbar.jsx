@@ -9,7 +9,6 @@ import LogoView from './LogoView';
 import CenterNavView from './CenterNavView';
 import { useLocation, useNavigate } from 'react-router';
 import SearchInput from './SearchInput';
-import PageCreateModal from '../aniPage/PageCreateModal';
 
 function Navbar(props) {
  const navigate = useNavigate();

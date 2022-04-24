@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import { getFriendStory } from '../../redux/actions/storyAction';
+import React, { useEffect } from 'react';
 import LightGallery from 'lightgallery/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useWindowSize } from '@react-hook/window-size';
 import StoryController from './StoryController';
-import { Link } from 'react-router-dom';
-import Loading from '../loading/Loading';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Loading from '../common/Loading';
 import { toast, ToastContainer } from 'react-toastify';
 
 function Stories(props) {
@@ -33,10 +29,9 @@ function Stories(props) {
  //#endregion
  useEffect(() => {
   if (props.stories.error && window.location.pathname === '/') {
-   console.log(props);
-   toast(props.stories.error, {
+   toast('It is possible to share one story in a day', {
     position: 'bottom-left',
-    autoClose: 3000,
+    autoClose: 5000,
     hideProgressBar: true,
     pauseOnHover: false,
    });

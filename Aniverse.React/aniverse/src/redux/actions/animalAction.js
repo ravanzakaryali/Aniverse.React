@@ -110,7 +110,6 @@ export function updateAnimalProfile(id, profileData) {
             .then((res) => {
                 dispatch(updateAnimalProfileSuccess(profileData));
             }).catch((error) => {
-                console.log(error);
                 dispatch(updateAnimalProfileError(error));
             })
 

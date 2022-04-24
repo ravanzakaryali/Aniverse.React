@@ -35,9 +35,10 @@ function PostAdd(props) {
   }
   formData.append('content', postState.content);
   if (postState.animalId) formData.append('animalId', postState.animalId);
-  if (postState) {
+  if (postState && !disable) {
    post(formData);
   }
+  document.getElementById('image-select').classList.add('d-none');
   document.getElementById('form').reset();
  };
 
@@ -91,7 +92,7 @@ function PostAdd(props) {
        <MdAddPhotoAlternate />
       </div>
       <div>
-       <div className="image-select d-none">
+       <div className="image-select d-none" id="image-select">
         <FontAwesomeIcon icon="fa-solid fa-images" />
         <span className="fileSaveIndex image-select-text"></span>
         <span
@@ -104,12 +105,12 @@ function PostAdd(props) {
         </span>
        </div>
       </div>
-      <button disabled={disable} type="submit" className=" btn btn-primary">
+      <button type="submit" className=" btn btn-primary">
        Add post <FontAwesomeIcon className="icon" icon="fa-solid fa-plus" />
       </button>
      </div>
     </div>
-    <div className="image-content col-3">
+    <div className="image-content col-3" id="image-content">
      <input
       multiple
       className="fileUpload"

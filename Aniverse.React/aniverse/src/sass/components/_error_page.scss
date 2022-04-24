@@ -1,0 +1,31 @@
+.error-page {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    .content {
+        text-align: center;
+        .icon {
+            color: $color-brand-primary;
+            font-size: $fs-max * 2;
+        }
+        .page-head {
+            font-size: $fs-normal;
+            font-weight: $fs-weight-normal;
+            color: $gray-70;
+            padding: $padding-normal;
+        }
+        .page-body {
+            font-size: $fs-min + 2;
+            color: $gray-70;
+            font-weight: $fs-weight-normal - 100;
+        }
+        .go-back {
+            margin: $padding-normal;
+            display: inline-block;
+            font-size: $fs-min;
+            color: $color-brand-primary;
+        }
+    }
+}

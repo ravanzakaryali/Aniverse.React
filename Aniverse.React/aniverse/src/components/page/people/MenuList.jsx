@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { RiUserAddFill } from 'react-icons/ri';
+import { FaUsers } from 'react-icons/fa';
 
 function MenuList() {
  const location = useLocation();

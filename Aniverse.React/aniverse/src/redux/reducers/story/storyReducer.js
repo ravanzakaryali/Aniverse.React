@@ -54,7 +54,6 @@ export function storiesReducer(state = initialState.stories, action) {
                 error: ""
             }
         case actionTypes.STORY_CREATE_ERROR:
-            console.log(action.payload)
             return {
                 ...state,
                 error: action.payload,

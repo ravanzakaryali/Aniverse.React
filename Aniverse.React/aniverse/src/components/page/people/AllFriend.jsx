@@ -3,7 +3,7 @@ import UserItem from './UserItem';
 import { connect } from 'react-redux';
 import { getUserFriend } from '../../../redux/actions/userActions';
 import { getAllFriends } from '../../../redux/actions/friendAction';
-import Loading from '../../loading/Loading';
+import Loading from '../../common/Loading';
 
 function AllFriend(props) {
  const { getFriend, users } = props;

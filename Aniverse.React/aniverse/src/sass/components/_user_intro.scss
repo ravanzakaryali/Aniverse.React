@@ -18,12 +18,14 @@
             padding: $padding-min $padding-normal * 2;
         }
     }
+    .btn-opacity-primary {
+        border-radius: 0 !important;
+    }
     .bio-content {
         text-align: center;
-        font-size: $fs-min + 2;
+        font-size: $fs-min + 1;
         color: $gray-80;
         padding: $padding-normal;
-        font-weight: $fs-weight-normal;
     }
     .edit-form {
         width: 100%;

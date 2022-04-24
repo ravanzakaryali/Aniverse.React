@@ -35,6 +35,12 @@ export function friendReducer(state = initialState.friends, action) {
 }
 export function getFriendRequestReducer(state = initialState.friendRequest, action) {
     switch (action.type) {
+        case actionTypes.GET_FRIEND_REQUEST_LOADING: {
+            return {
+                ...state,
+                loading: true,
+            }
+        }
         case actionTypes.GET_FRIEND_REQUEST_SUCCESS:
             return {
                 ...state,

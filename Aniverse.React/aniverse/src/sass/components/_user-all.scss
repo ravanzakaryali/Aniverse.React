@@ -36,6 +36,13 @@
     .user-card-footer {
         padding: $padding-normal;
         padding-top: 0;
+        .btn {
+            font-size: $fs-min;
+        }
+        svg {
+            width: 20px;
+            height: 20px;
+        }
     }
     .icon {
         padding-right: $padding-min;

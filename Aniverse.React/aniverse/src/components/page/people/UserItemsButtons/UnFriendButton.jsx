@@ -13,7 +13,7 @@ export const FriendsButton = (props) => {
      unFriendRequest(props.userId);
     }}
     className="buttons">
-    <button type="submmit" className="btn btn-light">
+    <button type="submmit" className="btn btn-opacity-primary">
      <FontAwesomeIcon className="icon" icon="fa-solid fa-user-minus" />
      Unfriend
     </button>

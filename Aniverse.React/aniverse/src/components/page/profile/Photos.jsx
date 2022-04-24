@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router';
 import { getOnlyUserPhotos } from '../../../redux/actions/userActions';
 import LightGallery from 'lightgallery/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IoIosSettings } from 'react-icons/io';
-import { AiOutlineDelete } from 'react-icons/ai';
-
 function Photos(props) {
  const { getPhotos } = props;
  const username = useParams().username;

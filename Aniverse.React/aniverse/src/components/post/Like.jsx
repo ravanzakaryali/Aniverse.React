@@ -2,6 +2,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { likePost } from '../../redux/actions/postAction';
+import { IoPawSharp, IoPawOutline, IoPaw } from 'react-icons/io5';
+import { FaPaw } from 'react-icons/fa';
 
 function Like(props) {
  const userId = JSON.parse(localStorage.getItem('loginUser')).id;
@@ -38,12 +40,14 @@ function Like(props) {
     <button onClick={likeClikc} type="submit" className="btn btn-like">
      {likeActive ? (
       <>
-       <FontAwesomeIcon className="icon" icon="fa-regular fa-heart" />
+       <IoPawOutline className="icon like-icon" />
+       {/* <FontAwesomeIcon className="icon" icon="fa-regular fa-heart" /> */}
        Like
       </>
      ) : (
       <>
-       <FontAwesomeIcon className="icon" icon="fa-solid fa-heart" />
+       <IoPawSharp className="icon like-icon" />
+       {/* <FontAwesomeIcon className="icon" icon="fa-solid fa-heart" /> */}
        Like
       </>
      )}

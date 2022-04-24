@@ -11,7 +11,6 @@ function AnimalCoverPicture(props) {
  useEffect(() => {
   setImageUrl(coverPicture);
  }, [coverPicture]);
- console.log(imageSrc);
 
  const formData = new FormData();
  return (

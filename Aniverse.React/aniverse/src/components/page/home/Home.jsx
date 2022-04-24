@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../sidebar/Sidebar';
 import Story from '../../story/Story';
@@ -7,7 +7,6 @@ import SiderbarRight from '../../sidebar/SiderbarRight';
 import { useWindowSize } from '@react-hook/window-size';
 import PostSetting from '../../post/PostSetting';
 import Footer from '../../navbar/Footer';
-import SponsoredAdd from '../../Sponsored/SponsoredAdd';
 
 function Home(props) {
  const navigate = useNavigate();

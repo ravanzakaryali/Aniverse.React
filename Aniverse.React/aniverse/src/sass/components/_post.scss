@@ -9,6 +9,19 @@
 }
 
 .post {
+    .post-picture-length {
+        position: absolute;
+        background-color: $modal-active;
+        text-align: center;
+        color: $white;
+        line-height: 25px;
+        top: 5px;
+        right: 5px;
+        z-index: 10;
+        width: 25px;
+        height: 25px;
+        border-radius: $border-radius-max;
+    }
     background-color: $white;
     @extend %box-shadow-main;
     margin: $margin-normal 0;
@@ -72,6 +85,9 @@
         .save-post {
         }
     }
+    .post-body {
+        position: relative;
+    }
     .post-menu-item {
         .btn {
             padding: 0;
@@ -118,7 +134,13 @@
             }
         }
         .event .icon {
+            vertical-align: middle;
             margin-right: $margin-normal;
+        }
+        .event .like-icon {
+            vertical-align: sub;
+            height: 1.5rem;
+            width: 1.5rem;
         }
     }
     .post-menu {
@@ -162,5 +184,8 @@
     }
     .post-menu-active .btn {
         color: $black !important;
+    }
+    .bg-img-posts {
+        position: absolute;
     }
 }

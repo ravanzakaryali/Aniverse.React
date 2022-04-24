@@ -29,6 +29,9 @@
                 position: relative;
             }
             margin: $margin-normal 0;
+        }
+        .shop-col {
+            position: relative;
             &:hover {
                 .overlay {
                     opacity: 1;
@@ -94,4 +97,9 @@
             }
         }
     }
+}
+.shop-save {
+    margin-top: $margin-normal;
+    background-color: $white;
+    padding-top: $padding-normal;
 }

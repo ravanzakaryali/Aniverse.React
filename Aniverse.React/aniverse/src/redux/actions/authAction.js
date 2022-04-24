@@ -20,7 +20,6 @@ export function authRegister(registerState) {
             .then((res) => {
                 dispatch(registerSuccess(res.data));
             }).catch((error) => {
-                console.log(error);
                 dispatch(registerError(error));
             })
     }

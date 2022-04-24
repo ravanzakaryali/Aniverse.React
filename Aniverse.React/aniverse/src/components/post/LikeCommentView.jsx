@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Comment from './Comment';
 import CommentAdd from './CommentAdd';
 import Like from './Like';
-
+import { FaRegCommentAlt } from 'react-icons/fa';
 function LikeCommentView(props) {
  const [commentView, setCommentView] = useState(false);
  const { post } = props;
@@ -20,7 +20,8 @@ function LikeCommentView(props) {
       onClick={() => {
        setCommentView(!commentView);
       }}>
-      <FontAwesomeIcon className="icon" icon="fa-regular fa-comment" />
+      <FaRegCommentAlt className="icon" />
+      {/* <FontAwesomeIcon className="icon" icon="fa-regular fa-comment" /> */}
       Comment
      </button>
     </div>

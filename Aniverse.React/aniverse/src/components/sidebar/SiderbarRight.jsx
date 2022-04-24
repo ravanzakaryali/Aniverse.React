@@ -3,7 +3,7 @@ import UserRequest from '../user/UserRequest';
 import { connect } from 'react-redux';
 import { getFriendRequest } from '../../redux/actions/userActions';
 import Sponsored from '../Sponsored/Sponsored';
-import PageIntro from '../aniPage/PageIntro';
+import PageIntro from '../page/aniPage/PageIntro';
 import { getAllPage, userPageFollow } from '../../redux/actions/pageAction';
 
 function SidebarRight(props) {
@@ -14,7 +14,6 @@ function SidebarRight(props) {
    getUserPageRequest(id);
   }
  }, [getUserPageRequest, id]);
- console.log(props);
  return (
   <>
    <UserRequest />
